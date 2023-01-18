@@ -1,3 +1,7 @@
+/**
+ * Main Character
+ * @author Abdulmuen Fethi
+ */
 class Zero {
     constructor(game) {
         this.game = game;
