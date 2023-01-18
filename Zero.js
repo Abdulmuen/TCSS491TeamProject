@@ -4,11 +4,11 @@ class Zero {
         this.animator = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86, 42,60,100,13,0.1,false);//initial
         this.x = 100;
         this.y = 245;
-        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86, 42,60,100,13,0.1,false);//default
-        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86, 150,66,100,8,0.1,false);//walk forward
-        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86, 150,66,100,8,0.1,true);//walk backwards
-        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86.4, 590,89.4,100,10,0.1,false);//sprint forward
-        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86.4, 590,89.4,100,10,0.1,true);//sprint backwards
+        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 42,60,100,13,0.1,false);//default
+        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.1,false);//walk forward
+        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.1,true);//walk backwards
+        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.1,false);//sprint forward
+        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.1,true);//sprint backwards
         this.slideF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,false);//slide forward
         this.slideB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,true);//slide backwards
         this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.1,false);//jump forward
