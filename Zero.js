@@ -36,7 +36,7 @@ class Zero {
         this.speed = 0;
         this.jumpSpeed = 3;
         this.fallSpeed = 2;
-        this.maxJump = 200;
+        this.maxJump = 180;
 
         this.isAttacking = false;
         this.isDying = false;

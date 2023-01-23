@@ -24,9 +24,8 @@ ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 
-	
-
 	gameEngine.init(ctx);
+
 	gameEngine.addEntity(new Zero(gameEngine));
     gameEngine.addEntity(new shooter(gameEngine));
 	gameEngine.addEntity(new boss((gameEngine)));
