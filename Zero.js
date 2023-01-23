@@ -34,8 +34,9 @@ class Zero {
         this.falling = false;
         this.startingY = this.y;
         this.speed = 0;
-        this.jumpSpeed = 6;
-        this.fallSpeed = 4;
+        this.jumpSpeed = 3;
+        this.fallSpeed = 2;
+        this.maxJump = 200;
 
         this.isAttacking = false;
         this.isDying = false;
@@ -58,7 +59,7 @@ class Zero {
 
 
         //if maximum jumping hight is reached start falling
-        if(this.y <= (this.startingY - 100) && this.jumping){
+        if(this.y <= (this.startingY - this.maxJump) && this.jumping){
             this.jumping = false;
             this.falling = true;
         }
@@ -66,8 +67,8 @@ class Zero {
         if(this.y >= this.startingY && this.falling){
             this.falling = false;
             this.y = this.startingY;
-            this.jumpSpeed = 6;
-            this.fallSpeed = 4;
+            this.jumpSpeed = 3;
+            this.fallSpeed = 2;
             this.speed = 0;
         }
 
@@ -97,10 +98,10 @@ class Zero {
             this.startingY = this.y;//if not on the air save jump starting haight
 
             if(this.game.keys["d"]){//forward
-                this.speed = 3;
+                this.speed = 2;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintF;
-                    this.speed = 6;                   
+                    this.speed = 4;                   
                 }else this.animator = this.walkF;
 
                 if(this.game.keys["w"]){//jump
@@ -115,10 +116,10 @@ class Zero {
 
                 this.x += this.speed;
             }else if(this.game.keys["a"]){//backward
-                this.speed = -3;
+                this.speed = -2;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintB;
-                    this.speed = -6;                   
+                    this.speed = -4;                   
                 }else this.animator = this.walkB;
 
                 if(this.game.keys["w"]){//jump
