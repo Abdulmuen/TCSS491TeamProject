@@ -52,7 +52,7 @@ class bullet{
         ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
     };
     updateBB() {
-        this.BB = new BoundingBox(this.x+30, this.y, 13, 5);
+        this.BB = new BoundingBox(this.x+25, this.y, 20, 5);
 
 };
 
