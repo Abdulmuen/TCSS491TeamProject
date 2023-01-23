@@ -48,8 +48,7 @@ class bullet{
     draw(ctx){
 
         this.animationList[this.animationIndex].drawFrame(this.game.clockTick, ctx, this.x, this.y,this.size);
-        ctx.strokeStyle = 'red';
-        ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+
     };
     updateBB() {
         this.BB = new BoundingBox(this.x+25, this.y, 20, 5);
