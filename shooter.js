@@ -69,7 +69,7 @@ class shooter{
     draw(ctx){
         const TICK = this.game.clockTick;
 
-            this.animation[this.direction].drawFrame(this.game.clockTick, ctx, this.x, this.y,2.4);
+            this.animation[this.direction].drawFrame(this.game.clockTick, ctx, this.x, this.y,2);
 
 
         
