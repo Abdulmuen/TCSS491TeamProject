@@ -39,35 +39,35 @@ class boss {
             }
         }
 
-        this.animations[0][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, false, true);
-        this.animations[0][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, true, true);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, false, true);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, true, true);
 
-        this.animations[1][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, false, true);
-        this.animations[1][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, true, true);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, false, true);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, true, true);
 
-        this.animations[2][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, false, true);
-        this.animations[2][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, true, true);
+        this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, false, true);
+        this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, true, true);
 
-        this.animations[3][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, false, false);
-        this.animations[3][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, true, false);
+        this.animations[3][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, false, false);
+        this.animations[3][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, true, false);
 
-        this.animations[4][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, false, false);
-        this.animations[4][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, true, false);
+        this.animations[4][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, false, false);
+        this.animations[4][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, true, false);
 
-        this.animations[5][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, false, false);
-        this.animations[5][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, true, false);
+        this.animations[5][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, false, false);
+        this.animations[5][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, true, false);
 
-        this.animations[6][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, false, false);
-        this.animations[6][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, true, false);
+        this.animations[6][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, false, false);
+        this.animations[6][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, true, false);
 
-        this.animations[7][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, false, false);
-        this.animations[7][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, true, false);
+        this.animations[7][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, false, false);
+        this.animations[7][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, true, false);
 
-        this.animations[8][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, false, false);
-        this.animations[8][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, true, false);
+        this.animations[8][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, false, false);
+        this.animations[8][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, true, false);
 
-        this.animations[9][0] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, false, false);
-        this.animations[9][1] = new animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, true, false);
+        this.animations[9][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, false, false);
+        this.animations[9][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, true, false);
     };
 
     update() {
@@ -137,21 +137,21 @@ class boss {
 
     updateAB() {
         if (this.facing == 1) {
-            this.AB = new boundingBox(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 30, (this.BB.width * 4) + 10, this.BB.height + 30);
+            this.AB = new BoundingBox(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 30, (this.BB.width * 4) + 10, this.BB.height + 30);
         } else {
-            this.AB = new boundingBox(this.BB.left - 10, this.BB.top - 30, (this.BB.width * 4) + 10, this.BB.height + 30);
+            this.AB = new BoundingBox(this.BB.left - 10, this.BB.top - 30, (this.BB.width * 4) + 10, this.BB.height + 30);
         }
     };
 
     updateBB() {
         this.lastBB = this.BB;
-        this.BB = new boundingBox(this.x + 37, this.y + 79, this.BBW, this.BBH);
+        this.BB = new BoundingBox(this.x + 37, this.y + 79, this.BBW, this.BBH);
         if (this.facing == 1) {
-            this.AR = new boundingBox(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
-            this.DB = new boundingBox(this.BB.left + this.BB.width - 3000, this.BB.top - 500, 3000, 1000);
+            this.AR = new BoundingBox(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
+            this.DB = new BoundingBox(this.BB.left + this.BB.width - 3000, this.BB.top - 500, 3000, 1000);
         } else {
-            this.AR = new boundingBox(this.BB.left + this.BB.width - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
-            this.DB = new boundingBox(this.BB.left, this.BB.top, 1000, 1000);
+            this.AR = new BoundingBox(this.BB.left + this.BB.width - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
+            this.DB = new BoundingBox(this.BB.left, this.BB.top, 1000, 1000);
         }
     };
 
