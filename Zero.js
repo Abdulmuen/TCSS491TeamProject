@@ -16,26 +16,26 @@ class Zero {
         this.SlowMotion = new BoundingBox(this.x,this.y,this.width,this.hight);
 
 
-        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 42,60,100,13,0.1,false, true);//default
-        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.1,false, true);//walk forward
-        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.1,true, true);//walk backwards
-        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.1,false, true);//sprint forward
-        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.1,true, true);//sprint backwards
+        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 42,60,100,13,0.08,false, true);//default
+        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.08,false, true);//walk forward
+        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.08,true, true);//walk backwards
+        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.08,false, true);//sprint forward
+        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.08,true, true);//sprint backwards
         this.slideF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,false, true);//slide forward
         this.slideB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,true, true);//slide backwards
-        this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.1,false, true);//jump forward
-        this.jumpB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.1,true, true);//jump backwards
-        this.fallF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1295,72,100,4,0.1,false, true);//fall forward
-        this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1295,72,100,4,0.1,true, true);//fall backwards
-        this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1740,86,72,7,0.5,false, false);//fall forward
-        this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1772,129,28,5,0.5,false, false);//fall forward
+        this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.05,false, true);//jump forward
+        this.jumpB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.05,true, true);//jump backwards
+        this.fallF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1295,72,100,4,0.05,false, true);//fall forward
+        this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1295,72,100,4,0.05,true, true);//fall backwards
+        this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1740,86,72,7,0.2,false, false);//dying 1
+        this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1772,129,28,5,0.2,false, false);//dying 2
 
         this.jumping = false;
         this.falling = false;
         this.startingY = this.y;
         this.speed = 0;
-        this.jumpSpeed = 2;
-        this.fallSpeed = 1;
+        this.jumpSpeed = 6;
+        this.fallSpeed = 4;
 
         this.isAttacking = false;
         this.isDying = false;
@@ -66,8 +66,8 @@ class Zero {
         if(this.y >= this.startingY && this.falling){
             this.falling = false;
             this.y = this.startingY;
-            this.jumpSpeed = 2;
-            this.fallSpeed = 1;
+            this.jumpSpeed = 6;
+            this.fallSpeed = 4;
             this.speed = 0;
         }
 
@@ -97,10 +97,10 @@ class Zero {
             this.startingY = this.y;//if not on the air save jump starting haight
 
             if(this.game.keys["d"]){//forward
-                this.speed = 1;
+                this.speed = 3;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintF;
-                    this.speed = 2;                   
+                    this.speed = 6;                   
                 }else this.animator = this.walkF;
 
                 if(this.game.keys["w"]){//jump
@@ -115,10 +115,10 @@ class Zero {
 
                 this.x += this.speed;
             }else if(this.game.keys["a"]){//backward
-                this.speed = -1;
+                this.speed = -3;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintB;
-                    this.speed = -2;                   
+                    this.speed = -6;                   
                 }else this.animator = this.walkB;
 
                 if(this.game.keys["w"]){//jump
@@ -135,6 +135,7 @@ class Zero {
                 this.jumping = true;
                 this.jump();
             }else if(this.game.keys["i"]){//for testing animation
+                this.isDying = true;
                 this.die();
             }else {
                 this.animator = this.idle;
@@ -142,17 +143,31 @@ class Zero {
             }
 
             
+        }else if(this.isDying){
+            this.die()
         }else
             this.jump();
     }
 
     die() {
-            this.animator = this.hitFall2;
+        this.animator = this.hitFall1;
+        //console.log(this.isDying)
+        if(this.animator == this.hitFall1 && this.animator.isDone()){
+            this.animator = this.hitFall2
+            if(this.animator.isDone()){
+                //this.animator = this.idle;
+                this.isDying = false;
+            }
+        }
+    }
+
+    SlowMotion() {
+        
     }
 
     draw(ctx) {
         ctx.strokeStyle = "Green"
-        ctx.strokeRect(this.x,this.y,this.width,this.hight);
+        ctx.strokeRect(this.x,this.y + 5,this.width,this.hight - 10);
         this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
     }
 }
