@@ -6,6 +6,10 @@ class boss {
         this.facing = 1; // 0 = right, 1 = left
         this.hitCount = 0; // take up to 10 hits
         this.dead = false;
+        this.canAttack = true;
+        this.attackCD = 0;
+        this.canDamage = true;
+        this.damagedCD = 0;
 
         this.x = 1400;
         this.y = 177.5;
@@ -67,28 +71,68 @@ class boss {
     };
 
     update() {
-        const TICK = this.game.clockTick;
 
-        this.x -= this.speed * TICK;
-        this.updateBB();
+        if (this.dead) {
+            this.state = 9;
+        } else {
+            const TICK = this.game.clockTick;
+            this.x -= this.speed * TICK;
+            this.updateBB();
 
-        let self = this;
-        this.game.entities.forEach(function (entity) {
-            if (entity instanceof Zero) {
-                if (entity.BB && self.AR.collide(entity.BB)) {
-                    self.speed = 0;
-                    self.state = 3;
+            let self = this;
+            this.game.entities.forEach(function (entity) {
+                if (entity instanceof Zero) {
+                    // if player in sight
+                    /*
+                    if (entity.BB && self.DB.collide(entity.BB)) {
+                        if (!self.AR.collide(entity.BB) && self.state != 7 && self.animations[self.state][self.facing].isDone()) {
+                            // move towards the knight
+                            self.state = 1;
+                            self.speed = 20;
+                        }
+                    } else {
+                        if (self.facing == 1) {
+                            self.facing == 0;
+                        } else {
+                            self.facing = 1
+                        }
+                    }
+                    */
+                    if (entity.BB && self.DB.collide(entity.BB)) {
+                        if (entity.x > self.x) {
+                            self.facing = 0;
+                            if (self.state == 0 || self.state == 1 || self.state == 2 || self.animations[self.state][self.facing].isDone()) {
+                                self.state = 1;
+                                self.speed = -20;
+                            }
+                        } else {
+                            self.facing = 1;
+                            if (self.state == 0 || self.state == 1 || self.state == 2 || self.animations[self.state][self.facing].isDone()) {
+                                self.state = 1;
+                                self.speed = 20;
+                            }
+                        } 
+                    }
+                    // if player in attack range
+                    if (self.canAttack && entity.BB && self.AR.collide(entity.BB)) {
+                        self.speed = 0;
+                        self.state = 3;
+                        self.canAttack = false;
+                    }
+                    if (self.canDamage && entity.BB && self.BB.collide(entity.BB)) {
+                        self.speed = 0;
+                        self.state = 7;
+                        self.canDamage = false
+                        self.dead = true;
+                    }
                 }
-            }
+            });
+            // reset to idle state
             if (self.animations[self.state][self.facing].isDone()) {
-                self.animations[self.state][self.facing].reset();
-                self.state = 4;
-                if (self.animations[self.state][self.facing].isDone()) {
-                    self.state = 0;
-                    console.log("test");
-                }
+                self.state = 0;
             }
-        });
+            this.checkCD(TICK);
+        }
     };
 
     updateAB() {
@@ -104,8 +148,30 @@ class boss {
         this.BB = new boundingBox(this.x + 37, this.y + 79, this.BBW, this.BBH);
         if (this.facing == 1) {
             this.AR = new boundingBox(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
+            this.DB = new boundingBox(this.BB.left + this.BB.width - 3000, this.BB.top - 500, 3000, 1000);
         } else {
             this.AR = new boundingBox(this.BB.left + this.BB.width - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
+            this.DB = new boundingBox(this.BB.left, this.BB.top, 1000, 1000);
+        }
+    };
+
+    checkCD(TICK) {
+        if(!this.canAttack) {
+            this.attackCD += TICK;
+            if (this.attackCD >= 1.5) {
+                this.animations[3][0].reset();
+                this.animations[3][1].reset();
+                this.attackCD = 0;
+                this.canAttack = true;
+            }
+        }
+        if(!this.canDamage) {
+            this.damagedCD += TICK;
+            if (this.damagedCD >= 1) {
+                this.animations[7][0].reset();
+                this.animations[7][1].reset();
+                this.canDamage = true;
+            }
         }
     };
 
@@ -114,7 +180,7 @@ class boss {
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, this.scale);
         } else {
             ctx.strokeStyle = "Green";
-            ctx.strokeRect(this.x + 37, this.y + 79, this.BBW, this.BBH);
+            ctx.strokeRect(this.BB.left + this.BB.width - 3000, this.BB.top - 500, 3000, 1000);
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, this.scale);
         }
     };
