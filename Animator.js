@@ -6,7 +6,7 @@ class Animator {
 
     }
 
-    drawFrame(TICK, ctx, x, y, cale) {
+    drawFrame(TICK, ctx, x, y, scale) {
 
         this.elapsedTime += TICK * this.speed;
          if (this.isDone()) {
