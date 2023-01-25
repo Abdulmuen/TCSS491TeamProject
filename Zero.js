@@ -32,6 +32,7 @@ class Zero {
         this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,true, true);//fall backwards
         this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1712,86,100,7,0.2,false, false);//dying 1
         this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1712,129,100,5,0.2,false, false);//dying 2
+        this.attack1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 60, 1545,120,75,6,0.2,false, true);//attack 1
 
         this.jumping = false;
         this.falling = false;
@@ -153,8 +154,8 @@ class Zero {
                 this.jumping = true;
                 this.jump();
             }else if(this.game.keys["i"]){//for testing animation
-                this.isDying = true;
-                this.die();
+                this.x += 1;
+                this.animator = this.attack1;
             }else {
                 this.animator = this.idle;
                 this.speed = 0;
