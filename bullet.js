@@ -10,6 +10,7 @@ class bullet{
         this.speed = bulletspeed;
         this.anamation = facingDir;
         this.removeFromWorldValue = 0;
+        this.removeFromWorld = false;
         this.animationList = [];
         this.animationIndex = facingDir;
 
@@ -31,8 +32,7 @@ class bullet{
         this.game.entities.forEach (function (entity) {
             if(entity.BB && that.BB.collide(entity.BB)){
                 if(entity instanceof Zero){
-                    entity.isDying = true;
-                    that.remove();
+                    that.removeFromWorld = true;
                     
             }
             }
@@ -40,12 +40,6 @@ class bullet{
 
         this.updateBB();
     };
-    remove(){
-        this.removeFromWorldValue = 1;
-        this.BB = new BoundingBox(0, 0, 0, 0);
-        this.x = -999;
-        this.y = -999;
-    }
     draw(ctx){
 
         this.animationList[this.animationIndex].drawFrame(this.game.clockTick, ctx, this.x, this.y,this.size);
