@@ -3,12 +3,15 @@
  * @author Abdulmuen Fethi
  */
 class Zero {
-    constructor(game) {
+    constructor(game, X, Y) {
         this.game = game;
+        this.game.Zero = this;
         
         this.animator = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 86, 42,60,100,13,0.1,false);//initial
-        this.x = 100;
-        this.y = 245;
+        // this.x = 100;
+        // this.y = 245;
+        this.x = X;
+        this.y = Y;
         this.width = 60;
         this.hight = 100;
 
@@ -16,19 +19,19 @@ class Zero {
         this.SlowMotion = new BoundingBox(this.x,this.y,this.width,this.hight);
 
 
-        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 42,60,100,13,0.08,false, true);//default
-        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.08,false, true);//walk forward
-        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 150,66,100,8,0.08,true, true);//walk backwards
-        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.08,false, true);//sprint forward
-        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 590,90,100,10,0.08,true, true);//sprint backwards
+        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 49,60,86,13,0.08,false, true);//default
+        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,false, true);//walk forward
+        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,true, true);//walk backwards
+        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 593,90,77,10,0.08,false, true);//sprint forward
+        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 593,90,77,10,0.08,true, true);//sprint backwards
         this.slideF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,false, true);//slide forward
         this.slideB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,true, true);//slide backwards
-        this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.05,false, true);//jump forward
-        this.jumpB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1295,64,100,4,0.05,true, true);//jump backwards
-        this.fallF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1295,72,100,4,0.05,false, true);//fall forward
-        this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1295,72,100,4,0.05,true, true);//fall backwards
-        this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1740,86,72,7,0.2,false, false);//dying 1
-        this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1772,129,28,5,0.2,false, false);//dying 2
+        this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1299,64,89,4,0.05,false, true);//jump forward
+        this.jumpB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1299,64,89,4,0.05,true, true);//jump backwards
+        this.fallF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,false, true);//fall forward
+        this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,true, true);//fall backwards
+        this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1712,86,100,7,0.2,false, false);//dying 1
+        this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1712,129,100,5,0.2,false, false);//dying 2
 
         this.jumping = false;
         this.falling = false;
@@ -40,6 +43,7 @@ class Zero {
 
         this.isAttacking = false;
         this.isDying = false;
+        this.isDead = false;
 
 
         ///////////////try////////////
@@ -51,7 +55,7 @@ class Zero {
     //update bounding box
     updateBB() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
+        this.BB = new BoundingBox(this.x,this.y,this.animator.width,this.animator.height);
     };
 
     //jump routine
@@ -92,6 +96,19 @@ class Zero {
 
     update() {
         this.updateBB();
+        // var that = this;
+        // this.game.entities.forEach (function (entity) {
+        //         if(entity.BB && !(entity instanceof Zero) && that.BB.collide(entity.BB)){
+        //             console.log(entity);
+        //             if(entity instanceof bullet){
+        //                 console.log("3");
+        //                 that.die();
+                            
+        //         }
+        //     }
+        
+        // });
+
         //if not in the air or dying
         if(!this.jumping && !this.falling && !this.isAttacking && !this.isDying){
 
@@ -152,14 +169,22 @@ class Zero {
 
     die() {
         this.animator = this.hitFall1;
+        this.y -= 0.1
+        this.x -= 0.2
         //console.log(this.isDying)
         if(this.animator == this.hitFall1 && this.animator.isDone()){
             this.animator = this.hitFall2
+            this.y += 0.3
+            this.x -= 0.2
             if(this.animator.isDone()){
                 //this.animator = this.idle;
                 this.isDying = false;
+                this.y = this.startingY;
+                
             }
-        }
+        }else if(this.animator == this.hitFall2 && this.animator.isDone())
+            this.isDead = true;
+            
     }
 
     SlowMotion() {
@@ -168,7 +193,7 @@ class Zero {
 
     draw(ctx) {
         ctx.strokeStyle = "Green"
-        ctx.strokeRect(this.x,this.y + 5,this.width,this.hight - 10);
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1);
+        ctx.strokeRect(this.x+10,this.y,this.animator.width-20,this.animator.height);
     }
 }
