@@ -47,7 +47,7 @@ class Zero {
         this.isDead = false;
 
 
-        ///////////////try////////////
+        ///////////////try////////////w
         this.flag = true;
 
 
