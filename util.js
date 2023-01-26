@@ -1,5 +1,10 @@
 /** Global Parameters Object */
-const params = { };
+const params = {
+    normal: 1,
+    slow: 0.75,
+    slower: 0.5,
+    slowest: 0.25
+};
 
 /**
  * @param {Number} n
