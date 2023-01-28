@@ -1,9 +1,9 @@
 /** Global Parameters Object */
 const params = {
-    normal: 1,
-    slow: 0.75,
-    slower: 0.5,
-    slowest: 0.25
+    NPCSpeed: 1,
+    playerSpeed: 1,
+    slowMotionCD: 0,
+    canSlow: true
 };
 
 /**

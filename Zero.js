@@ -96,6 +96,22 @@ class Zero {
     }
 
     update() {
+
+        const TICK = this.game.clockTick;
+
+        if(this.game.keys["e"] && params.canSlow){
+            params.NPCSpeed = 0.5;
+            params.playerSpeed = 0.75;
+        } else {
+            params.slowMotionCD += TICK;
+            if (params.slowMotionCD >= 5) {
+                params.NPCSpeed = 1;
+                params.playerSpeed = 1;
+                params.slowMotionCD = 0;
+                params.canSlow = true;
+            }
+        }
+
         this.updateBB();
         // var that = this;
         // this.game.entities.forEach (function (entity) {
@@ -116,7 +132,7 @@ class Zero {
             this.startingY = this.y;//if not on the air save jump starting haight
 
             if(this.game.keys["d"]){//forward
-                this.speed = 2;
+                this.speed = 2 * params.playerSpeed;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintF;
                     this.speed = 4;                   
