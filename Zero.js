@@ -15,10 +15,6 @@ class Zero {
         this.width = 60;
         this.hight = 100;
 
-        this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
-        this.SlowMotion = new BoundingBox(this.x,this.y,this.width,this.hight);
-
-
         this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 49,60,86,13,0.08,false, true, true);//default
         this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,false, true, true);//walk forward
         this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,true, true, true);//walk backwards
@@ -46,11 +42,11 @@ class Zero {
         this.isDying = false;
         this.isDead = false;
 
+        this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
+        this.updateBB();
 
-        ///////////////try////////////w
+        ///////////////try////////////
         this.flag = true;
-
-
     }
 
     //update bounding box
@@ -68,6 +64,7 @@ class Zero {
             this.jumping = false;
             this.falling = true;
         }
+
         //if fallen to the ground stop falling and restore all variables
         if(this.y >= this.startingY && this.falling){
             this.falling = false;
@@ -79,7 +76,7 @@ class Zero {
 
         if(this.jumping && !this.falling){//up
             this.animator = this.speed >= 0 ? this.jumpF : this.jumpB;
-            this.jumpSpeed *= 0.99;
+            this.jumpSpeed *= 0.99 ;
             this.y -= this.jumpSpeed;
             this.x += this.speed;
         }else if(!this.jumping && this.falling){//down
@@ -96,7 +93,6 @@ class Zero {
     }
 
     update() {
-
         const TICK = this.game.clockTick;
 
         if(this.game.keys["e"] && params.canSlow){
@@ -113,18 +109,6 @@ class Zero {
         }
 
         this.updateBB();
-        // var that = this;
-        // this.game.entities.forEach (function (entity) {
-        //         if(entity.BB && !(entity instanceof Zero) && that.BB.collide(entity.BB)){
-        //             console.log(entity);
-        //             if(entity instanceof bullet){
-        //                 console.log("3");
-        //                 that.die();
-                            
-        //         }
-        //     }
-        
-        // });
 
         //if not in the air or dying
         if(!this.jumping && !this.falling && !this.isAttacking && !this.isDying){
@@ -135,7 +119,7 @@ class Zero {
                 this.speed = 2 * params.playerSpeed;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintF;
-                    this.speed = 4;                   
+                    this.speed = 4 * params.playerSpeed;                   
                 }else this.animator = this.walkF;
 
                 if(this.game.keys["w"]){//jump
@@ -145,15 +129,15 @@ class Zero {
 
                 if(this.game.keys["f"]){//slide
                     this.animator = this.slideF;
-                    this.speed = 10;
+                    this.speed = 10 * params.playerSpeed;
                 }
 
                 this.x += this.speed;
             }else if(this.game.keys["a"]){//backward
-                this.speed = -2;
+                this.speed = -2 * params.playerSpeed;
                 if(this.game.keys["Shift"]){
                     this.animator = this.sprintB;
-                    this.speed = -4;                   
+                    this.speed = -4 * params.playerSpeed;                   
                 }else this.animator = this.walkB;
 
                 if(this.game.keys["w"]){//jump
@@ -162,15 +146,15 @@ class Zero {
                 }
                 if(this.game.keys["f"]){//slide
                     this.animator = this.slideB;
-                    this.speed = -10;
+                    this.speed = -10 * params.playerSpeed;
                 }
 
-                this.x += this.speed;
+                this.x += this.speed * params.playerSpeed;
             }else if(this.game.keys["w"]){//jump
                 this.jumping = true;
                 this.jump();
             }else if(this.game.keys["i"]){//for testing animation
-                this.x += 1;
+                this.x += 1 * params.playerSpeed;
                 this.animator = this.attack1;
             }else {
                 this.animator = this.idle;
@@ -186,13 +170,13 @@ class Zero {
 
     die() {
         this.animator = this.hitFall1;
-        this.y -= 0.1
-        this.x -= 0.2
+        this.y -= 0.1;
+        this.x -= 0.2;
         //console.log(this.isDying)
         if(this.animator == this.hitFall1 && this.animator.isDone()){
-            this.animator = this.hitFall2
-            this.y += 0.3
-            this.x -= 0.2
+            this.animator = this.hitFall2;
+            this.y += 0.3;
+            this.x -= 0.2;
             if(this.animator.isDone()){
                 //this.animator = this.idle;
                 this.isDying = false;
@@ -202,10 +186,6 @@ class Zero {
         }else if(this.animator == this.hitFall2 && this.animator.isDone())
             this.isDead = true;
             
-    }
-
-    SlowMotion() {
-        
     }
 
     draw(ctx) {

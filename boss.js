@@ -78,7 +78,7 @@ class boss {
             this.state = 9;
         } else {
             const TICK = this.game.clockTick;
-            this.x -= this.speed * TICK;
+            this.x -= this.speed * TICK * params.NPCSpeed;
             this.updateBB();
 
             let self = this;
@@ -160,7 +160,7 @@ class boss {
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, this.scale);
         } else {
             ctx.strokeStyle = "Green";
-            ctx.strokeRect(this.BB.left + this.BB.width - 3000, this.BB.top - 500, 6000, 1000);
+            ctx.strokeRect(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 30, (this.BB.width * 3) + 10, this.BB.height + 30);
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, this.scale);
         }
     };
