@@ -18,10 +18,10 @@ class shooter{
         this.direction = this.directions.left;
         this.removeFromWorld = false;
         this.animation = [];
-        this.animation[0] = new Animator(ASSET_MANAGER.getAsset("./shooter/WR.png"),0, 0, 34, 40, 8, 0.1, false,true);
-        this.animation[1] = new Animator(ASSET_MANAGER.getAsset("./shooter/WR.png"),0, 0, 34, 40, 8, 0.1, true,true);
-        this.animation[2] =new Animator(ASSET_MANAGER.getAsset("./shooter/shooting.png"),0, 0, 45, 41, 1, 0.1,true,true);
-        this.animation[3] =new Animator(ASSET_MANAGER.getAsset("./shooter/dead.png"),0, 0, 44, 32, 12, 0.1, true,false);
+        this.animation[0] = new Animator(ASSET_MANAGER.getAsset("./shooter/WR.png"),0, 0, 34, 40, 8, 0.1, false,true, params.NPCSpeed);
+        this.animation[1] = new Animator(ASSET_MANAGER.getAsset("./shooter/WR.png"),0, 0, 34, 40, 8, 0.1, true,true, params.NPCSpeed);
+        this.animation[2] =new Animator(ASSET_MANAGER.getAsset("./shooter/shooting.png"),0, 0, 45, 41, 1, 0.1,true,true, params.NPCSpeed);
+        this.animation[3] =new Animator(ASSET_MANAGER.getAsset("./shooter/dead.png"),0, 0, 44, 32, 12, 0.1, true,false, params.NPCSpeed);
     };
     update(){
         const TICK = this.game.clockTick;
