@@ -100,7 +100,7 @@ class Zero {
         const TICK = this.game.clockTick;
 
         if(this.game.keys["e"] && params.canSlow){
-            params.NPCSpeed = 0.5;
+            params.NPCSpeed = 0.25;
             params.playerSpeed = 0.75;
         } else {
             params.slowMotionCD += TICK;
