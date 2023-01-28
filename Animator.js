@@ -1,6 +1,6 @@
 class Animator {
-    constructor(spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards, loop, speed) {
-        Object.assign(this, {spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards, loop, speed});
+    constructor(spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards, loop, isPlayer) {
+        Object.assign(this, {spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards, loop, isPlayer});
         this.elapsedTime = 0;
         this.totalTime = frameCount * frameDuration;
 
@@ -8,7 +8,12 @@ class Animator {
 
     drawFrame(TICK, ctx, x, y, scale) {
 
-        this.elapsedTime += TICK * this.speed;
+        if (this.isPlayer) {
+            this.elapsedTime += TICK * params.playerSpeed;
+        } else {
+            this.elapsedTime += TICK * params.NPCSpeed;
+        }
+
          if (this.isDone()) {
             if (this.loop) {
                 this.elapsedTime -= this.totalTime;

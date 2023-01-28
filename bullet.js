@@ -13,8 +13,8 @@ class bullet{
         this.animationList = [];
         this.animationIndex = facingDir;
 
-        this.animationList[0] = new Animator(ASSET_MANAGER.getAsset("./shooter/BR.png"),0,0,45,21,1,0.1,false,true);  
-        this.animationList[1] = new Animator(ASSET_MANAGER.getAsset("./shooter/BR.png"),0,0,45,21,1,0.1,true,true);
+        this.animationList[0] = new Animator(ASSET_MANAGER.getAsset("./shooter/BR.png"),0,0,45,21,1,0.1,false,true, false);  
+        this.animationList[1] = new Animator(ASSET_MANAGER.getAsset("./shooter/BR.png"),0,0,45,21,1,0.1,true,true, false);
 
         this.updateBB();
         
@@ -23,9 +23,9 @@ class bullet{
     update(){ 
         const TICK = this.game.clockTick;
         if(this.anamation==0){
-            this.x += this.speed*TICK;
+            this.x += this.speed * aTICK * params.NPCSpeed;
         }else if(this.anamation==1){
-            this.x -= this.speed*TICK;
+            this.x -= this.speed * TICK * params.NPCSpeed;
         }
         var that = this;
         this.game.entities.forEach (function (entity) {

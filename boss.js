@@ -41,35 +41,35 @@ class boss {
             }
         }
 
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, false, true, params.NPCSpeed);
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, true, true, params.NPCSpeed);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, false, true, false);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Idle.png"), 0, 0, 128, 128, 9, 0.15, true, true, false);
 
-        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, false, true, params.NPCSpeed);
-        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, true, true, params.NPCSpeed);
+        this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, false, true, false);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Walk.png"), 0, 0, 128, 128, 8, 0.15, true, true, false);
 
-        this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, false, true, params.NPCSpeed);
-        this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, true, true, params.NPCSpeed);
+        this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, false, true, false);
+        this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Run.png"), 0, 0, 128, 128, 8, 0.15, true, true, false);
 
-        this.animations[3][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, false, false, params.NPCSpeed);
-        this.animations[3][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, true, false, params.NPCSpeed);
+        this.animations[3][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, false, false, false);
+        this.animations[3][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_1.png"), 3, 0, 128, 128, 6, 0.15, true, false, false);
 
-        this.animations[4][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, false, false, params.NPCSpeed);
-        this.animations[4][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, true, false, params.NPCSpeed);
+        this.animations[4][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, false, false, false);
+        this.animations[4][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Attack_2.png"), 0, 0, 128, 128, 6, 0.15, true, false, false);
 
-        this.animations[5][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, false, false, params.NPCSpeed);
-        this.animations[5][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, true, false, params.NPCSpeed);
+        this.animations[5][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, false, false, false);
+        this.animations[5][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Cast.png"), 0, 0, 128, 128, 6, 0.15, true, false, false);
 
-        this.animations[6][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, false, false, params.NPCSpeed);
-        this.animations[6][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, true, false, params.NPCSpeed);
+        this.animations[6][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, false, false, false);
+        this.animations[6][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Jump.png"), 0, 0, 128, 128, 10, 0.15, true, false, false);
 
-        this.animations[7][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, false, false, params.NPCSpeed);
-        this.animations[7][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, true, false, params.NPCSpeed);
+        this.animations[7][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, false, false, false);
+        this.animations[7][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Hurt.png"), 0, 0, 128, 128, 2, 0.2, true, false, false);
 
-        this.animations[8][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, false, false, params.NPCSpeed);
-        this.animations[8][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, true, false, params.NPCSpeed);
+        this.animations[8][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, false, false, false);
+        this.animations[8][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Eating.png"), 0, 0, 128, 128, 5, 0.3, true, false, false);
 
-        this.animations[9][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, false, false, params.NPCSpeed);
-        this.animations[9][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, true, false, params.NPCSpeed);
+        this.animations[9][0] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, false, false, false);
+        this.animations[9][1] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Dead.png"), 0, 0, 128, 128, 5, 0.3, true, false, false);
     };
 
     update() {

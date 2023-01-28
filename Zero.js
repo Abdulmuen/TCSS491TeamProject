@@ -19,20 +19,20 @@ class Zero {
         this.SlowMotion = new BoundingBox(this.x,this.y,this.width,this.hight);
 
 
-        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 49,60,86,13,0.08,false, true, params.playerSpeed);//default
-        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,false, true, params.playerSpeed);//walk forward
-        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,true, true, params.playerSpeed);//walk backwards
-        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 593,90,77,10,0.08,false, true, params.playerSpeed);//sprint forward
-        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 593,90,77,10,0.08,true, true, params.playerSpeed);//sprint backwards
-        this.slideF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,false, true, params.playerSpeed);//slide forward
-        this.slideB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,true, true, params.playerSpeed);//slide backwards
-        this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1299,64,89,4,0.05,false, true, params.playerSpeed);//jump forward
-        this.jumpB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1299,64,89,4,0.05,true, true, params.playerSpeed);//jump backwards
-        this.fallF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,false, true, params.playerSpeed);//fall forward
-        this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,true, true, params.playerSpeed);//fall backwards
-        this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1712,86,100,7,0.2,false, false, params.playerSpeed);//dying 1
-        this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1712,129,100,5,0.2,false, false, params.playerSpeed);//dying 2
-        this.attack1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 60, 1545,120,75,6,0.2,false, true, params.playerSpeed);//attack 1
+        this.idle = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 92, 49,60,86,13,0.08,false, true, true);//default
+        this.walkF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,false, true, true);//walk forward
+        this.walkB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 157,66,87,8,0.08,true, true, true);//walk backwards
+        this.sprintF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 593,90,77,10,0.08,false, true, true);//sprint forward
+        this.sprintB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 81, 593,90,77,10,0.08,true, true, true);//sprint backwards
+        this.slideF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,false, true, true);//slide forward
+        this.slideB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 84, 1640,330,100,1,1,true, true, true);//slide backwards
+        this.jumpF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1299,64,89,4,0.05,false, true, true);//jump forward
+        this.jumpB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 1299,64,89,4,0.05,true, true, true);//jump backwards
+        this.fallF = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,false, true, true);//fall forward
+        this.fallB = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 348, 1297,72,91,4,0.05,true, true, true);//fall backwards
+        this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1712,86,100,7,0.2,false, false, true);//dying 1
+        this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1712,129,100,5,0.2,false, false, true);//dying 2
+        this.attack1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 60, 1545,120,75,6,0.2,false, true, true);//attack 1
 
         this.jumping = false;
         this.falling = false;
