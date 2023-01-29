@@ -1,14 +1,19 @@
 class Animator {
-    constructor(spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards,loop) {
-        Object.assign(this, {spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards,loop});
+    constructor(spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards, loop, isPlayer) {
+        Object.assign(this, {spritesheet, xStart, yStart, width, height, frameCount, frameDuration, backwards, loop, isPlayer});
         this.elapsedTime = 0;
         this.totalTime = frameCount * frameDuration;
 
     }
 
-    drawFrame(tick, ctx, x, y,scale) {
+    drawFrame(TICK, ctx, x, y, scale) {
 
-        this.elapsedTime += tick;
+        if (this.isPlayer) {
+            this.elapsedTime += TICK * params.playerSpeed;
+        } else {
+            this.elapsedTime += TICK * params.NPCSpeed;
+        }
+
          if (this.isDone()) {
             if (this.loop) {
                 this.elapsedTime -= this.totalTime;
@@ -39,5 +44,9 @@ class Animator {
 
     isDone() {
         return (this.elapsedTime >= this.totalTime);
+    }
+
+    isAlmostDone(TICK) {
+        return (this.elapsedTime + 1 >= this.totalTime);
     }
 }

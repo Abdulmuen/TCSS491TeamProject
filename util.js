@@ -1,5 +1,10 @@
 /** Global Parameters Object */
-const params = { };
+const params = {
+    NPCSpeed: 1,
+    playerSpeed: 1,
+    slowMotionCD: 0,
+    canSlow: true
+};
 
 /**
  * @param {Number} n
