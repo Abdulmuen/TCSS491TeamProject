@@ -32,6 +32,7 @@ ASSET_MANAGER.queueDownload("./Kunoichi/Jump.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Hurt.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Eating.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Dead.png");
+ASSET_MANAGER.queueDownload("./Kunoichi/Spine.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

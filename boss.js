@@ -17,6 +17,7 @@ class boss {
         this.canEat = false;
         this.isEating = false;
         this.attackCount = 0;
+        this.bulletSpeed = 350;
 
         this.x = 1400;
         this.y = 177.5;
@@ -129,8 +130,20 @@ class boss {
 
             // cast a spine after 2 attack
             if (this.attackCount == 3) {
-                this.attackCount = 0;
+                this.speed = 0;
                 this.state = this.states.cast;
+                if (this.animations[this.states.cast][this.facing].isDone()) {
+                    if (this.facing == this.facings.left) {
+                        console.log("left");
+                        this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y + 85, 2, this.bulletSpeed, 3));
+                        this.attackCount = 0;
+                    } else {
+                        console.log("right");
+                        this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y + 85, 3, this.bulletSpeed, 3));
+                        this.attackCount = 0;
+                    }
+                }
+                
             }
 
             // eat phase
