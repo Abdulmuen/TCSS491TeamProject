@@ -55,3 +55,44 @@ class SceneManager {
 
     }
 }
+class Hud{
+    constructor(game) {
+        this.game = game;
+
+        };
+
+    update() {
+        
+        }
+    draw(ctx) {
+        console.log("check");
+        ctx.font = "50px Arial";
+        ctx.fillStyle = 'Red';
+        ctx.textAlign = 'center';
+        ctx.fillText("Score", 100, 50);
+        }
+}
+
+class Startscreen {
+        constructor(game) {
+            this.game = game;
+            this.game.starting = true;
+    };
+
+    update() {
+        if (this.game.keys["Enter"]) {
+            this.game.starting = false;
+        }
+    };
+
+    draw(ctx) {
+        if (this.game.starting == true) {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, 9999, 9999);
+            ctx.font = "50px Arial";
+            ctx.fillStyle = 'White';
+            ctx.textAlign = 'center';
+            ctx.fillText("Press Enter to Start", 948, 374);
+        }
+    };
+}
