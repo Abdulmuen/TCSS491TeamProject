@@ -1,9 +1,8 @@
 class shooter{
-    constructor(game, X, Y) {
+    constructor(game, x, y) {
         this.game = game;
-        this.game.Zero = this;
-		this.x = X;
-		this.y = Y;
+		this.x = x;
+		this.y = y;
 		this.speed = 1;
         this.fireRate =2.1;
         this.elapsedTime = 4;
@@ -94,7 +93,7 @@ class shooter{
     draw(ctx){
         const TICK = this.game.clockTick;
 
-            this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x, this.y,2);
+            this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y,2);
 
 
         
