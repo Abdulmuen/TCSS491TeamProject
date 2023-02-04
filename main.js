@@ -14,6 +14,7 @@ ASSET_MANAGER.queueDownload("./Sprites/main.png");
 
 //backgrownd assets
 ASSET_MANAGER.queueDownload("./Sprites/bg1.png");
+ASSET_MANAGER.queueDownload("./Sprites/gr1.png");
 
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
@@ -45,11 +46,7 @@ ASSET_MANAGER.downloadAll(() => {
 	gameEngine.init(ctx);
 
 	gameEngine.addEntity(new SceneManager(gameEngine));
-	//gameEngine.addEntity(new Zero(gameEngine));
-    gameEngine.addEntity(new shooter(gameEngine));
-	gameEngine.addEntity(new boss((gameEngine)));
-	gameEngine.addEntity(new bg1(gameEngine));
-	
 
 	gameEngine.start();
+	
 });
