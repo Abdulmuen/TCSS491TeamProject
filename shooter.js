@@ -105,9 +105,9 @@ class shooter{
     };
 
     updateBB() {
-        if (this.direction == 1) this.BB = new BoundingBox(this.x, this.y, 955, 85)
-        else this.BB = new BoundingBox(this.x -855, this.y,  900, 85)
-        if (this.direction == 1) this.DB = new BoundingBox(this.x+5, this.y, 55, 85)
-        else this.DB = new BoundingBox(this.x -22, this.y,  58, 85)
+        if (this.direction == 1) this.BB = new BoundingBox(this.x - this.game.camera.x, this.y, 955, 85)
+        else this.BB = new BoundingBox(this.x -855 - this.game.camera.x, this.y,  900, 85)
+        if (this.direction == 1) this.DB = new BoundingBox(this.x+5 - this.game.camera.x, this.y, 55, 85)
+        else this.DB = new BoundingBox(this.x -22 - this.game.camera.x, this.y,  58, 85)
     };
 }
