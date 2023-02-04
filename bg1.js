@@ -1,6 +1,6 @@
 class bg1 {
     constructor(game){
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./Sprites/bg1.png"), 0, 0,675,300,4,0.1);
+        this.game = game;
     }
 
     update() {
@@ -9,6 +9,6 @@ class bg1 {
 
     draw(ctx) {
 
-        ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg1.png"), 0, 0);
+        ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg1.png"), 0 - this.game.camera.x, 0);
     }
 }
