@@ -44,7 +44,7 @@ class Zero {
 
         this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
         this.updateBB();
-
+        this.removeFromWorld = false;
         ///////////////try////////////
         this.flag = true;
     }
@@ -180,6 +180,7 @@ class Zero {
             if(this.animator.isDone()){
                 //this.animator = this.idle;
                 this.isDying = false;
+                this.isDead =true;
                 this.y = this.startingY;
                 
             }
@@ -192,5 +193,9 @@ class Zero {
         ctx.strokeStyle = "Green"
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1);
         ctx.strokeRect(this.x+10,this.y,this.animator.width-20,this.animator.height);
+        if(this.isDead==true){
+            this.removeFromWorld =true;
+            this.game.addEntity(new Replay(this.game));
+        }
     }
 }

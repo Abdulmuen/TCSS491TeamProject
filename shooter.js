@@ -1,8 +1,9 @@
 class shooter{
-    constructor(game) {
+    constructor(game, X, Y) {
         this.game = game;
-		this.x = 1160;
-		this.y = 255;
+        this.game.Zero = this;
+		this.x = X;
+		this.y = Y;
 		this.speed = 1;
         this.fireRate =2.1;
         this.elapsedTime = 4;

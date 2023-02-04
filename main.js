@@ -46,9 +46,9 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.addEntity(new SceneManager(gameEngine));
 	//gameEngine.addEntity(new Zero(gameEngine));
-    gameEngine.addEntity(new shooter(gameEngine));
-	gameEngine.addEntity(new boss((gameEngine)));
-	gameEngine.addEntity(new bg1(gameEngine));
+    //gameEngine.addEntity(new shooter(gameEngine));
+	//gameEngine.addEntity(new boss((gameEngine)));
+	//gameEngine.addEntity(new bg1(gameEngine));
 	
 
 	gameEngine.start();
