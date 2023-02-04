@@ -8,11 +8,27 @@ class SceneManager {
     };
 
     clearEntities() {
-        this.game.entities.forEach(function (entity) {
+        this.game.entities.forEach(function d(entity) {
             entity.removeFromWorld = true;
         });
     }
 
+    addMain(x, y) {
+        this.clearEntities();
+        this.x = 0;
+        this.Zero.x = x;
+        this.Zero.y = y;
+        this.game.addEntity(this.Zero);
+    }
+    loadGame(){
+        this.clearEntities();
+        this.game.addEntity(this.Zero1);
+        this.game.addEntity(this.shooter);
+        this.game.addEntity(this.boss); 
+        this.game.addEntity(new bg1(gameEngine));
+        this.game.addEntity(new Hud(gameEngine));
+
+    }
     loadlevel(x, y) {
         this.clearEntities();
         this.x = 0;
