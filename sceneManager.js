@@ -39,6 +39,9 @@ class SceneManager {
         if (this.game.keys["Enter"] ) {
             this.starting = false;
             this.loadGame();
+            let midpoint = PARAMS.CANVAS_WIDTH/2;
+
+            if (this.x < this.Zero.x - midpoint) this.x = this.Zero.x - midpoint;
         } 
     }
 
