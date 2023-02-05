@@ -231,6 +231,7 @@ class boss {
     };
 
     draw(ctx) {
+        console.log(this.game);
         ctx.strokeStyle = "Green";
         ctx.strokeRect(this.BB.left - 1000 - this.game.camera.x, this.BB.top - (this.BB.height * 1.5), 2000, this.BB.height * 2.5);
         this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);

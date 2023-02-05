@@ -21,11 +21,11 @@ class SceneManager {
         this.Zero.y = y;
 
         this.game.addEntity(this.Zero);
-        gameEngine.addEntity(new bg1(gameEngine, this.x));
         gameEngine.addEntity(new gr1(gameEngine, this.x));
         gameEngine.addEntity(new shooter(gameEngine, 1160, 255));
         gameEngine.addEntity(new shooter(gameEngine, 1345, 255));
-        //gameEngine.addEntity(new boss((gameEngine,1400,177.5)));
+        gameEngine.addEntity(new boss(gameEngine,1400,177.5));
+        gameEngine.addEntity(new bg1(gameEngine, this.x));
     }
     update() {
 

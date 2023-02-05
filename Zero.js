@@ -209,6 +209,6 @@ class Zero {
         ctx.font = "30px Arial";
         ctx.fillText(this.game.camera.x,10, 50);
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1);
-        ctx.strokeRect(this.x+10 - this.game.camera.x,this.y,this.animator.width-20,this.animator.height);
+        ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
     }
 }
