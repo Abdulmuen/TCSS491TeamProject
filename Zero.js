@@ -43,7 +43,7 @@ class Zero {
         this.isDying = false;
         this.isDead = false;
 
-        this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
+        this.BB = new BoundingBox(this.x, this.y, this.width, this.hight);
         this.updateBB();
 
         ///////////////try////////////
@@ -53,7 +53,7 @@ class Zero {
     //update bounding box
     updateBB() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x,this.y,this.animator.width,this.animator.height);
+        this.BB = new BoundingBox(this.x, this.y, this.animator.width, this.animator.height);
     };
 
     //jump routine

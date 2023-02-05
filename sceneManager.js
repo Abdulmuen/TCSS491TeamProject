@@ -23,13 +23,14 @@ class SceneManager {
         this.game.addEntity(this.Zero);
         gameEngine.addEntity(new gr1(gameEngine, this.x));
         gameEngine.addEntity(new shooter(gameEngine, 1160, 255));
-        gameEngine.addEntity(new shooter(gameEngine, 1345, 255));
+        gameEngine.addEntity(new shooter(gameEngine, 1545, 255));
+        gameEngine.addEntity(new shooter(gameEngine, 2545, 255));
         gameEngine.addEntity(new boss(gameEngine,1400,177.5));
         gameEngine.addEntity(new bg1(gameEngine, this.x));
     }
     update() {
 
-        let midpoint = PARAMS.CANVAS_WIDTH/2;
+        let midpoint = PARAMS.CANVAS_WIDTH / 2 - 300;
         
         if (this.x < this.Zero.x - midpoint) this.x = this.Zero.x - midpoint;
     }

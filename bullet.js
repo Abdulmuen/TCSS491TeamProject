@@ -57,7 +57,7 @@ class bullet{
     };
 
     updateBB() {
-        this.BB = new BoundingBox(this.x+25 - this.game.camera.x, this.y, 20, 5);
+        this.BB = new BoundingBox(this.x + 25, this.y, 20, 5);
     };
 
 }
