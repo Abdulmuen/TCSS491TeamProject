@@ -16,6 +16,8 @@ class bullet{
 
         this.animationList[0] = new Animator(ASSET_MANAGER.getAsset("./shooter/BR.png"),0,0,45,21,1,0.1,false,true,false);  
         this.animationList[1] = new Animator(ASSET_MANAGER.getAsset("./shooter/BR.png"),0,0,45,21,1,0.1,true,true,false);
+        this.animationList[3] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Spine.png"),0,5,10,10,1,0.1, false, true, false);
+        this.animationList[2] = new Animator(ASSET_MANAGER.getAsset("./Kunoichi/Spine.png"),0,5,10,10,1,0.1, true, true, false);
 
         this.updateBB();
         
@@ -30,6 +32,13 @@ class bullet{
             this.x -= this.speed * TICK * params.NPCSpeed;
         }
         
+        // for spine
+        if(this.anamation==3){
+            this.x += this.speed * TICK * params.NPCSpeed;
+        }else if(this.anamation==2){
+            this.x -= this.speed * TICK * params.NPCSpeed;
+        }
+
         var that = this;
         this.game.entities.forEach (function (entity) {
             if(entity.BB && that.BB.collide(entity.BB)){
