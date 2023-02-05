@@ -33,7 +33,6 @@ ASSET_MANAGER.queueDownload("./Kunoichi/Jump.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Hurt.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Eating.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Dead.png");
-ASSET_MANAGER.queueDownload("./Kunoichi/Spine.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
@@ -45,8 +44,8 @@ ASSET_MANAGER.downloadAll(() => {
 	PARAMS.CANVAS_HEIGHT = canvas.height;
 
 	gameEngine.init(ctx);
-
-	gameEngine.addEntity(new SceneManager(gameEngine));
+	gameEngine.addEntity(new Startscreen(gameEngine));
+	//gameEngine.addEntity(new SceneManager(gameEngine));
 
 	gameEngine.start();
 	
