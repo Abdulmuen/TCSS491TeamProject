@@ -29,6 +29,7 @@ class Zero {
         this.hitFall1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 64, 1712,86,100,7,0.2,false, false, true);//dying 1
         this.hitFall2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 707, 1712,129,100,5,0.2,false, false, true);//dying 2
         this.attack1 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 60, 1545,120,75,6,0.2,false, true, true);//attack 1
+        this.attack2 = new Animator(ASSET_MANAGER.getAsset("./Sprites/main.png"), 78, 788,100,90,6,0.2,false, true, true);//attack 1
 
         this.jumping = false;
         this.falling = false;
@@ -44,7 +45,7 @@ class Zero {
 
         this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
         this.updateBB();
-        this.removeFromWorld = false;
+
         ///////////////try////////////
         this.flag = true;
     }
@@ -93,12 +94,27 @@ class Zero {
     }
 
     update() {
-        const TICK = this.game.clockTick;
+        if(this.x < this.game.camera.x)this.x = this.game.camera.x;
+        if(this.y > 450)this.isDying = true;
+        
+        var that = this;
+        this.game.entities.forEach (function (entity) {
+            if(entity.BB && that.BB.collide(entity.BB)){
+                if(entity instanceof gr1){
+                    that.y = entity.BB.y    
+                }
 
+            }
+        
+        });
+
+        const TICK = this.game.clockTick;
         if(this.game.keys["e"] && params.canSlow){
             params.NPCSpeed = 0.25;
             params.playerSpeed = 0.75;
-        } else {
+            params.canSlow = false;
+        }
+        if (!params.canSlow) {
             params.slowMotionCD += TICK;
             if (params.slowMotionCD >= 5) {
                 params.NPCSpeed = 1;
@@ -155,7 +171,7 @@ class Zero {
                 this.jump();
             }else if(this.game.keys["i"]){//for testing animation
                 this.x += 1 * params.playerSpeed;
-                this.animator = this.attack1;
+                this.animator = this.attack2;
             }else {
                 this.animator = this.idle;
                 this.speed = 0;
@@ -191,8 +207,10 @@ class Zero {
 
     draw(ctx) {
         ctx.strokeStyle = "Green"
+        ctx.font = "30px Arial";
+        ctx.fillText(this.game.camera.x,10, 50);
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1);
-        ctx.strokeRect(this.x+10,this.y,this.animator.width-20,this.animator.height);
+        ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
         if(this.isDead==true){
             this.removeFromWorld =true;
             this.game.addEntity(new Replay(this.game));
