@@ -19,13 +19,15 @@ class Replay{
     draw(ctx){ 
             
 
+        ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg1.png"), 0,0);
         ctx.font = "50px Arial";
-        ctx.fillStyle = 'Red';
+        ctx.fillStyle = 'Black';
         ctx.textAlign = 'center';
-        ctx.fillText("Press R to Restart", 448, 274);
+        ctx.fillText("Press R to Restart", 948, 374);
 
     
 
 
     };
+}
 }
