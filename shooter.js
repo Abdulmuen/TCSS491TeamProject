@@ -12,6 +12,12 @@ class shooter{
         this.shot = false;
         this.die = false;
 
+
+        this.scale = 1.25;
+        this.BBW = 25 * this.scale;
+        this.BBH = 65 * this.scale;
+
+
         this.directions = { left: 0, right: 1 };
         this.direction = this.directions.right;
         this.state = 0;
@@ -57,23 +63,22 @@ class shooter{
         this.x += this.speed * TICK * params.NPCSpeed;
         this.updateBB();
 
-        var that = this;
-        this.game.entities.forEach (function (entity) {
-            if(entity.BB && that.BB.collide(entity.BB)){
-                if(entity instanceof Zero){
-                    that.speed = 0;
-                    that.state = 1;
-                    that.direction = 0;
-                    that.shot = true;
-                    /*if(that.DB.collide(entity.BB)){
-                        that.die = true;
-                    }*/
-                         
-                }
+            let self = this;
+            this.game.entities.forEach(function (entity) {
+                if (entity instanceof Zero) {
 
-            }
-        
-        });
+                    self.playerInSight = self.DB.collide(entity.BB);
+                    
+                    // if player in attack range
+                    if (entity.BB && self.AR.collide(entity.BB)) {
+                        self.speed = 0;
+                        self.state = 1;
+                        self.direction = 0;
+                        self.shot = true;
+                    }
+                    
+                }
+            });
 
         if(this.shot){
             if (this.elapsedTime >= this.fireRate && this.removeFromWorldValue != 1) {
@@ -96,13 +101,22 @@ class shooter{
         console.log(this.game);
         const TICK = this.game.clockTick;
         this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y,2);
+        ctx.strokeStyle = "Red";
+        ctx.strokeRect(this.AR.x-this.game.camera.x, this.AR.y,this.AR.width, this.AR.height);
+        ctx.strokeStyle = "Green";
+        ctx.strokeRect(this.DB.x-this.game.camera.x, this.DB.y,this.DB.width, this.DB.height);
 
     };
 
     updateBB() {
-        if (this.direction == 1) this.BB = new BoundingBox(this.x, this.y, 955, 85)
-        else this.BB = new BoundingBox(this.x - 855, this.y, 900, 85)
-        if (this.direction == 1) this.DB = new BoundingBox(this.x + 5, this.y, 55, 85)
-        else this.DB = new BoundingBox(this.x - 22, this.y, 58, 85)
+        this.lastBB = this.BB;
+        this.BB = new BoundingBox(this.x + 10, this.y, this.BBW, this.BBH);
+        if (this.direction == 1) {
+            this.DB = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 1.5), this.BB.height);
+            this.AR = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 11), this.BB.height);
+        } else {
+            this.DB = new BoundingBox(this.BB.x-30, this.BB.y, (this.BB.width * 1.5), this.BB.height);
+            this.AR = new BoundingBox(this.BB.x-330, this.BB.y, (this.BB.width * 11), this.BB.height);
+        }
     };
 }

@@ -23,7 +23,7 @@ class SceneManager {
         this.game.addEntity(this.Zero);
         gameEngine.addEntity(new gr1(gameEngine, this.x));
         gameEngine.addEntity(new shooter(gameEngine, 750, 255));
-        //gameEngine.addEntity(new Sniper(gameEngine,600,255,0));
+        gameEngine.addEntity(new Sniper(gameEngine,600,275,1));
         //gameEngine.addEntity(new shooter(gameEngine, 1345, 255));
         //gameEngine.addEntity(new boss(gameEngine,1400,177.5));
         gameEngine.addEntity(new bg1(gameEngine, this.x));
