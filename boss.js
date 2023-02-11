@@ -2,7 +2,7 @@ class boss {
     constructor(game, x, y) {
 
         this.game = game;
-        this.states = { idle: 0, walk: 1, run: 2, attack: 3, cast: 5, jump: 6, hurt: 7, eat: 8, dead: 9};
+        this.states = { idle: 0, walk: 1, run: 2, attack: 3, cast: 5, jump: 6, hurt: 7, eat: 8, dead: 9 };
         this.facings = { right: 0, left: 1 };
         this.state = this.states.idle;
         this.facing = this.facings.left;
@@ -17,7 +17,11 @@ class boss {
         this.canEat = false;
         this.isEating = false;
         this.attackCount = 0;
-        this.bulletSpeed = 350;
+        this.spineSpeed = 350;
+        this.castCD = 0;
+        this.canCast = true;
+        this.isAttacking = false;
+        this.isCasting = false;
 
         this.x = x;
         this.y = y;
@@ -93,11 +97,10 @@ class boss {
             let self = this;
             this.game.entities.forEach(function (entity) {
                 if (entity instanceof Zero) {
-
                     // if player in sight
                     self.playerInSight = self.DB.collide(entity.BB);
                     if (self.playerInSight) {
-                        if (!self.AR.collide(entity.BB) && self.state != self.states.attack) {
+                        if (!self.AR.collide(entity.BB) && self.state != self.states.attack && self.state != self.states.cast) {
                             // move towards the knightd
                             self.state = self.states.run;
                             self.facing = entity.BB.right < self.BB.left ? self.facings.left : self.facings.right;
@@ -106,12 +109,15 @@ class boss {
                     }
 
                     // if player in attack range
-                    if (self.canAttack && entity.BB && self.AR.collide(entity.BB)) {
+                    if (self.canAttack && !self.isCasting && entity.BB && self.AR.collide(entity.BB)) {
                         self.speed = 0;
-                        self.canAttack = false;
                         self.state = self.states.attack;
                         self.attackCount += 1;
+                        self.canAttack = false;
+                        self.isAttacking = true;
                     }
+
+                    // if boss collide with player hitbox
                     if (self.canDamage && entity.BB && self.BB.collide(entity.BB)) {
                         if (self.isEating) {
                             self.speed = 0;
@@ -128,22 +134,27 @@ class boss {
                 }
             });
 
-            // cast a spine after 2 attack
-            if (this.attackCount == 3) {
+            // cast after 2 attack
+            if (this.canCast && this.attackCount >= 2 && !this.isAttacking) {
                 this.speed = 0;
                 this.state = this.states.cast;
+                this.isCasting = true;
+                if (this.canAttack) {
+                    this.canAttack = false;
+                }
                 if (this.animations[this.states.cast][this.facing].isDone()) {
                     if (this.facing == this.facings.left) {
-                        console.log("left");
-                        this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y + 85, 2, this.bulletSpeed, 3));
+                        this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y + 85, 2, this.spineSpeed, 3));
                         this.attackCount = 0;
+                        this.isCasting = false;
+                        this.canCast = false;
                     } else {
-                        console.log("right");
-                        this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y + 85, 3, this.bulletSpeed, 3));
+                        this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y + 85, 3, this.spineSpeed, 3));
                         this.attackCount = 0;
+                        this.isCasting = false;
+                        this.canCast = false;
                     }
                 }
-                
             }
 
             // eat phase
@@ -169,6 +180,9 @@ class boss {
 
             // reset to idle state
             if (this.animations[this.state][this.facing].isDone()) {
+                if (this.state == this.states.attack) {
+                    this.isAttacking = false;
+                }
                 this.speed = 0;
                 this.state = this.states.idle;
             }
@@ -199,13 +213,22 @@ class boss {
 
         if (!this.canAttack) {
             this.attackCD += TICK * params.NPCSpeed;
-            if (this.attackCD >= 1.5) {
+            if (this.attackCD >= 1.25) {
                 this.animations[this.states.attack][this.facings.left].elapsedTime = 0;
                 this.animations[this.states.attack][this.facings.right].elapsedTime = 0;
-                this.animations[this.states.cast][this.facings.left].elapsedTime = 0;
-                this.animations[this.states.cast][this.facings.right].elapsedTime = 0;
                 this.attackCD = 0;
                 this.canAttack = true;
+            }
+        }
+
+        if (!this.canCast) {
+            this.castCD += TICK * params.NPCSpeed;
+            if (this.castCD >= 3) {
+                console.log(this.animations[this.states.cast][this.facings.left].elapsedTime);
+                this.animations[this.states.cast][this.facings.left].elapsedTime = 0;
+                this.animations[this.states.cast][this.facings.right].elapsedTime = 0;
+                this.castCD = 0;
+                this.canCast = true;
             }
         }
 
@@ -217,7 +240,7 @@ class boss {
                 this.canDamage = true;
             }
         }
-        
+
         if (!this.canJump) {
             this.jumpCD += TICK * params.NPCSpeed;
             if (this.jumpCD >= 30) {
@@ -231,7 +254,6 @@ class boss {
     };
 
     draw(ctx) {
-        console.log(this.game);
         ctx.strokeStyle = "Green";
         ctx.strokeRect(this.BB.left - 1000 - this.game.camera.x, this.BB.top - (this.BB.height * 1.5), 2000, this.BB.height * 2.5);
         this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);

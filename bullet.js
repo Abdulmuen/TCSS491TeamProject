@@ -26,16 +26,16 @@ class bullet{
     update(){ 
         const TICK = this.game.clockTick;
 
-        if(this.anamation==0){
+        if(this.anamation == 0){
             this.x += this.speed * TICK * params.NPCSpeed;
         }else if(this.anamation==1){
             this.x -= this.speed * TICK * params.NPCSpeed;
         }
         
         // for spine
-        if(this.anamation==3){
+        if(this.anamation == 3){
             this.x += this.speed * TICK * params.NPCSpeed;
-        }else if(this.anamation==2){
+        }else if(this.anamation == 2){
             this.x -= this.speed * TICK * params.NPCSpeed;
         }
 
@@ -43,7 +43,7 @@ class bullet{
         this.game.entities.forEach (function (entity) {
             if(entity.BB && that.BB.collide(entity.BB)){
                 if(entity instanceof Zero){
-                    entity.isDying = true;
+                    //entity.isDying = true;
                     that.removeFromWorld = true;
                 }
             }

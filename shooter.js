@@ -93,7 +93,6 @@ class shooter{
     };
     
     draw(ctx){
-        console.log(this.game);
         const TICK = this.game.clockTick;
         this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y,2);
         ctx.strokeStyle = 'white';

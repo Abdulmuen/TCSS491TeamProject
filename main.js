@@ -35,6 +35,12 @@ ASSET_MANAGER.queueDownload("./Kunoichi/Eating.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Dead.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Spine.png");
 
+// trap asset
+ASSET_MANAGER.queueDownload("./Laser/on.png");
+ASSET_MANAGER.queueDownload("./Laser/off.png");
+ASSET_MANAGER.queueDownload("./Laser/turning on.png");
+ASSET_MANAGER.queueDownload("./Laser/turning off.png");
+
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
