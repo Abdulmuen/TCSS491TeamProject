@@ -212,8 +212,8 @@ class Zero {
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1);
         ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
         if(this.isDead==true){
-            //this.removeFromWorld =true;
-            //this.game.addEntity(new Replay(this.game));
+            this.removeFromWorld =true;
+            this.game.addEntityToFrontOfList(new Replay(this.game));
         }
     }
 }

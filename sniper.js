@@ -81,7 +81,7 @@ class Sniper {
 
         if(this.shot){
             if (this.elapsedTime >= this.fireRate && this.removeFromWorldValue != 1) {
-                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x-200, this.y, this.direction, this.bulletSpeed,0.4));
+                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x-100, this.y-10, this.direction, this.bulletSpeed,0.4));
                 this.elapsedTime = 0;
             }
         }
