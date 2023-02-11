@@ -171,7 +171,7 @@ class Zero {
                 this.jump();
             }else if(this.game.keys["i"]){//for testing animation
                 this.x += 1 * params.playerSpeed;
-                this.animator = this.attack2;
+                this.animator = this.attack1;
             }else {
                 this.animator = this.idle;
                 this.speed = 0;
