@@ -24,11 +24,10 @@ ASSET_MANAGER.queueDownload("./shooter/BR.png");
 ASSET_MANAGER.queueDownload("./shooter/shooting.png");
 
 //sniper
-ASSET_MANAGER.queueDownload("./snipersprite/sniperidle.png")
-ASSET_MANAGER.queueDownload("./snipersprite/sniperidlereverse.png")
 ASSET_MANAGER.queueDownload("./snipersprite/snipershooting.png")
 ASSET_MANAGER.queueDownload("./snipersprite/snipershootingreverse.png")
-
+ASSET_MANAGER.queueDownload("./snipersprite/enemydeath.png")
+ASSET_MANAGER.queueDownload("./snipersprite/enemydeathreverse.png")
 // boss asset
 ASSET_MANAGER.queueDownload("./Kunoichi/Idle.png");
 ASSET_MANAGER.queueDownload("./Kunoichi/Walk.png");

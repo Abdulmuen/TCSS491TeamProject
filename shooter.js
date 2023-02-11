@@ -11,7 +11,7 @@ class shooter{
         this.bulletSpeed = 350;
         this.shot = false;
         this.die = false;
-
+        this.hitCount = 0;
 
         this.scale = 1.25;
         this.BBW = 25 * this.scale;
@@ -65,16 +65,20 @@ class shooter{
 
             let self = this;
             this.game.entities.forEach(function (entity) {
-                if (entity instanceof Zero) {
-
-                    self.playerInSight = self.DB.collide(entity.BB);
-                    
+                if (entity instanceof Zero) {                   
                     // if player in attack range
                     if (entity.BB && self.AR.collide(entity.BB)) {
                         self.speed = 0;
                         self.state = 1;
                         self.direction = 0;
                         self.shot = true;
+                        if(entity.BB && self.DB.collide(entity.BB)){
+                            self.hitCount += 1;
+                            console.log(self.hitCount);
+                            if(self.hitCount == 50){
+                                self.die = true;
+                            }
+                        }
                     }
                     
                 }
