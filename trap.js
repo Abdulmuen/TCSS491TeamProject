@@ -12,10 +12,12 @@ class trap {
         this.turningOn = false;
         this.turningOff = false;
 
+        // change this
+        this.scale = 1.5;
+
         this.sideWidth = 6;
         this.laserWidth = 7;
         this.height = 200;
-        this.scale = 1.5;
         this.animations = [];
         this.loadAnimation();
 
