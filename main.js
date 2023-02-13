@@ -13,15 +13,26 @@ const ASSET_MANAGER = new AssetManager();
 ASSET_MANAGER.queueDownload("./Sprites/main.png");
 
 //backgrownd assets
+ASSET_MANAGER.queueDownload("./Sprites/bg0.png");
 ASSET_MANAGER.queueDownload("./Sprites/bg1.png");
+ASSET_MANAGER.queueDownload("./Sprites/bg2.png");
+ASSET_MANAGER.queueDownload("./Sprites/bg3.png");
 ASSET_MANAGER.queueDownload("./Sprites/gr1.png");
+ASSET_MANAGER.queueDownload("./Sprites/gr2.png");
 ASSET_MANAGER.queueDownload("./Sprites/go1.png");
+ASSET_MANAGER.queueDownload("./Sprites/door.png");
 
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
 ASSET_MANAGER.queueDownload("./shooter/dead.png");
 ASSET_MANAGER.queueDownload("./shooter/BR.png");
 ASSET_MANAGER.queueDownload("./shooter/shooting.png");
+
+// trap asset
+ASSET_MANAGER.queueDownload("./Laser/on.png");
+ASSET_MANAGER.queueDownload("./Laser/off.png");
+ASSET_MANAGER.queueDownload("./Laser/turning on.png");
+ASSET_MANAGER.queueDownload("./Laser/turning off.png");
 
 //sniper
 ASSET_MANAGER.queueDownload("./snipersprite/snipershooting.png")
@@ -52,8 +63,6 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.init(ctx);
 	gameEngine.addEntity(new Startscreen(gameEngine));
-	//gameEngine.addEntity(new SceneManager(gameEngine));
-
 	gameEngine.start();
 	
 });

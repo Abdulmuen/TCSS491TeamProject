@@ -6,9 +6,9 @@ class Sniper {
         this.direction = direction
         this.size = 3
 
-        this.fireRate = 2;
+        this.fireRate = 5;
         this.elapsedTime = 3
-        this.bulletSpeed = 150;
+        this.bulletSpeed = 120;
         this.shot = true;
         this.scale = 1.25;
         this.BBW = 25 * this.scale;
@@ -32,8 +32,8 @@ class Sniper {
             }
         }
 
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./snipersprite/snipershooting.png"), 0, 0, 44, 20, 8,0.2, false,true,false);//shoot right
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./snipersprite/snipershootingreverse.png"), 0, 0, 44, 20, 8,0.2, false,true,false);//shoot left
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./snipersprite/snipershooting.png"), 0, 0, 44, 20, 8,0.5, false,true,false);//shoot right
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./snipersprite/snipershootingreverse.png"), 0, 0, 44, 20, 8,0.5, false,true,false);//shoot left
 
         this.animations[1][0] = new Animator(ASSET_MANAGER.getAsset("./snipersprite/enemydeath.png"), 0, 0, 44, 21, 5, 0.3, false,false,false);//dead right
         this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./snipersprite/enemydeathreverse.png"),0, 0, 44, 21, 5, 0.3, false,false,false);//dead left
@@ -80,9 +80,15 @@ class Sniper {
             });
 
         if(this.shot){
-            if (this.elapsedTime >= this.fireRate && this.removeFromWorldValue != 1) {
-                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x-100, this.y-10, this.direction, this.bulletSpeed,0.4));
-                this.elapsedTime = 0;
+            if (this.elapsedTime >= this.fireRate) {
+                if(this.direction == 0){
+                    this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y-10, this.direction, this.bulletSpeed,0.4));
+                    this.elapsedTime = 0;
+                }
+                else{
+                    this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x-110, this.y-10, this.direction, this.bulletSpeed,0.4));
+                    this.elapsedTime = 0;
+                }
             }
         }
         

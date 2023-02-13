@@ -43,7 +43,7 @@ class bullet{
         this.game.entities.forEach (function (entity) {
             if(entity.BB && that.BB.collide(entity.BB)){
                 if(entity instanceof Zero){
-                    entity.isDying = true;
+                    //entity.isDying = true;
                     that.removeFromWorld = true;
                 }
             }

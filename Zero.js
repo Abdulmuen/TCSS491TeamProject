@@ -38,11 +38,13 @@ class Zero {
         this.jumpSpeed = 3;
         this.fallSpeed = 2;
         this.maxJump = 180;
-
+        
         this.isAttacking = false;
         this.isDying = false;
         this.isDead = false;
-
+        this.won = false;
+        this.BossFight = false;
+        this.WinorLose = { Lose: 0, Win: 1 ,Boss: 2};
         this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
         this.updateBB();
 
@@ -95,7 +97,7 @@ class Zero {
 
     update() {
         if(this.x < this.game.camera.x)this.x = this.game.camera.x;
-        if(this.y > 450)this.isDying = true;
+        //if(this.y > 450)this.isDying = true;
         
         var that = this;
         this.game.entities.forEach (function (entity) {
@@ -103,7 +105,9 @@ class Zero {
                 if(entity instanceof gr1){
                     that.y = entity.BB.y    
                 }
-
+                if(entity instanceof door){
+                    that.BossFight = true;
+                }
             }
         
         });
@@ -213,7 +217,14 @@ class Zero {
         ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
         if(this.isDead==true){
             this.removeFromWorld =true;
-            this.game.addEntityToFrontOfList(new Replay(this.game));
+            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Lose));
+        }
+        if(this.won==true){
+            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Win));
+            
+        }
+        if(this.BossFight == true){
+            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Boss));
         }
     }
 }

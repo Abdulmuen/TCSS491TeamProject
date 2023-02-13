@@ -3,9 +3,9 @@ class shooter{
         this.game = game;
 		this.x = x;
 		this.y = y;
-        this.leftRange = this.x - 200;
-		this.rightRange = this.x + 200;
-		this.speed = 55;
+        this.leftRange = this.x - 80;
+		this.rightRange = this.x + 80;
+		this.speed =35;
         this.fireRate =2.1;
         this.elapsedTime = 4;
         this.bulletSpeed = 350;
@@ -53,11 +53,11 @@ class shooter{
         if(this.x <= this.leftRange) {
             this.state = 0
             this.direction = 1;
-            this.speed +=115;
+            this.speed +=65;
         }else if(this.x>this.rightRange){
             this.state = 0;
             this.direction = 0;
-            this.speed -=115;
+            this.speed -=65;
         }
 
         this.x += this.speed * TICK * params.NPCSpeed;
@@ -85,7 +85,7 @@ class shooter{
             });
 
         if(this.shot){
-            if (this.elapsedTime >= this.fireRate && this.removeFromWorldValue != 1) {
+            if (this.elapsedTime >= this.fireRate) {
                 this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x-200, this.y, 1, this.bulletSpeed,0.4));
                 this.elapsedTime = 0;
             }
