@@ -41,6 +41,11 @@ ASSET_MANAGER.queueDownload("./Laser/off.png");
 ASSET_MANAGER.queueDownload("./Laser/turning on.png");
 ASSET_MANAGER.queueDownload("./Laser/turning off.png");
 
+ASSET_MANAGER.queueDownload("./gangster/idle.png");
+ASSET_MANAGER.queueDownload("./gangster/attack.png");
+ASSET_MANAGER.queueDownload("./gangster/run.png");
+ASSET_MANAGER.queueDownload("./gangster/dead.png");
+
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");

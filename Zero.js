@@ -88,11 +88,6 @@ class Zero {
         }
     }
 
-    attacks() {
-        
-
-    }
-
     update() {
         if(this.x < this.game.camera.x)this.x = this.game.camera.x;
         if(this.y > 450)this.isDying = true;
@@ -103,9 +98,18 @@ class Zero {
                 if(entity instanceof gr1){
                     that.y = entity.BB.y    
                 }
-
             }
-        
+        });
+
+        this.game.entities.forEach (function (entity) {
+            if(entity.AB && that.BB.collide(entity.AB)){
+                if(entity instanceof gangster){
+                    //that.isDying = true;
+                }
+                if(entity instanceof boss){
+                    //that.isDying = true;
+                }
+            }
         });
 
         const TICK = this.game.clockTick;

@@ -18,6 +18,7 @@ class shooter{
         this.loadAnimations();
         this.updateBB();
     };
+    
     loadAnimations() {
 
         let numFacing = 2;
@@ -36,7 +37,8 @@ class shooter{
 
         this.animations[2][1] = new Animator(ASSET_MANAGER.getAsset("./shooter/dead.png"),0, 0, 44, 32, 12, 0.1, false, false, false);//dead right
         this.animations[2][0] = new Animator(ASSET_MANAGER.getAsset("./shooter/dead.png"),0, 0, 44, 32, 12, 0.1, true, false, false);//dead left
-    }
+    };
+
     update(){
 
         const TICK = this.game.clockTick;

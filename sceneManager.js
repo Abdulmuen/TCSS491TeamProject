@@ -23,10 +23,10 @@ class SceneManager {
         this.game.addEntity(this.Zero);
         gameEngine.addEntity(new gr1(gameEngine, this.x));
         gameEngine.addEntity(new trap(gameEngine, 50, 50));
-        //gameEngine.addEntity(new shooter(gameEngine, 1160, 255));
+        gameEngine.addEntity(new gangster(gameEngine, 1000, 255));
         gameEngine.addEntity(new shooter(gameEngine, 1545, 255));
         gameEngine.addEntity(new shooter(gameEngine, 2545, 255));
-        gameEngine.addEntity(new boss(gameEngine,1400,177.5));
+        gameEngine.addEntity(new boss(gameEngine,1300,177.5));
         gameEngine.addEntity(new bg1(gameEngine, this.x));
     }
     update() {
