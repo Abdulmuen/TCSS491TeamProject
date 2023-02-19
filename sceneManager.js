@@ -58,8 +58,7 @@ class SceneManager {
     }
 
     draw(ctx) {
-        if (this.level == 1) {
-        }
+        
     }
 
 }

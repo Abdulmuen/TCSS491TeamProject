@@ -230,7 +230,7 @@ class boss {
     updateBB() {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x + 37, this.y + 79, this.BBW, this.BBH);
-        this.DB = new BoundingBox(this.BB.left - 750, this.BB.top - (this.BB.height * 1.5), 1500, this.BB.height * 2.5);
+        this.DB = new BoundingBox(this.BB.left - 650, this.BB.top - (this.BB.height * 1.5), 1300, this.BB.height * 2.5);
         if (this.facing == 1) {
             this.AR = new BoundingBox(this.BB.left - (this.BB.width * 2) - 10, this.BB.top - 10, (this.BB.width * 3) + 10, this.BB.height + 10);
         } else {
