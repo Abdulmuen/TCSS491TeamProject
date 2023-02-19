@@ -38,12 +38,14 @@ class Zero {
         this.jumpSpeed = 3;
         this.fallSpeed = 2;
         this.maxJump = 180;
-
+        
         this.isAttacking = false;
         this.isDying = false;
         this.isDead = false;
-
-        this.BB = new BoundingBox(this.x, this.y, this.width, this.hight);
+        this.won = false;
+        this.BossFight = false;
+        this.WinorLose = { Lose: 0, Win: 1 ,Boss: 2};
+        this.BB = new BoundingBox(this.x,this.y,this.width,this.hight);
         this.updateBB();
 
         ///////////////try////////////
@@ -53,7 +55,7 @@ class Zero {
     //update bounding box
     updateBB() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x, this.y, this.animator.width, this.animator.height);
+        this.BB = new BoundingBox(this.x,this.y,this.animator.width,this.animator.height);
     };
 
     //jump routine
@@ -88,9 +90,14 @@ class Zero {
         }
     }
 
+    attacks() {
+        
+
+    }
+
     update() {
         if(this.x < this.game.camera.x)this.x = this.game.camera.x;
-        if(this.y > 450)this.isDying = true;
+        //if(this.y > 450)this.isDying = true;
         
         var that = this;
         this.game.entities.forEach (function (entity) {
@@ -98,7 +105,11 @@ class Zero {
                 if(entity instanceof gr1){
                     that.y = entity.BB.y    
                 }
+                if(entity instanceof door){
+                    that.BossFight = true;
+                }
             }
+        
         });
 
         this.game.entities.forEach (function (entity) {
@@ -175,7 +186,7 @@ class Zero {
                 this.jump();
             }else if(this.game.keys["i"]){//for testing animation
                 this.x += 1 * params.playerSpeed;
-                this.animator = this.attack1;
+                this.animator = this.attack2;
             }else {
                 this.animator = this.idle;
                 this.speed = 0;
@@ -200,6 +211,7 @@ class Zero {
             if(this.animator.isDone()){
                 //this.animator = this.idle;
                 this.isDying = false;
+                this.isDead =true;
                 this.y = this.startingY;
                 
             }
@@ -214,5 +226,16 @@ class Zero {
         ctx.fillText(this.game.camera.x,10, 50);
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1);
         ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
+        if(this.isDead==true){
+            this.removeFromWorld =true;
+            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Lose));
+        }
+        if(this.won==true){
+            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Win));
+            
+        }
+        if(this.BossFight == true){
+            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Boss));
+        }
     }
 }
