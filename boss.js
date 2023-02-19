@@ -101,8 +101,8 @@ class boss {
                     // if player in sight
                     self.playerInSight = self.DB.collide(entity.BB);
                     if (self.playerInSight) {
-                        if (!self.AR.collide(entity.BB) && self.state != self.states.attack_1 && self.state != self.states.attack_2 
-                        && self.state != self.states.cast && self.state != self.states.jump && self.state != self.states.eat) {
+                        if (!self.AR.collide(entity.BB) && self.state != self.states.attack_1 && self.state != self.states.attack_2
+                            && self.state != self.states.cast && self.state != self.states.jump && self.state != self.states.eat) {
                             // move towards the knightd
                             self.state = self.states.run;
                             self.facing = entity.BB.right < self.BB.left ? self.facings.left : self.facings.right;

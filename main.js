@@ -66,5 +66,5 @@ ASSET_MANAGER.downloadAll(() => {
 	//gameEngine.addEntity(new SceneManager(gameEngine));
 
 	gameEngine.start();
-	
+
 });

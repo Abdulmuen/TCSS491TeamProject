@@ -1,5 +1,5 @@
 class bg1 {
-    constructor(game,x){
+    constructor(game, x) {
         this.game = game;
         this.x = x;
     }
@@ -9,12 +9,11 @@ class bg1 {
     }
 
     draw(ctx) {
-
         ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg1.png"), this.x - this.game.camera.x, 355);
     }
 }
 class bg2 {
-    constructor(game,x,y){
+    constructor(game, x, y) {
         this.game = game;
         this.x = x;
         this.y = y;
@@ -26,12 +25,12 @@ class bg2 {
     }
 
     draw(ctx) {
-
-        this.sky.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y,2.2);
+        this.sky.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.2);
     }
 }
+
 class bg3 {
-    constructor(game,x,y){
+    constructor(game, x, y) {
         this.game = game;
         this.x = x;
         this.y = y;
@@ -43,11 +42,12 @@ class bg3 {
     }
 
     draw(ctx) {
-        this.sky.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y,1.85);
+        this.sky.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 1.85);
     }
 }
+
 class bg0 {
-    constructor(game,x,y){
+    constructor(game, x, y) {
         this.game = game;
         this.x = x;
         this.y = y;
@@ -59,8 +59,7 @@ class bg0 {
     }
 
     draw(ctx) {
-
         //ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg2.png"), this.x - this.game.camera.x, 0);
-        this.BG.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y,1.85);
+        this.BG.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.15);
     }
 }

@@ -1,9 +1,9 @@
 class trap {
-    constructor(game,x , y){
+    constructor(game, x, y) {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.states = {on: 0, off: 1, turningOn: 2, turningOff: 3};
+        this.states = { on: 0, off: 1, turningOn: 2, turningOff: 3 };
         this.state = this.states.on;
         this.isOn = true;
         this.onCD = 0;
@@ -25,10 +25,10 @@ class trap {
     };
 
     loadAnimation() {
-        this.animations[0] = new Animator(ASSET_MANAGER.getAsset("./Laser/on.png"),0,0,19,200,1,0.1,false, true, false);  
-        this.animations[1] = new Animator(ASSET_MANAGER.getAsset("./Laser/off.png"),0,0,19,200,1,0.1,false, true, false);
-        this.animations[2] = new Animator(ASSET_MANAGER.getAsset("./Laser/turning on.png"),0,0,29,200,5,0.02, false, false, false);
-        this.animations[3] = new Animator(ASSET_MANAGER.getAsset("./Laser/turning off.png"),0,0,29,200,5,0.02, false, false, false);
+        this.animations[0] = new Animator(ASSET_MANAGER.getAsset("./Laser/on.png"), 0, 0, 19, 200, 1, 0.1, false, true, false);
+        this.animations[1] = new Animator(ASSET_MANAGER.getAsset("./Laser/off.png"), 0, 0, 19, 200, 1, 0.1, false, true, false);
+        this.animations[2] = new Animator(ASSET_MANAGER.getAsset("./Laser/turning on.png"), 0, 0, 29, 200, 5, 0.02, false, false, false);
+        this.animations[3] = new Animator(ASSET_MANAGER.getAsset("./Laser/turning off.png"), 0, 0, 29, 200, 5, 0.02, false, false, false);
     }
 
     update() {
@@ -36,9 +36,9 @@ class trap {
 
         if (this.state == this.states.on) {
             var self = this;
-            this.game.entities.forEach (function (entity) {
-                if(entity.BB && self.BB.collide(entity.BB)){
-                    if(entity instanceof Zero){
+            this.game.entities.forEach(function (entity) {
+                if (entity.BB && self.BB.collide(entity.BB)) {
+                    if (entity instanceof Zero) {
                         entity.isDying = true;
                     }
                 }
@@ -102,7 +102,7 @@ class trap {
         }
     };
 
-    draw(ctx){
+    draw(ctx) {
         this.animations[this.state].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);
     };
 }
