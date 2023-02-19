@@ -53,19 +53,13 @@ class SceneManager {
     }
 
     update() {
-
-
-
         let midpoint = PARAMS.CANVAS_WIDTH / 2;
-
         if (this.x < this.Zero.x - midpoint) this.x = this.Zero.x - midpoint;
     }
 
     draw(ctx) {
         if (this.level == 1) {
-
         }
-
     }
 
 }
@@ -73,12 +67,12 @@ class SceneManager {
 class Hud {
     constructor(game) {
         this.game = game;
-
     };
 
     update() {
 
     }
+
     draw(ctx) {
         console.log("check");
         ctx.font = "50px Arial";
