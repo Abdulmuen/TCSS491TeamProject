@@ -73,9 +73,8 @@ class SceneManager {
 
     update() {
         let midpoint = PARAMS.CANVAS_WIDTH / 2;
-        if (this.x < this.Zero.x - midpoint) {
-            this.x = this.Zero.x - midpoint;
-        }
+        if (this.x < this.Zero.x - midpoint) this.x = this.Zero.x - midpoint;
+        if (this.x > this.Zero.x - midpoint/2 && this.Zero.x - midpoint/2 > 0) this.x = this.Zero.x - midpoint/2;
     }
 
     draw(ctx) {
