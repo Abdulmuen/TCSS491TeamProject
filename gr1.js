@@ -12,8 +12,8 @@ class gr1 {
 
     draw(ctx) {
         ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/gr2.png"), this.x - this.game.camera.x, this.y);
-        ctx.strokeStyle = "Red";
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
+        //ctx.strokeStyle = "Red";
+        //ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
     }
 }
 
@@ -30,7 +30,7 @@ class gr2 {
     }
 
     draw(ctx) {
-        ctx.strokeStyle = "blue";
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
+        //ctx.strokeStyle = "blue";
+        //ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
     }
 }
