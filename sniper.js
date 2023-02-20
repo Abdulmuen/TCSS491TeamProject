@@ -70,7 +70,7 @@ class Sniper {
         this.game.entities.forEach(function (entity) {
             if (entity instanceof Zero) {
                 // if player in attack range
-                if (entity.BB && self.DB.collide(entity.BB)) {
+                if (entity.AB && self.DB.collide(entity.AB)) {
                     self.hitCount += 1;
                     console.log(self.hitCount);
                     if (self.hitCount == 50) {

@@ -123,7 +123,7 @@ class boss {
                     }
 
                     // if boss collide with player hitbox
-                    if (self.canDamage && entity.BB && self.BB.collide(entity.BB)) {
+                    if (self.canDamage && entity.AB && self.BB.collide(entity.AB)) {
                         if (self.isEating) {
                             self.speed = 0;
                             self.state = self.states.hurt;

@@ -72,12 +72,8 @@ class shooter {
                     self.state = 1;
                     self.direction = 0;
                     self.shot = true;
-                    if (entity.BB && self.DB.collide(entity.BB)) {
-                        self.hitCount += 1;
-                        console.log(self.hitCount);
-                        if (self.hitCount == 50) {
-                            self.die = true;
-                        }
+                    if (entity.AB && self.DB.collide(entity.AB)) {
+                        self.die = true;
                     }
                 }
 
@@ -102,7 +98,6 @@ class shooter {
     };
 
     draw(ctx) {
-        console.log(this.game);
         const TICK = this.game.clockTick;
         this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2);
         ctx.strokeStyle = "Red";

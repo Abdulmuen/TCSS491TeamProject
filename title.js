@@ -4,8 +4,10 @@ class Startscreen {
         this.game.camera = this;
         this.game.starting = true;
         this.x = 0;
-        this.Zero = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 410);
+        this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 400);
         this.game.addEntity(this.Zero);
+        gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545));
+
         //this.addTitle(1 * PARAMS.BLOCKWIDTH, 2.45 * PARAMS.BLOCKWIDTH);
     };
 
@@ -19,14 +21,12 @@ class Startscreen {
     update() {
         if (this.game.keys["Enter"]) {
             this.game.starting = false;
-            this.game.addEntity(new SceneManager(this.game))
+            this.game.addEntity(new SceneManager(this.game, 1))
         }
     };
 
     draw(ctx) {
         if (this.game.starting == true) {
-            //ctx.fillStyle = "black";
-            //ctx.fillRect(0, 0, 9999, 9999);
             ctx.font = "50px Arial";
             ctx.fillStyle = 'White';
             ctx.textAlign = 'center';

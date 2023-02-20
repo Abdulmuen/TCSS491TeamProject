@@ -8,7 +8,7 @@ class Replay {
         this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 560);
         this.loadEnd();
     };
-    
+
     clearEntities() {
         this.game.entities.forEach(function (entity) {
             entity.removeFromWorld = true;
@@ -22,7 +22,7 @@ class Replay {
     update() {
         if (this.game.keys["r"]) {
             this.removeFromWorld = true;
-            this.game.addEntity(new SceneManager(this.game));
+            this.game.addEntity(new SceneManager(this.game, 1));
         }
     };
 
@@ -49,10 +49,11 @@ class Replay {
         this.clearEntities();
         this.game.addEntity(this.Zero1);
         gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-        gameEngine.addEntity(new gr1(gameEngine, -310, 510));
-        gameEngine.addEntity(new gr1(gameEngine, 810, 510));
         gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
+        gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
+        gameEngine.addEntity(new trap(gameEngine, 490, 350));
+        gameEngine.addEntity(new trap(gameEngine, 990, 350));
         gameEngine.addEntity(new bg3(gameEngine, 0, 0));
     }
 }

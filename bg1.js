@@ -60,6 +60,6 @@ class bg0 {
 
     draw(ctx) {
         //ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg2.png"), this.x - this.game.camera.x, 0);
-        this.BG.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.15);
+        this.BG.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.27);
     }
 }
