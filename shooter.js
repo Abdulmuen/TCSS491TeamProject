@@ -71,7 +71,9 @@ class shooter {
                     self.speed = 0;
                     self.state = 1;
                     self.direction = 0;
-                    self.shot = true;
+                    setTimeout(() => {
+                        self.shot = true;
+                    }, 700);
                     if (entity.AB && self.DB.collide(entity.AB)) {
                         self.die = true;
                     }

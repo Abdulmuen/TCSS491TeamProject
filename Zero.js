@@ -35,6 +35,7 @@ class Zero {
         this.first = true;
 
         // win and loss
+        this.lose = false;
         this.won = false;
         this.BossFight = false;
         this.WinorLose = { Lose: 0, Win: 1, Boss: 2 };
@@ -328,6 +329,7 @@ class Zero {
     die(TICK, facing) {
         if (this.animator == this.hitFall1[facing] && this.animator.currentFrame() > 5 && !this.isDead) {
             this.animator = this.hitFall2[facing];
+            this.lose = true;
             //this.x -= 20 * TICK;      
         } else if (this.animator == this.hitFall2[facing] && this.animator.currentFrame() > 3 && !this.isDead) {
             this.isDead = true;
@@ -442,8 +444,9 @@ class Zero {
         this.drawBB(ctx, this.AB, "red");
 
         // sence management
-        if(this.isDead==true){
-            this.removeFromWorld =true;
+        if(this.lose==true){
+            console.log("die");
+            //this.removeFromWorld =true;
             this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Lose));
         }
         if(this.won==true){

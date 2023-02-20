@@ -24,21 +24,25 @@ class Replay {
             this.removeFromWorld = true;
             this.game.addEntity(new SceneManager(this.game, 1));
         }
+        if (this.game.keys["x"]) {
+            this.removeFromWorld = true;
+            this.game.addEntity(new SceneManager(this.game, 1));
+        }
     };
 
     draw(ctx) {
         if (this.check == 0) {
-            this.gameOver.drawFrame(this.game.clockTick, ctx, 0, 0, 1);
-            ctx.font = "50px Arial";
-            ctx.fillStyle = 'Red';
-            ctx.textAlign = 'center';
-            ctx.fillText("Press R to Restart", 448, 274);
+            this.gameOver.drawFrame(this.game.clockTick, ctx, 315, 25, 0.5);
+            //ctx.font = "50px Arial";
+            //ctx.fillStyle = 'Red';
+            //ctx.textAlign = 'center';
+            //ctx.fillText("Press X to Restart", 448, 274);
         }
         else if (this.check == 1) {
             ctx.font = "50px Arial";
             ctx.fillStyle = 'Red';
             ctx.textAlign = 'center';
-            ctx.fillText("You Win! Press R to play again", 448, 274);
+            ctx.fillText("You Win! Press R to play again", 568, 324);
         }
         else if (this.check == 2) {
             this.boss();

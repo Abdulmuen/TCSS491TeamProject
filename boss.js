@@ -85,9 +85,10 @@ class boss {
 
     update() {
 
-        if (this.hitCount >= 10) {
+        if (this.hitCount >= 1) {
             this.dead = true;
             this.state = 9;
+            this.game.addEntityToFrontOfList(new Replay(this.game,1));
         } else {
             const TICK = this.game.clockTick;
             this.x -= this.speed * TICK * params.NPCSpeed;
