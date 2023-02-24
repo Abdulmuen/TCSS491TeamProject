@@ -99,9 +99,12 @@ class Zero {
         this.hitFall1F = new Animator(this.spritesheet, 64, 1741, 86, 80, 7, 0.05, false, false, true);//dying 1
         this.hitFall1B = new Animator(this.spritesheet, 64, 1741, 86, 80, 7, 0.05, true, false, true);//dying 1
         this.hitFall1 = [this.hitFall1F, this.hitFall1B];
+
         this.hitFall2F = new Animator(this.spritesheet, 707, 1772, 129, 28, 5, 0.2, false, false, true);//dying 2
         this.hitFall2B = new Animator(this.spritesheet, 707, 1772, 129, 28, 5, 0.2, true, false, true);//dying 2
         this.hitFall2 = [this.hitFall2F, this.hitFall2B];
+
+        this.slowMotion = new Animator(ASSET_MANAGER.getAsset("./Sprites/slow.png"), 0, 0, 700, 420, 1, 1, false, true, false);
 
         this.H = this.animator.height - 100;
 
@@ -270,16 +273,16 @@ class Zero {
                     if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= 5) && that.BB.bottom <= 650 && !that.isJumping) {
                         that.isfalling = true;
                     }
-                    
+
                 }
             });
 
-            this.game.entities.forEach (function (entity) {
-                if(entity.AB && that.BB.collide(entity.AB)){
-                    if(entity instanceof gangster){
+            this.game.entities.forEach(function (entity) {
+                if (entity.AB && that.BB.collide(entity.AB)) {
+                    if (entity instanceof gangster) {
                         that.isDying = true;
                     }
-                    if(entity instanceof boss){
+                    if (entity instanceof boss) {
                         that.isDying = true;
                     }
                 }
@@ -433,6 +436,10 @@ class Zero {
 
 
     draw(ctx) {
+        if (!params.canSlow) {
+            this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 1.785)
+        }
+
         ctx.strokeStyle = "Green"
         ctx.font = "30px Arial";
         ctx.fillText(this.game.camera.x, 10, 50);
@@ -445,17 +452,17 @@ class Zero {
         this.drawBB(ctx, this.AB, "red");
 
         // sence management
-        if(this.lose==true){
+        if (this.lose == true) {
             console.log("die");
             //this.removeFromWorld =true;
-            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Lose));
+            this.game.addEntityToFrontOfList(new Replay(this.game, this.WinorLose.Lose));
         }
-        if(this.won==true){
-            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Win));
-            
+        if (this.won == true) {
+            this.game.addEntityToFrontOfList(new Replay(this.game, this.WinorLose.Win));
+
         }
-        if(this.BossFight == true){
-            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Boss));
+        if (this.BossFight == true) {
+            this.game.addEntityToFrontOfList(new Replay(this.game, this.WinorLose.Boss));
         }
     }
 

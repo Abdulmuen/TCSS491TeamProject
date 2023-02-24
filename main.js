@@ -14,6 +14,7 @@ ASSET_MANAGER.queueDownload("./Sprites/gr2.png");
 ASSET_MANAGER.queueDownload("./Sprites/go1.png");
 ASSET_MANAGER.queueDownload("./Sprites/door.png");
 
+ASSET_MANAGER.queueDownload("./Sprites/slow.png");
 
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
