@@ -104,7 +104,7 @@ class Zero {
         this.hitFall2B = new Animator(this.spritesheet, 707, 1772, 129, 28, 5, 0.2, true, false, true);//dying 2
         this.hitFall2 = [this.hitFall2F, this.hitFall2B];
 
-        this.slowMotion = new Animator(ASSET_MANAGER.getAsset("./Sprites/slow.png"), 0, 0, 700, 420, 1, 1, false, true, false);
+        this.slowMotion = new Animator(ASSET_MANAGER.getAsset("./Sprites/slow.png"), 0, 0, 700, 430, 1, 1, false, true, false);
 
         this.H = this.animator.height - 100;
 
