@@ -84,7 +84,7 @@ class shooter {
 
         if (this.shot) {
             if (this.elapsedTime >= this.fireRate) {
-                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 200, this.y, 1, this.bulletSpeed, 0.4));
+                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 200, this.y-5, 1, this.bulletSpeed, 0.4));
                 this.elapsedTime = 0;
             }
         }
@@ -101,7 +101,7 @@ class shooter {
 
     draw(ctx) {
         const TICK = this.game.clockTick;
-        this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2);
+        this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.2);
         ctx.strokeStyle = "Red";
         ctx.strokeRect(this.AR.x - this.game.camera.x, this.AR.y, this.AR.width, this.AR.height);
         ctx.strokeStyle = "Green";
@@ -114,10 +114,10 @@ class shooter {
         this.BB = new BoundingBox(this.x + 10, this.y, this.BBW, this.BBH);
         if (this.direction == 1) {
             this.DB = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 1.5), this.BB.height);
-            this.AR = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 11), this.BB.height);
+            this.AR = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 11.2), this.BB.height);
         } else {
             this.DB = new BoundingBox(this.BB.x - 30, this.BB.y, (this.BB.width * 1.5), this.BB.height);
-            this.AR = new BoundingBox(this.BB.x - 330, this.BB.y, (this.BB.width * 11), this.BB.height);
+            this.AR = new BoundingBox(this.BB.x - 330, this.BB.y, (this.BB.width * 11.2), this.BB.height);
         }
     };
 }

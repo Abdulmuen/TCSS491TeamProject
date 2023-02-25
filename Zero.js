@@ -454,9 +454,7 @@ class Zero {
             this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Win));
             
         }
-        if(this.BossFight == true){
-            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Boss));
-        }
+        
     }
 
     drawBB(ctx, BB, color) {//draw Bounding Box
