@@ -73,7 +73,7 @@ class shooter {
                     self.direction = 0;
                     setTimeout(() => {
                         self.shot = true;
-                    }, 700);
+                    }, 1000);
                     if (entity.AB && self.DB.collide(entity.AB)) {
                         self.die = true;
                     }

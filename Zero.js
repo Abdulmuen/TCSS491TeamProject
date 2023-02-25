@@ -183,6 +183,9 @@ class Zero {
                 } else if (this.game.down) {//duck
                     this.animator = this.duck[this.facing]
                 } else if (this.game.keys["j"]) {//for attacks
+                    if (this.facing == 1) {
+
+                    }
                     this.animator = this.attack1[this.facing];
                 } else if (this.game.keys["i"]) {//slide 
                     this.slides(this.facing);
@@ -322,10 +325,19 @@ class Zero {
             this.y += this.speed.y * TICK * params.playerSpeed;
             this.animator = animator[facing]
         }
-        if (facing == 1) {
-            this.x -= this.speed.x * TICK * params.playerSpeed;
-        } else if (facing == 0) {
-            this.x += this.speed.x * TICK * params.playerSpeed;
+
+        if (this.game.right) {
+            this.facing = 0;
+            this.x += 200 * TICK * params.playerSpeed;
+        } else if (this.game.left) {
+            this.facing = 1;
+            this.x -= 200 * TICK * params.playerSpeed;
+        } else {
+            if (facing == 1) {
+                this.x -= this.speed.x * TICK * params.playerSpeed;
+            } else if (facing == 0) {
+                this.x += this.speed.x * TICK * params.playerSpeed;
+            }
         }
     }
 

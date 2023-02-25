@@ -39,25 +39,25 @@ class SceneManager {
             gameEngine.addEntity(new gr1(gameEngine, 0, 490));
 
             //gangsters
-            gameEngine.addEntity(new gangster(gameEngine, 800, 570));
-            gameEngine.addEntity(new gangster(gameEngine, 1300, 570));
-            gameEngine.addEntity(new gangster(gameEngine, 1800, 570));
-            gameEngine.addEntity(new gangster(gameEngine, 2500, 570));
-            gameEngine.addEntity(new gangster(gameEngine, 2700, 570));
+            //gameEngine.addEntity(new gangster(gameEngine, 800, 570));
+            //gameEngine.addEntity(new gangster(gameEngine, 1300, 570));
+            //gameEngine.addEntity(new gangster(gameEngine, 1800, 570));
+            //gameEngine.addEntity(new gangster(gameEngine, 2500, 570));
+            //gameEngine.addEntity(new gangster(gameEngine, 2700, 570));
 
             //shooters
-            setTimeout(() => {
-                gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 410));
-            }, 700);
+            //setTimeout(() => {
+                //gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 410));
+            //}, 700);
             gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 570));
 
             //trap
-            gameEngine.addEntity(new trap(gameEngine, 600, 350));
-            gameEngine.addEntity(new trap(gameEngine, 1500, 350));
-            gameEngine.addEntity(new trap(gameEngine, 2300, 350));
+            //gameEngine.addEntity(new trap(gameEngine, 600, 350));
+            //gameEngine.addEntity(new trap(gameEngine, 1500, 350));
+            //gameEngine.addEntity(new trap(gameEngine, 2300, 350));
 
             //sniper
-            gameEngine.addEntity(new Sniper(gameEngine, 0, 425, 0));
+            //gameEngine.addEntity(new Sniper(gameEngine, 0, 425, 0));
 
             //background
             gameEngine.addEntity(new bg1(gameEngine, 0));
