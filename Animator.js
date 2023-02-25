@@ -44,7 +44,7 @@ class Animator {
 
     drawSemiTran(TICK, ctx, x, y, scale) {
         const frame = this.currentFrame();
-        ctx.globalAlpha = 0.5;
+        ctx.globalAlpha = 0.25;
 
         if (this.isDone()) {
             if (this.loop) {

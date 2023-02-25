@@ -437,7 +437,7 @@ class Zero {
 
     draw(ctx) {
         if (!params.canSlow) {
-            this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 1.785)
+            this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 50)
         }
 
         ctx.strokeStyle = "Green"
