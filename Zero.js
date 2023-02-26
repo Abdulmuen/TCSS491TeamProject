@@ -183,9 +183,6 @@ class Zero {
                 } else if (this.game.down) {//duck
                     this.animator = this.duck[this.facing]
                 } else if (this.game.keys["j"]) {//for attacks
-                    if (this.facing == 1) {
-
-                    }
                     this.animator = this.attack1[this.facing];
                 } else if (this.game.keys["i"]) {//slide 
                     this.slides(this.facing);
