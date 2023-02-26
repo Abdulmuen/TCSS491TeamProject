@@ -20,7 +20,7 @@ class SceneManager {
             this.clearEntities();
 
             this.game.addEntity(this.Zero);
-            gameEngine.addEntity(new door(gameEngine, 10));
+            gameEngine.addEntity(new door(gameEngine, 3250));
 
             //floor 1
             gameEngine.addEntity(new gr1(gameEngine, 0, 650, 80));
