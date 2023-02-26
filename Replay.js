@@ -52,9 +52,7 @@ class Replay {
     boss() {
         this.clearEntities();
         this.game.addEntity(this.Zero1);
-        gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-        gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
-        gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
+        gameEngine.addEntity(new gr1(gameEngine, 0, 650, 10));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
         gameEngine.addEntity(new trap(gameEngine, 490, 350));
         gameEngine.addEntity(new trap(gameEngine, 990, 350));
