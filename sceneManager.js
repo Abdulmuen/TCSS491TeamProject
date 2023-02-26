@@ -23,20 +23,13 @@ class SceneManager {
             gameEngine.addEntity(new door(gameEngine, 3350));
 
             //floor 1
-            gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 3, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 4, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 5, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 6, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 7, 650));
+            gameEngine.addEntity(new gr1(gameEngine, 0, 650, 80));
 
             //floor 2
-            gameEngine.addEntity(new gr1(gameEngine, 700, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 1800, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 2800, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 0, 490));
+            gameEngine.addEntity(new gr1(gameEngine, 700, 490, 10));
+            gameEngine.addEntity(new gr1(gameEngine, 1800, 490, 10));
+            gameEngine.addEntity(new gr1(gameEngine, 2800, 490, 10));
+            gameEngine.addEntity(new gr1(gameEngine, 0, 490, 10));
 
             //gangsters
             //gameEngine.addEntity(new gangster(gameEngine, 800, 570));

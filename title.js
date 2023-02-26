@@ -6,7 +6,7 @@ class Startscreen {
         this.x = 0;
         this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 400);
         this.game.addEntity(this.Zero);
-        gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545));
+        gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545, 10));
         this.a = true;
         //this.addTitle(1 * PARAMS.BLOCKWIDTH, 2.45 * PARAMS.BLOCKWIDTH);
     };
