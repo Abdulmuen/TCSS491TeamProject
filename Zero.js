@@ -121,13 +121,14 @@ class Zero {
     updateBB() {
 
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x + 10, this.y - this.H, this.animator.width - 20, this.animator.height);
+        this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
+        this.BB = new BoundingBox(this.x + 10 - this.offset, this.y - this.H, this.animator.width - 20, this.animator.height);
         if (this.animator == this.attack1[this.facing] && this.animator.currentFrame() > 1) {
             let dd = this.facing == 1 ? 0 : 50;
-            this.AB = new BoundingBox(this.x + dd, this.y - this.H + 10, this.animator.width - 50, this.animator.height - 50);
+            this.AB = new BoundingBox(this.x + dd - this.offset, this.y - this.H + 10, this.animator.width - 50, this.animator.height - 50);
         } else if (this.animator == this.slide[this.facing]) {
             let dd = this.facing == 1 ? 0 : 100;
-            this.AB = new BoundingBox(this.x + dd, this.y - this.H + 20, this.animator.width - 100, this.animator.height - 50);
+            this.AB = new BoundingBox(this.x + dd - this.offset, this.y - this.H + 20, this.animator.width - 100, this.animator.height - 50);
         } else {
             this.AB = null;
         }
@@ -456,7 +457,8 @@ class Zero {
         ctx.font = "30px Arial";
         ctx.fillText(this.game.camera.x, 10, 50);
         ctx.fillText(Math.round(this.x), 10, 50);
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.H, 1);
+        this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.offset - this.game.camera.x, this.y - this.H, 1);
         //ctx.strokeRect(20, 630, 1000, 20);
         //ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
         //ctx.strokeRect(this.x + 10, this.y - this.H, this.animator.width - 20, this.animator.height);
