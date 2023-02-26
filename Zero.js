@@ -122,7 +122,15 @@ class Zero {
 
         this.lastBB = this.BB;
         this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
-        this.BB = new BoundingBox(this.x + 10 - this.offset, this.y - this.H, this.animator.width - 20, this.animator.height);
+        if (this.animator == this.attack1[this.facing]) {
+            if (this.facing == 1) {
+                this.BB = new BoundingBox(this.x + 10 - 20, this.y - this.H, this.animator.width - 60, this.animator.height);
+            } else {
+                this.BB = new BoundingBox(this.x + 10 - this.offset, this.y - this.H, this.animator.width - 60, this.animator.height);
+            }
+        } else {
+            this.BB = new BoundingBox(this.x + 10 - this.offset, this.y - this.H, this.animator.width - 20, this.animator.height);
+        }
         if (this.animator == this.attack1[this.facing] && this.animator.currentFrame() > 1) {
             let dd = this.facing == 1 ? 0 : 50;
             this.AB = new BoundingBox(this.x + dd - this.offset, this.y - this.H + 10, this.animator.width - 50, this.animator.height - 50);
