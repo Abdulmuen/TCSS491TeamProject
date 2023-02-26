@@ -5,7 +5,7 @@ class Replay {
         this.game = game;
         this.x = 0;
         this.game.camera = this;
-        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 560);
+        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 550);
         this.loadEnd();
     };
 
@@ -54,8 +54,6 @@ class Replay {
         this.game.addEntity(this.Zero1);
         gameEngine.addEntity(new gr1(gameEngine, 0, 650, 30));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
-        gameEngine.addEntity(new trap(gameEngine, 490, 350));
-        gameEngine.addEntity(new trap(gameEngine, 990, 350));
         gameEngine.addEntity(new bg3(gameEngine, 0, 0));
     }
 }

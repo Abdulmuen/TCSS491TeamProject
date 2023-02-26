@@ -4,7 +4,7 @@ class Startscreen {
         this.game.camera = this;
         this.game.starting = true;
         this.x = 0;
-        this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 400);
+        this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 445);
         this.game.addEntity(this.Zero);
         gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545, 10));
         this.a = true;
