@@ -177,11 +177,9 @@ class Ltwo {
         this.clearEntities();
         this.Zero1 = new Zero(this.game, 330, 550);
         this.game.addEntity(this.Zero1);
-        gameEngine.addEntity(new gr1(gameEngine, -310,510));
-        gameEngine.addEntity(new gr1(gameEngine, 810,510));
-        gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-        gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
-        gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
+        gameEngine.addEntity(new gr1(gameEngine, -310,510,10));
+        gameEngine.addEntity(new gr1(gameEngine, 810,510,10));
+        gameEngine.addEntity(new gr1(gameEngine, 0, 650,30));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
         gameEngine.addEntity(new trap(gameEngine, 490, 350));
         gameEngine.addEntity(new trap(gameEngine, 990, 350));
