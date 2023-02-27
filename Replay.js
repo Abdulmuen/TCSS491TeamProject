@@ -17,16 +17,19 @@ class Replay {
 
     loadEnd() {
         this.gameOver = new Animator(ASSET_MANAGER.getAsset("./Sprites/go1.png"), 0, 0, 1200, 1200, 1, 1, false, true, false);
+        this.gameWin = new Animator(ASSET_MANAGER.getAsset("./Sprites/win.png"), 0, 0, 280, 200, 1, 1, false, true, false);
     }
 
     update() {
         if (this.game.keys["r"]) {
             this.removeFromWorld = true;
-            this.game.addEntity(new SceneManager(this.game, 1));
+            this.clearEntities();
+            this.game.addEntity(new SceneManager(this.game));
         }
         if (this.game.keys["x"]) {
             this.removeFromWorld = true;
-            this.game.addEntity(new SceneManager(this.game, 1));
+            this.clearEntities();
+            this.game.addEntity(new SceneManager(this.game));
         }
     };
 
@@ -39,21 +42,11 @@ class Replay {
             //ctx.fillText("Press X to Restart", 448, 274);
         }
         else if (this.check == 1) {
+            this.gameWin.drawFrame(this.game.clockTick, ctx, 315, 25, 2);
             ctx.font = "50px Arial";
             ctx.fillStyle = 'Red';
             ctx.textAlign = 'center';
-            ctx.fillText("You Win! Press R to play again", 568, 324);
-        }
-        else if (this.check == 2) {
-            this.boss();
+            ctx.fillText("You Win! Press R to play again", 568, 514);
         }
     };
-
-    boss() {
-        this.clearEntities();
-        this.game.addEntity(this.Zero1);
-        gameEngine.addEntity(new gr1(gameEngine, 0, 650, 30));
-        gameEngine.addEntity(new boss(gameEngine, 800, 490));
-        gameEngine.addEntity(new bg3(gameEngine, 0, 0));
-    }
 }

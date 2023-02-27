@@ -5,6 +5,8 @@ const ASSET_MANAGER = new AssetManager();
 ASSET_MANAGER.queueDownload("./Sprites/main.png");
 
 //backgrownd assets
+ASSET_MANAGER.queueDownload("./Sprites/t.png");
+ASSET_MANAGER.queueDownload("./Sprites/win.png");
 ASSET_MANAGER.queueDownload("./Sprites/bg0.png");
 ASSET_MANAGER.queueDownload("./Sprites/bg1.png");
 ASSET_MANAGER.queueDownload("./Sprites/bg2.png");
@@ -14,7 +16,6 @@ ASSET_MANAGER.queueDownload("./Sprites/gr2.png");
 ASSET_MANAGER.queueDownload("./Sprites/go1.png");
 ASSET_MANAGER.queueDownload("./Sprites/door.png");
 
-ASSET_MANAGER.queueDownload("./Sprites/slow.png");
 
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
