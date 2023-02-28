@@ -3,9 +3,9 @@ class shooter {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.leftRange = this.x - 80;
-        this.rightRange = this.x + 80;
-        this.speed = 35;
+        this.leftRange = this.x - 100;
+        this.rightRange = this.x + 100;
+        this.speed = 55;
         this.fireRate = 2.1;
         this.elapsedTime = 4;
         this.bulletSpeed = 350;
@@ -16,8 +16,8 @@ class shooter {
         this.scale = 1.25;
         this.BBW = 25 * this.scale;
         this.BBH = 65 * this.scale;
-
-
+        this.newy = y;
+        this.newx = x;
         this.directions = { left: 0, right: 1 };
         this.direction = this.directions.right;
         this.state = 0;
@@ -53,11 +53,11 @@ class shooter {
         if (this.x <= this.leftRange) {
             this.state = 0
             this.direction = 1;
-            this.speed += 65;
+            this.speed = 65;
         } else if (this.x > this.rightRange) {
             this.state = 0;
             this.direction = 0;
-            this.speed -= 65;
+            this.speed = -65;
         }
 
         this.x += this.speed * TICK * params.NPCSpeed;
@@ -68,13 +68,24 @@ class shooter {
             if (entity instanceof Zero) {
                 // if player in attack range
                 if (entity.BB && self.AR.collide(entity.BB)) {
+                    if(self.direction == 0){
+                        self.speed = 0;
+                        self.state = 1;
+                        self.y = self.newy + 6;
+                        
+                        setTimeout(() => {
+                            self.shot = true;
+                        }, 1500);}
+                   else {
                     self.speed = 0;
                     self.state = 1;
-                    self.direction = 0;
+                    self.y = self.newy + 6;
                     setTimeout(() => {
                         self.shot = true;
-                    }, 700);
+                    }, 1500);
+                   } 
                     if (entity.AB && self.DB.collide(entity.AB)) {
+                        self.shot = false;
                         self.die = true;
                     }
                 }
@@ -82,9 +93,17 @@ class shooter {
             }
         });
 
-        if (this.shot) {
+        if (this.shot&& this.direction == 1) {
             if (this.elapsedTime >= this.fireRate) {
-                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 200, this.y-5, 1, this.bulletSpeed, 0.4));
+                //ASSET_MANAGER.playAsset("./sound/shoot.wav")
+                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x+5, this.y, 0, this.bulletSpeed, 0.4));
+                this.elapsedTime = 0;
+            }
+        }
+        else if (this.shot&& this.direction == 0){
+            if (this.elapsedTime >= this.fireRate) {
+                //ASSET_MANAGER.playAsset("./sound/shoot.wav")
+                this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 200, this.y + 5, 1, this.bulletSpeed, 0.4));
                 this.elapsedTime = 0;
             }
         }
@@ -92,7 +111,7 @@ class shooter {
         if (this.die) {
             this.shot = false;
             this.state = 2;
-            this.direction = 0;
+            //this.direction = 0;
             if (this.animations[this.state][this.direction].isDone()) {
                 this.removeFromWorld = true;
             }
@@ -113,11 +132,11 @@ class shooter {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x + 10, this.y, this.BBW, this.BBH);
         if (this.direction == 1) {
-            this.DB = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 1.5), this.BB.height);
-            this.AR = new BoundingBox(this.BB.x, this.BB.y, (this.BB.width * 11.2), this.BB.height);
+            this.DB = new BoundingBox(this.BB.x+10, this.BB.y, (this.BB.width * 1.6), this.BB.height);
+            this.AR = new BoundingBox(this.BB.x+10, this.BB.y, (this.BB.width * 13.2), this.BB.height);
         } else {
-            this.DB = new BoundingBox(this.BB.x - 30, this.BB.y, (this.BB.width * 1.5), this.BB.height);
-            this.AR = new BoundingBox(this.BB.x - 330, this.BB.y, (this.BB.width * 11.2), this.BB.height);
+            this.DB = new BoundingBox(this.BB.x - 30, this.BB.y, (this.BB.width * 1.6), this.BB.height);
+            this.AR = new BoundingBox(this.BB.x - 395, this.BB.y, (this.BB.width * 13.2), this.BB.height);
         }
     };
 }

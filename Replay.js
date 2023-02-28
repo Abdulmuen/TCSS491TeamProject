@@ -5,7 +5,7 @@ class Replay {
         this.game = game;
         this.x = 0;
         this.game.camera = this;
-        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 560);
+        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 550);
         this.loadEnd();
     };
 
@@ -35,6 +35,7 @@ class Replay {
 
     draw(ctx) {
         if (this.check == 0) {
+            ASSET_MANAGER.pauseBackgroundMusic();
             this.gameOver.drawFrame(this.game.clockTick, ctx, 315, 25, 0.5);
             //ctx.font = "50px Arial";
             //ctx.fillStyle = 'Red';
@@ -42,14 +43,12 @@ class Replay {
             //ctx.fillText("Press X to Restart", 448, 274);
         }
         else if (this.check == 1) {
+            ASSET_MANAGER.pauseBackgroundMusic();
             this.gameWin.drawFrame(this.game.clockTick, ctx, 315, 25, 2);
             ctx.font = "50px Arial";
             ctx.fillStyle = 'Red';
             ctx.textAlign = 'center';
             ctx.fillText("You Win! Press R to play again", 568, 514);
-        }
-        else if (this.check == 2) {
-            this.boss();
         }
     };
 }

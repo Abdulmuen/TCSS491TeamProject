@@ -18,34 +18,27 @@ class SceneManager {
         gameEngine.addEntity(new Startscreen(gameEngine));
     }
     loadLevelOne() {
-        
+            
             this.clearEntities();
             this.levelOne = true;
             gameEngine.addEntity(this.Zero1);
             gameEngine.addEntity(new door(gameEngine, 3550));
 
             //floor 1
-            gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 3, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 4, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 5, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 6, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 7, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 8, 650));
+            gameEngine.addEntity(new gr1(gameEngine, 0, 650,80));
+
 
             //floor 2
-            gameEngine.addEntity(new gr1(gameEngine, 700, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 1800, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 2800, 490));
-            gameEngine.addEntity(new gr1(gameEngine, -40, 490));
+            gameEngine.addEntity(new gr1(gameEngine, 700, 490,10));
+            gameEngine.addEntity(new gr1(gameEngine, 1800, 490,10));
+            gameEngine.addEntity(new gr1(gameEngine, 2800, 490,10));
+            gameEngine.addEntity(new gr1(gameEngine, 0, 490,10));
 
             //floor 3
-            gameEngine.addEntity(new gr1(gameEngine, 450, 330));
-            gameEngine.addEntity(new gr1(gameEngine, 1150, 330));
-            gameEngine.addEntity(new gr1(gameEngine, 1950, 330));
-            gameEngine.addEntity(new gr1(gameEngine, 2650, 330));
+            gameEngine.addEntity(new gr1(gameEngine, 450, 330,10));
+            gameEngine.addEntity(new gr1(gameEngine, 1150, 330,10));
+            gameEngine.addEntity(new gr1(gameEngine, 1950, 330,10));
+            gameEngine.addEntity(new gr1(gameEngine, 2650, 330,10));
 
 
             //gangsters
@@ -61,7 +54,8 @@ class SceneManager {
             gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 567));
             setTimeout(() => {
                 gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 2300, 247));
-            }, 700);
+            }, 1100);
+                gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 555, 247));
             //trap
             //gameEngine.addEntity(new trap(gameEngine, 600, 350));
             gameEngine.addEntity(new trap(gameEngine, 1500, 350));
@@ -77,7 +71,7 @@ class SceneManager {
             gameEngine.addEntity(new bg2(gameEngine, 0, 0));
             gameEngine.addEntity(new bg2(gameEngine, 1620, 0));
             gameEngine.addEntity(new bg2(gameEngine, 3240, 0));
-        
+            ASSET_MANAGER.playAsset("./sound/main-3.wav");
 
     }
 
@@ -97,10 +91,10 @@ class SceneManager {
     } 
 
     update() {
-        
         if(this.Zero1.BossFight == true && this.levelOne == true){
             this.clearEntities();
             this.Zero1.BossFight = false;
+            ASSET_MANAGER.pauseBackgroundMusic();
             this.game.addEntity(new Ltwo(this.game));      
         }
         else if(this.Zero1.BossFight == true && this.levelTwo == true){
@@ -140,22 +134,15 @@ class Ltwo {
             gameEngine.addEntity(new door(gameEngine, 3550));
 
             //floor 1
-            gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 3, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 4, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 5, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 6, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 7, 650));
-            gameEngine.addEntity(new gr1(gameEngine, 500 * 8, 650));
+            gameEngine.addEntity(new gr1(gameEngine, 0, 650,80));
+
 
             //floor 2
-            gameEngine.addEntity(new gr1(gameEngine, 700, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 1800, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 2800, 490));
-            gameEngine.addEntity(new gr1(gameEngine, 0, 490));
-
+            gameEngine.addEntity(new gr1(gameEngine, 700, 490,10));
+            gameEngine.addEntity(new gr1(gameEngine, 1800, 490,10));
+            gameEngine.addEntity(new gr1(gameEngine, 2800, 490,10));
+            gameEngine.addEntity(new gr1(gameEngine, 0, 490,10));
+            
             //gangsters
             gameEngine.addEntity(new gangster(gameEngine, 800, 570));
             gameEngine.addEntity(new gangster(gameEngine, 1300, 570));
@@ -184,17 +171,15 @@ class Ltwo {
             gameEngine.addEntity(new bg2(gameEngine, 0, 0));
             gameEngine.addEntity(new bg2(gameEngine, 1620, 0));
             gameEngine.addEntity(new bg2(gameEngine, 3240, 0));
-
+            ASSET_MANAGER.playAsset("./sound/main-1.wav");
     }
     bossF() {
         this.clearEntities();
         this.Zero1 = new Zero(this.game, 330, 550);
         this.game.addEntity(this.Zero1);
-        gameEngine.addEntity(new gr1(gameEngine, -310,510));
-        gameEngine.addEntity(new gr1(gameEngine, 810,510));
-        gameEngine.addEntity(new gr1(gameEngine, 0, 650));
-        gameEngine.addEntity(new gr1(gameEngine, 500 * 1, 650));
-        gameEngine.addEntity(new gr1(gameEngine, 500 * 2, 650));
+        gameEngine.addEntity(new gr1(gameEngine, -310,510,10));
+        gameEngine.addEntity(new gr1(gameEngine, 810,510,10));
+        gameEngine.addEntity(new gr1(gameEngine, 0, 650,30));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
         gameEngine.addEntity(new trap(gameEngine, 490, 350));
         gameEngine.addEntity(new trap(gameEngine, 990, 350));

@@ -54,7 +54,18 @@ ASSET_MANAGER.queueDownload("./gangster/attack.png");
 ASSET_MANAGER.queueDownload("./gangster/run.png");
 ASSET_MANAGER.queueDownload("./gangster/dead.png");
 
+ASSET_MANAGER.queueDownload("./sound/lose.wav")
+ASSET_MANAGER.queueDownload("./sound/main-1.wav")
+ASSET_MANAGER.queueDownload("./sound/main-3.wav")
+ASSET_MANAGER.queueDownload("./sound/shoot.wav")
+ASSET_MANAGER.queueDownload("./sound/mainattack.wav")
+
 ASSET_MANAGER.downloadAll(() => {
+
+	ASSET_MANAGER.autoRepeat("./sound/main-3.wav");
+	ASSET_MANAGER.autoRepeat("./sound/main-1.wav");
+
+	
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 
@@ -66,7 +77,7 @@ ASSET_MANAGER.downloadAll(() => {
 	gameEngine.init(ctx);
 	gameEngine.addEntity(new Startscreen(gameEngine));
 	//gameEngine.addEntity(new SceneManager(gameEngine));
-
+	
 	gameEngine.start();
 
 });

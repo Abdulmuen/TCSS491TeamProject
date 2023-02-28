@@ -99,9 +99,12 @@ class Zero {
         this.hitFall1F = new Animator(this.spritesheet, 64, 1741, 86, 80, 7, 0.05, false, false, true);//dying 1
         this.hitFall1B = new Animator(this.spritesheet, 64, 1741, 86, 80, 7, 0.05, true, false, true);//dying 1
         this.hitFall1 = [this.hitFall1F, this.hitFall1B];
+
         this.hitFall2F = new Animator(this.spritesheet, 707, 1772, 129, 28, 5, 0.2, false, false, true);//dying 2
         this.hitFall2B = new Animator(this.spritesheet, 707, 1772, 129, 28, 5, 0.2, true, false, true);//dying 2
         this.hitFall2 = [this.hitFall2F, this.hitFall2B];
+
+        this.slowMotion = new Animator(ASSET_MANAGER.getAsset("./Sprites/slow.png"), 0, 0, 700, 430, 1, 1, false, true, false);
 
         this.H = this.animator.height - 100;
 
@@ -118,13 +121,22 @@ class Zero {
     updateBB() {
 
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x + 10, this.y - this.H, this.animator.width - 20, this.animator.height);
+        this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
+        if (this.animator == this.attack1[this.facing]) {
+            if (this.facing == 1) {
+                this.BB = new BoundingBox(this.x + 10 - 20, this.y - this.H, this.animator.width - 60, this.animator.height);
+            } else {
+                this.BB = new BoundingBox(this.x + 10 - this.offset, this.y - this.H, this.animator.width - 60, this.animator.height);
+            }
+        } else {
+            this.BB = new BoundingBox(this.x + 10 - this.offset, this.y - this.H, this.animator.width - 20, this.animator.height);
+        }
         if (this.animator == this.attack1[this.facing] && this.animator.currentFrame() > 1) {
             let dd = this.facing == 1 ? 0 : 50;
-            this.AB = new BoundingBox(this.x + dd, this.y - this.H + 10, this.animator.width - 50, this.animator.height - 50);
+            this.AB = new BoundingBox(this.x + dd - this.offset, this.y - this.H + 10, this.animator.width - 50, this.animator.height - 50);
         } else if (this.animator == this.slide[this.facing]) {
             let dd = this.facing == 1 ? 0 : 100;
-            this.AB = new BoundingBox(this.x + dd, this.y - this.H + 20, this.animator.width - 100, this.animator.height - 50);
+            this.AB = new BoundingBox(this.x + dd - this.offset, this.y - this.H + 20, this.animator.width - 100, this.animator.height - 50);
         } else {
             this.AB = null;
         }
@@ -180,6 +192,7 @@ class Zero {
                 } else if (this.game.down) {//duck
                     this.animator = this.duck[this.facing]
                 } else if (this.game.keys["j"]) {//for attacks
+                    ASSET_MANAGER.playAsset("./sound/mainattack.wav")
                     this.animator = this.attack1[this.facing];
                 } else if (this.game.keys["i"]) {//slide 
                     this.slides(this.facing);
@@ -270,16 +283,16 @@ class Zero {
                     if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= 5) && that.BB.bottom <= 650 && !that.isJumping) {
                         that.isfalling = true;
                     }
-                    
+
                 }
             });
 
-            this.game.entities.forEach (function (entity) {
-                if(entity.AB && that.BB.collide(entity.AB)){
-                    if(entity instanceof gangster){
+            this.game.entities.forEach(function (entity) {
+                if (entity.AB && that.BB.collide(entity.AB)) {
+                    if (entity instanceof gangster) {
                         that.isDying = true;
                     }
-                    if(entity instanceof boss){
+                    if (entity instanceof boss) {
                         that.isDying = true;
                     }
                 }
@@ -319,10 +332,19 @@ class Zero {
             this.y += this.speed.y * TICK * params.playerSpeed;
             this.animator = animator[facing]
         }
-        if (facing == 1) {
-            this.x -= this.speed.x * TICK * params.playerSpeed;
-        } else if (facing == 0) {
-            this.x += this.speed.x * TICK * params.playerSpeed;
+
+        if (this.game.right) {
+            this.facing = 0;
+            this.x += 200 * TICK * params.playerSpeed;
+        } else if (this.game.left) {
+            this.facing = 1;
+            this.x -= 200 * TICK * params.playerSpeed;
+        } else {
+            if (facing == 1) {
+                this.x -= this.speed.x * TICK * params.playerSpeed;
+            } else if (facing == 0) {
+                this.x += this.speed.x * TICK * params.playerSpeed;
+            }
         }
     }
 
@@ -433,11 +455,16 @@ class Zero {
 
 
     draw(ctx) {
+        if (!params.canSlow) {
+            this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 50)
+        }
+
         ctx.strokeStyle = "Green"
         ctx.font = "30px Arial";
         ctx.fillText(this.game.camera.x, 10, 50);
         ctx.fillText(Math.round(this.x), 10, 50);
-        this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.H, 1);
+        this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
+        this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.offset - this.game.camera.x, this.y - this.H, 1);
         //ctx.strokeRect(20, 630, 1000, 20);
         //ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
         //ctx.strokeRect(this.x + 10, this.y - this.H, this.animator.width - 20, this.animator.height);
@@ -445,16 +472,15 @@ class Zero {
         this.drawBB(ctx, this.AB, "red");
 
         // sence management
-        if(this.lose==true){
+        if (this.lose == true) {
             console.log("die");
             //this.removeFromWorld =true;
-            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Lose));
+            this.game.addEntityToFrontOfList(new Replay(this.game, this.WinorLose.Lose));
         }
-        if(this.won==true){
-            this.game.addEntityToFrontOfList(new Replay(this.game,this.WinorLose.Win));
-            
+        if (this.won == true) {
+            this.game.addEntityToFrontOfList(new Replay(this.game, this.WinorLose.Win));
+
         }
-        
     }
 
     drawBB(ctx, BB, color) {//draw Bounding Box

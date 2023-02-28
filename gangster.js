@@ -60,11 +60,17 @@ class gangster {
                     // if player in sight
                     self.playerInSight = self.DB.collide(entity.BB);
                     if (self.playerInSight) {
-                        if (!self.AR.collide(entity.BB) && self.state != self.states.attack && self.state != self.states.cast) {
-                            // move towards the knightd
-                            self.state = self.states.run;
-                            self.facing = entity.BB.right < self.BB.left ? self.facings.left : self.facings.right;
-                            self.speed = self.facing == self.facings.right ? self.speed = -100 * params.NPCSpeed : self.speed = 100 * params.NPCSpeed;
+                        if (!self.AR.collide(entity.BB) && self.state != self.states.attack) {
+                            // move towards the player
+                            if (!entity.BB.bottom < 500 && entity.BB.left < self.BB.right && entity.BB.right > self.BB.left) {
+                                self.state = self.states.idle;
+                                self.speed = 0;
+                            } else {
+                                self.state = self.states.run;
+                                self.facing = entity.BB.right < self.BB.left ? self.facings.left : self.facings.right;
+                                self.speed = self.facing == self.facings.right ? self.speed = -100 * params.NPCSpeed : self.speed = 100 * params.NPCSpeed;
+                            }
+
                         }
                     }
 
@@ -134,14 +140,12 @@ class gangster {
     };
 
     draw(ctx) {
-        /*
         ctx.strokeStyle = 'red';
         ctx.strokeRect(this.AR.x - this.game.camera.x, this.AR.y, this.AR.width, this.AR.height);
         ctx.strokeStyle = 'green';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
         ctx.strokeStyle = 'white';
         ctx.strokeRect(this.DB.x - this.game.camera.x, this.DB.y, this.DB.width, this.DB.height);
-        */
         this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);
     };
 }

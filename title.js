@@ -5,23 +5,15 @@ class Startscreen {
         this.game.starting = true;
         this.x = 0;
         this.a = true;
-        this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 400);
+        this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 445);
         this.game.addEntity(this.Zero);
-        gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545));
-        //gameEngine.addEntity(new bg0(gameEngine, -180, 0));
+        gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545,10));
         this.title = new Animator(ASSET_MANAGER.getAsset("./Sprites/t.png"), 0, 0, 340, 134, 1, 1, false, true, false);
-        //this.addTitle(1 * PARAMS.BLOCKWIDTH, 2.45 * PARAMS.BLOCKWIDTH);
+
     };
 
-    addTitle(x, y) {
-        this.x = 0;
-        this.Zero.x = x;
-        this.Zero.y = y;
-        this.game.addEntity(this.Zero);
-    }
-    loadTtile() {
-        this.title = new Animator(ASSET_MANAGER.getAsset("./Sprites/t.png"), 0, 0, 340, 134, 1, 1, false, true, false);
-    }
+
+
     update() {
         if (this.game.keys["Enter"]) {
             this.game.starting = false;
@@ -36,6 +28,7 @@ class Startscreen {
             ctx.fillStyle = 'White';
             ctx.textAlign = 'center';
             ctx.fillText("Press Enter to Start", PARAMS.CANVAS_WIDTH / 2, 650);
+            
         }
         if (this.a){
             gameEngine.addEntity(new bg0(gameEngine, -180, 0));
