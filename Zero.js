@@ -275,11 +275,11 @@ class Zero {
                         that.floor = entity.BB.top;
                     }
                     // fall from left
-                    if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= 5) && that.BB.bottom <= 650 && !that.isJumping) {
+                    if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= 5) && !that.isJumping) {
                         that.isfalling = true;
                     }
                     // fall from right
-                    if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= 5) && that.BB.bottom <= 650 && !that.isJumping) {
+                    if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= 5) && !that.isJumping) {
                         that.isfalling = true;
                     }
 
