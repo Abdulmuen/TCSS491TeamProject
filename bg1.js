@@ -63,3 +63,76 @@ class bg0 {
         this.BG.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.27);
     }
 }
+
+class background {
+    constructor(game, level) {
+        this.game = game;
+        this.level = level;
+        this.animations = [];
+
+        this.loadAnimattion();
+    }
+
+    loadAnimattion() {
+        let num = 10
+        for (var i = 0; i < num; i++) {
+            this.animations.push([]);
+        }
+        this.animations[0] = new Animator(ASSET_MANAGER.getAsset("./background/back_1.png"), 0, 0, 256, 192, 1, 1, false, true, false);
+        this.animations[1] = new Animator(ASSET_MANAGER.getAsset("./background/mid_2.png"), 0, 0, 256, 272, 1, 1, false, true, false);
+        this.animations[2] = new Animator(ASSET_MANAGER.getAsset("./background/first_1.png"), 0, 0, 688, 272, 1, 1, false, true, false);
+    }
+
+    update() {
+
+    }
+
+    draw(ctx) {
+        for (let i = 0; i < 10; i++) {
+            this.animations[0].drawFrame(this.game.clockTick, ctx, (256 * 2 * i) - this.game.camera.x, 0, 2);     
+        }
+        for (let i = 0; i < 10; i++) {
+            this.animations[1].drawFrame(this.game.clockTick, ctx, (256 * 2 * i) - this.game.camera.x, 100, 2);    
+        }
+        for (let i = 0; i < 10; i++) {
+            this.animations[2].drawFrame(this.game.clockTick, ctx, (688 * 2 * i) - this.game.camera.x, 100, 2);     
+        }
+    }
+}
+
+class background_2 {
+    constructor(game, level) {
+        this.game = game;
+        this.level = level;
+        this.scale = 3;
+        this.animations = [];
+
+        this.loadAnimattion();
+    }
+
+    loadAnimattion() {
+        let num = 10
+        for (var i = 0; i < num; i++) {
+            this.animations.push([]);
+        }
+        this.animations[0] = new Animator(ASSET_MANAGER.getAsset("./background/back_3.png"), 0, 0, 128, 240, 1, 1, false, true, false);
+        this.animations[1] = new Animator(ASSET_MANAGER.getAsset("./background/mid_3.png"), 0, 0, 144, 124, 1, 1, false, true, false);
+        this.animations[2] = new Animator(ASSET_MANAGER.getAsset("./background/first_3.png"), 0, 0, 493, 209, 1, 1, false, true, false);
+    }
+
+    update() {
+
+    }
+
+    draw(ctx) {
+        for (let i = 0; i < 10; i++) {
+            this.animations[0].drawFrame(this.game.clockTick, ctx, (128 * 3.1 * i) - this.game.camera.x, 0, 3.1);     
+        }
+        for (let i = 0; i < 10; i++) {
+            this.animations[1].drawFrame(this.game.clockTick, ctx, (144 * 3 * i) - this.game.camera.x, 400, 3);    
+        }
+        for (let i = 0; i < 10; i++) {
+            this.animations[2].drawFrame(this.game.clockTick, ctx, (493 * 3 * i) - this.game.camera.x, 150, 3);     
+        }
+    }
+}

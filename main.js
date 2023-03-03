@@ -15,6 +15,12 @@ ASSET_MANAGER.queueDownload("./Sprites/gr1.png");
 ASSET_MANAGER.queueDownload("./Sprites/gr2.png");
 ASSET_MANAGER.queueDownload("./Sprites/go1.png");
 ASSET_MANAGER.queueDownload("./Sprites/door.png");
+ASSET_MANAGER.queueDownload("./background/first_1.png");
+ASSET_MANAGER.queueDownload("./background/first_3.png");
+ASSET_MANAGER.queueDownload("./background/mid_3.png");
+ASSET_MANAGER.queueDownload("./background/back_3.png");
+ASSET_MANAGER.queueDownload("./background/back_1.png");
+ASSET_MANAGER.queueDownload("./background/mid_2.png");
 
 ASSET_MANAGER.queueDownload("./Sprites/slow.png");
 

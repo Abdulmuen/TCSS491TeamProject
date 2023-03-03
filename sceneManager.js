@@ -66,13 +66,7 @@ class SceneManager {
             gameEngine.addEntity(new Sniper(gameEngine, 0, 425, 0));
 
             //background
-            gameEngine.addEntity(new bg1(gameEngine, 0));
-            gameEngine.addEntity(new bg1(gameEngine, 2600 * 1));
-            gameEngine.addEntity(new bg2(gameEngine, 0, 0));
-            gameEngine.addEntity(new bg2(gameEngine, 1620, 0));
-            gameEngine.addEntity(new bg2(gameEngine, 3240, 0));
-        
-
+            gameEngine.addEntity(new background_2(gameEngine, 0));
     }
 
     bossF() {
