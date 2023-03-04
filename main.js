@@ -22,8 +22,6 @@ ASSET_MANAGER.queueDownload("./background/back_3.png");
 ASSET_MANAGER.queueDownload("./background/back_1.png");
 ASSET_MANAGER.queueDownload("./background/mid_2.png");
 
-ASSET_MANAGER.queueDownload("./Sprites/slow.png");
-
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
 ASSET_MANAGER.queueDownload("./shooter/dead.png");
@@ -60,6 +58,10 @@ ASSET_MANAGER.queueDownload("./gangster/idle.png");
 ASSET_MANAGER.queueDownload("./gangster/attack.png");
 ASSET_MANAGER.queueDownload("./gangster/run.png");
 ASSET_MANAGER.queueDownload("./gangster/dead.png");
+
+//slowmotion
+ASSET_MANAGER.queueDownload("./Sprites/slow2.png");
+ASSET_MANAGER.queueDownload("./Sprites/slow.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

@@ -42,22 +42,22 @@ class Animator {
         }
     }
 
-    drawSemiTran(TICK, ctx, x, y, scale) {
-        const frame = this.currentFrame();
-        ctx.globalAlpha = 0.25;
+    // drawSemiTran(TICK, ctx, x, y, scale) {
+    //     const frame = this.currentFrame();
+    //     ctx.globalAlpha = 0.25;
 
-        if (this.isDone()) {
-            if (this.loop) {
-                this.elapsedTime -= this.totalTime;
-            } else {
-                ctx.drawImage(this.spritesheet, this.xStart + this.width * frame, this.yStart, this.width, this.height, x, y, this.width * scale, this.height * scale);
-                ctx.globalAlpha = 1;
-                return;
-            }
-        }
-        ctx.drawImage(this.spritesheet, this.xStart + this.width * frame, this.yStart, this.width, this.height, x, y, this.width * scale, this.height * scale);
-        ctx.globalAlpha = 1;
-    }
+    //     if (this.isDone()) {
+    //         if (this.loop) {
+    //             this.elapsedTime -= this.totalTime;
+    //         } else {
+    //             ctx.drawImage(this.spritesheet, this.xStart + this.width * frame, this.yStart, this.width, this.height, x, y, this.width * scale, this.height * scale);
+    //             ctx.globalAlpha = 1;
+    //             return;
+    //         }
+    //     }
+    //     ctx.drawImage(this.spritesheet, this.xStart + this.width * frame, this.yStart, this.width, this.height, x, y, this.width * scale, this.height * scale);
+    //     ctx.globalAlpha = 1;
+    // }
 
     currentFrame() {
         return Math.floor(this.elapsedTime / this.frameDuration);
@@ -65,5 +65,8 @@ class Animator {
 
     isDone() {
         return (this.elapsedTime >= this.totalTime);
+    }
+    reset() {
+        this.elapsedTime -= this.totalTime;
     }
 }

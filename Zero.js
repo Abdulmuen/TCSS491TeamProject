@@ -19,12 +19,18 @@ class Zero {
         this.speed = { x: 0, y: 0 };
         this.fallAcc = 500;
         this.max_jump = 350;
+        this.k = 0;
+
+        //for slowmotion transparency timer
+        this.aaa = 0;
+        this.aaaa = true;
 
         //states
+        this.facing = 0;
         this.isJumping = false;
         this.isfalling = true;
-        this.facing = 0;
         this.isAttacking = false;
+        this.isDying = false;
 
         //for sliding attack
         this.isSliding = false;
@@ -113,7 +119,8 @@ class Zero {
         this.roof = 0; //ceiling
         this.q = false;
         this.isDead = false;
-        this.isDying = false;
+
+        this.counter = { life: 3, slowmo: 3, slide: 5 };
 
     }
 
@@ -121,7 +128,7 @@ class Zero {
     updateBB() {
 
         this.lastBB = this.BB;
-        this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
+        this.offset = this.facing == 1 ? this.animator.width - 60 : 0;
         if (this.animator == this.attack1[this.facing]) {
             if (this.facing == 1) {
                 this.BB = new BoundingBox(this.x + 10 - 20, this.y - this.H, this.animator.width - 60, this.animator.height);
@@ -170,14 +177,16 @@ class Zero {
             if (this.y > 800) this.isDying = true;//if fallen of map die
 
 
-            if (!this.isJumping && !this.isfalling && !this.isDying) {//ground physics
+            if (!this.isJumping && !this.isfalling && !this.isDying && !this.isSliding && !this.isAttacking) {//ground physics
                 if (this.game.right) {//forward
                     this.facing = 0;
                     this.moving(0, 1000, TICK);
+                    this.k = Math.round(this.speed.x * TICK * params.playerSpeed);
                     this.x += this.speed.x * TICK * params.playerSpeed;
                 } else if (this.game.left) {//backward
                     this.facing = 1;
                     this.moving(1, 1000, TICK);
+                    this.k = Math.round(this.speed.x * TICK * params.playerSpeed);
                     this.x -= this.speed.x * TICK * params.playerSpeed;
                 } else if (this.game.up) {//jump inplace
                     this.q = false;
@@ -192,19 +201,24 @@ class Zero {
                 } else if (this.game.down) {//duck
                     this.animator = this.duck[this.facing]
                 } else if (this.game.keys["j"]) {//for attacks
-                    this.animator = this.attack1[this.facing];
+                    this.isAttacking = true;
+                    this.animator = this.attack1[this.facing]
+                    this.attacks();
                 } else if (this.game.keys["i"]) {//slide 
+                    this.counter.slide -= 1;
                     this.slides(this.facing);
                     if (this.animator == this.skid[this.facing]) {
+                        this.k = Math.round(300 * TICK * params.playerSpeed);
                         if (this.facing == 0) {
                             this.x += 300 * TICK * params.playerSpeed;
                         } else
                             this.x -= 300 * TICK * params.playerSpeed;
                     } else if (this.animator == this.slide[this.facing]) {
+                        this.k = Math.round(800 * TICK * params.playerSpeed);
                         if (this.facing == 0) {
-                            this.x += 600 * TICK * params.playerSpeed;
+                            this.x += 800 * TICK * params.playerSpeed;
                         } else
-                            this.x -= 600 * TICK * params.playerSpeed;
+                            this.x -= 800 * TICK * params.playerSpeed;
                     }
                 } else {
                     this.animator = this.idle[this.facing];
@@ -221,6 +235,23 @@ class Zero {
             } else if (this.isDying) {//continue death routine
                 this.animator = this.hitFall1[this.facing]
                 this.die(TICK, this.facing);
+            } else if (this.isSliding) {
+                this.slides(this.facing);
+                if (this.animator == this.skid[this.facing]) {
+                    this.k = Math.round(300 * TICK * params.playerSpeed);
+                    if (this.facing == 0) {
+                        this.x += 300 * TICK * params.playerSpeed;
+                    } else
+                        this.x -= 300 * TICK * params.playerSpeed;
+                } else if (this.animator == this.slide[this.facing]) {
+                    this.k = Math.round(800 * TICK * params.playerSpeed);
+                    if (this.facing == 0) {
+                        this.x += 800 * TICK * params.playerSpeed;
+                    } else
+                        this.x -= 800 * TICK * params.playerSpeed;
+                }
+            } else if (this.isAttacking) {
+                this.attacks();
             }
 
 
@@ -270,17 +301,24 @@ class Zero {
                         that.BossFight = true;
                     }
 
-                    if (entity instanceof gr1 && ((that.lastBB.bottom) <= entity.BB.top)) {
-                        that.isfalling = false;
+                    if (entity instanceof gr1 && (that.lastBB.bottom < that.BB.bottom) && (that.BB.bottom < entity.BB.bottom)) {
+                        that.y = entity.BB.top - 99;
+
                         that.floor = entity.BB.top;
-                        that.y = entity.BB.top - 98;
+                        that.isfalling = false;
+
                     }
+
+                    //let k = that.facing == 0 ? that.BB.left - that.lastBB.left + 5 : that.lastBB.right - that.BB.right + 5;
+                    let k = Math.round(that.speed.x * TICK * params.playerSpeed + 10);
+                    if (entity instanceof gr1 && that.facing == 0) console.log((entity.BB.right - that.BB.left), k);
+                    if (entity instanceof gr1 && that.facing == 1) console.log((that.BB.right - entity.BB.left), k);
                     // fall from left
-                    if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= 5) && !that.isJumping) {
+                    if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= that.k + 10) && !that.isJumping) {
                         that.isfalling = true;
                     }
                     // fall from right
-                    if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= 5) && !that.isJumping) {
+                    if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= that.k + 10) && !that.isJumping) {
                         that.isfalling = true;
                     }
 
@@ -402,14 +440,14 @@ class Zero {
             this.animator = this.duckWalk[facing];
         }
         if (this.game.keys["j"]) {//attack
-            max_x = 100;
-            s = 100;
-            this.animator = this.attack1[facing];
-            if (facing == 0) {
-                this.x += 100 * TICK * params.playerSpeed;
-            } else {
-                this.x -= 100 * TICK * params.playerSpeed;
-            }
+            // max_x = 100;
+            // s = 100;
+            // this.animator = this.attack1[facing];
+            // if (facing == 0) {
+            //     this.x += 100 * TICK * params.playerSpeed;
+            // } else {
+            //     this.x -= 100 * TICK * params.playerSpeed;
+            // }
         }
 
         if (this.speed.x < max_x) {
@@ -421,34 +459,44 @@ class Zero {
     }
 
     slides(facing) {//slide attack
-        let t = this.game.timer.lastTimestamp;
-        if (this.isSliding) {
-            if (t - this.save_t1 < 250) this.animator = this.slide[facing]; //slide for 250 time slices    
-            if (t - this.save_t1 > 250 && t - this.save_t1 < 550) {//skid for another 300
-                this.animator = this.skid[facing];
-                this.speed.x = 0;
-            }
-            if (t - this.save_t1 > 550) {//stop sliding
-                this.save_t2 = t;
-                this.save_t1 = -1;
-                this.isSliding = false;
-            }
+        if (this.counter.slide >= 0) {
+            let t = this.game.timer.lastTimestamp;
+            if (this.isSliding) {
+                if (t - this.save_t1 < 250) this.animator = this.slide[facing]; //slide for 250 time slices    
+                if (t - this.save_t1 > 250 && t - this.save_t1 < 550) {//skid for another 300
+                    this.animator = this.skid[facing];
+                    this.speed.x = 0;
+                }
+                if (t - this.save_t1 > 550) {//stop sliding
+                    this.save_t2 = t;
+                    this.save_t1 = -1;
+                    this.isSliding = false;
+                }
 
-        } else {
-            if (this.game.keys["d"] || this.game.keys["a"]) {
-                this.animator = this.walk[facing];
             } else {
-                this.animator = this.idle[facing];
-            }
-            this.speed.x = 0;
+                if (this.game.keys["d"] || this.game.keys["a"]) {
+                    this.animator = this.walk[facing];
+                } else {
+                    this.animator = this.idle[facing];
+                }
+                this.speed.x = 0;
 
-            if (t - this.save_t2 > 5000) {
-                if (this.save_t1 < 0) {
-                    this.save_t1 = t;
-                    this.save_t2 = -1;
-                    this.isSliding = true;
+                if (t - this.save_t2 > 5000) {
+                    if (this.save_t1 < 0) {
+                        this.save_t1 = t;
+                        this.save_t2 = -1;
+                        this.isSliding = true;
+                    }
                 }
             }
+        }
+    }
+
+    attacks() {
+        if (this.animator == this.attack1[this.facing] && this.animator.currentFrame() == 5) {
+            this.animator.reset();
+            this.animator = this.idle[this.facing];
+            this.isAttacking = false;
         }
     }
 
@@ -456,14 +504,26 @@ class Zero {
 
     draw(ctx) {
         if (!params.canSlow) {
-            this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 50)
+            if (this.aaaa) {
+                this.aaa += this.game.clockTick;
+                if (this.aaa >= 1) this.aaaa = false;
+            } else {
+                this.aaa -= this.game.clockTick;
+                if (this.aaa <= 0.1) this.aaaa = true;
+            }
+            //this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 50);
+            ctx.globalAlpha = this.aaa;
+            ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/slow2.png"), 0 - this.game.camera.x, 0);
+            ctx.globalAlpha = 1;
         }
 
         ctx.strokeStyle = "Green"
-        ctx.font = "30px Arial";
-        ctx.fillText(this.game.camera.x, 10, 50);
-        ctx.fillText(Math.round(this.x), 10, 50);
-        this.offset = this.facing == 1? this.animator.width - 60 : 0 ;
+        ctx.font = "15px Arial";
+        ctx.textAlign = "left";
+        //this.counter = { life: " 🧡🧡🧡", slowmo: " 🕥🕥🕥", slide: " 🥏🥏🥏🥏🥏" };
+        ctx.fillText(this.writeHUD("🥏",this.counter.slide), 10, 30);
+        ctx.fillText(this.writeHUD("🕥",this.counter.slowmo), 10, 50);
+        this.offset = this.facing == 1 ? this.animator.width - 60 : 0;
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.offset - this.game.camera.x, this.y - this.H, 1);
         //ctx.strokeRect(20, 630, 1000, 20);
         //ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
@@ -489,5 +549,13 @@ class Zero {
             ctx.strokeRect(BB.x - this.game.camera.x, BB.y, BB.width, BB.height);
             ctx.stroke();
         }
+    }
+
+    writeHUD(c,n){
+        let str = "";
+        for (let i = 0; i < n; i++) {
+            str += c;
+        }
+        return str;
     }
 }
