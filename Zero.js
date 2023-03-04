@@ -273,6 +273,7 @@ class Zero {
                     if (entity instanceof gr1 && ((that.lastBB.bottom) <= entity.BB.top)) {
                         that.isfalling = false;
                         that.floor = entity.BB.top;
+                        that.y = entity.BB.top - 100;
                     }
                     // fall from left
                     if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= 5) && !that.isJumping) {
