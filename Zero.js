@@ -311,8 +311,6 @@ class Zero {
 
                     //let k = that.facing == 0 ? that.BB.left - that.lastBB.left + 5 : that.lastBB.right - that.BB.right + 5;
                     let k = Math.round(that.speed.x * TICK * params.playerSpeed + 10);
-                    if (entity instanceof gr1 && that.facing == 0) console.log((entity.BB.right - that.BB.left), k);
-                    if (entity instanceof gr1 && that.facing == 1) console.log((that.BB.right - entity.BB.left), k);
                     // fall from left
                     if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= that.k + 10) && !that.isJumping) {
                         that.isfalling = true;

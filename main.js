@@ -8,25 +8,30 @@ ASSET_MANAGER.queueDownload("./Sprites/main.png");
 ASSET_MANAGER.queueDownload("./Sprites/t.png");
 ASSET_MANAGER.queueDownload("./Sprites/win.png");
 ASSET_MANAGER.queueDownload("./Sprites/bg0.png");
-ASSET_MANAGER.queueDownload("./Sprites/bg1.png");
-ASSET_MANAGER.queueDownload("./Sprites/bg2.png");
 ASSET_MANAGER.queueDownload("./Sprites/bg3.png");
 ASSET_MANAGER.queueDownload("./Sprites/gr1.png");
 ASSET_MANAGER.queueDownload("./Sprites/gr2.png");
 ASSET_MANAGER.queueDownload("./Sprites/go1.png");
 ASSET_MANAGER.queueDownload("./Sprites/door.png");
 ASSET_MANAGER.queueDownload("./background/first_1.png");
+ASSET_MANAGER.queueDownload("./background/first_2.png");
 ASSET_MANAGER.queueDownload("./background/first_3.png");
-ASSET_MANAGER.queueDownload("./background/mid_3.png");
-ASSET_MANAGER.queueDownload("./background/back_3.png");
-ASSET_MANAGER.queueDownload("./background/back_1.png");
+ASSET_MANAGER.queueDownload("./background/first_4.png");
+ASSET_MANAGER.queueDownload("./background/mid_1.png");
 ASSET_MANAGER.queueDownload("./background/mid_2.png");
+ASSET_MANAGER.queueDownload("./background/mid_3.png");
+ASSET_MANAGER.queueDownload("./background/mid_4.png");
+ASSET_MANAGER.queueDownload("./background/back_1.png");
+ASSET_MANAGER.queueDownload("./background/back_2.png");
+ASSET_MANAGER.queueDownload("./background/back_3.png");
+ASSET_MANAGER.queueDownload("./background/back_4.png");
 
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
 ASSET_MANAGER.queueDownload("./shooter/dead.png");
 ASSET_MANAGER.queueDownload("./shooter/BR.png");
 ASSET_MANAGER.queueDownload("./shooter/shooting.png");
+ASSET_MANAGER.queueDownload("./shooter/turn.png");
 
 // boss asset
 ASSET_MANAGER.queueDownload("./Kunoichi/Idle.png");

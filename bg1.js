@@ -1,34 +1,3 @@
-class bg1 {
-    constructor(game, x) {
-        this.game = game;
-        this.x = x;
-    }
-
-    update() {
-
-    }
-
-    draw(ctx) {
-        ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bg1.png"), this.x - this.game.camera.x, 355);
-    }
-}
-class bg2 {
-    constructor(game, x, y) {
-        this.game = game;
-        this.x = x;
-        this.y = y;
-        this.sky = new Animator(ASSET_MANAGER.getAsset("./Sprites/bg2.png"), 0, 0, 741, 190, 1, 0.2, false, true, false);
-    }
-
-    update() {
-
-    }
-
-    draw(ctx) {
-        this.sky.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, 2.2);
-    }
-}
-
 class bg3 {
     constructor(game, x, y) {
         this.game = game;
@@ -64,10 +33,9 @@ class bg0 {
     }
 }
 
-class background {
-    constructor(game, level) {
+class background_1 {
+    constructor(game) {
         this.game = game;
-        this.level = level;
         this.animations = [];
 
         this.loadAnimattion();
@@ -89,22 +57,20 @@ class background {
 
     draw(ctx) {
         for (let i = 0; i < 10; i++) {
-            this.animations[0].drawFrame(this.game.clockTick, ctx, (256 * 2 * i) - this.game.camera.x, 0, 2);     
+            this.animations[0].drawFrame(this.game.clockTick, ctx, (256 * 2.15 * i) - this.game.camera.x, 0, 2.15);     
         }
         for (let i = 0; i < 10; i++) {
-            this.animations[1].drawFrame(this.game.clockTick, ctx, (256 * 2 * i) - this.game.camera.x, 100, 2);    
+            this.animations[1].drawFrame(this.game.clockTick, ctx, (256 * 2.15 * i) - this.game.camera.x, 100, 2.15);    
         }
         for (let i = 0; i < 10; i++) {
-            this.animations[2].drawFrame(this.game.clockTick, ctx, (688 * 2 * i) - this.game.camera.x, 100, 2);     
+            this.animations[2].drawFrame(this.game.clockTick, ctx, (688 * 2.15 * i) - this.game.camera.x, 100, 2.15);     
         }
     }
 }
 
 class background_2 {
-    constructor(game, level) {
+    constructor(game) {
         this.game = game;
-        this.level = level;
-        this.scale = 3;
         this.animations = [];
 
         this.loadAnimattion();

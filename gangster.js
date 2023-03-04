@@ -70,7 +70,6 @@ class gangster {
                                 self.facing = entity.BB.right < self.BB.left ? self.facings.left : self.facings.right;
                                 self.speed = self.facing == self.facings.right ? self.speed = -100 * params.NPCSpeed : self.speed = 100 * params.NPCSpeed;
                             }
-
                         }
                     }
 
