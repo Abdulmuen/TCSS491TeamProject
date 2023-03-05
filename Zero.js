@@ -334,7 +334,7 @@ class Zero {
                     }
 
                 }
-                if(entity.start && entity.end && that.BB && (that.BB.collide(entity.start) || that.BB.collide(entity.end))){
+                if(entity.start && entity.end && that.BB && (that.BB.collide(entity.start) || that.BB.collide(entity.end)) && !isJumping){
                     if(entity instanceof gr1){
                         that.isfalling = true;
                         that.y += 3;
