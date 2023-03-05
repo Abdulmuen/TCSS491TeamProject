@@ -3,7 +3,7 @@ class SceneManager {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
-        this.Zero1 = new Zero(this.game, 100, 10);
+        this.Zero1 = new Zero(this.game, 100, 500);
         this.levelOne = false;
         this.levelTwo = false;
         this.billboard = false;
