@@ -378,16 +378,16 @@ class Zero {
 
         if (this.game.right) {
             this.facing = 0;
-            this.x += 200 * TICK * params.playerSpeed;
+            this.x += 50 * TICK * params.playerSpeed;
         } else if (this.game.left) {
             this.facing = 1;
-            this.x -= 200 * TICK * params.playerSpeed;
-        } else {
-            if (facing == 1) {
-                this.x -= this.speed.x * TICK * params.playerSpeed;
-            } else if (facing == 0) {
-                this.x += this.speed.x * TICK * params.playerSpeed;
-            }
+            this.x -= 50 * TICK * params.playerSpeed;
+        }
+
+        if (facing == 1) {
+            this.x -= this.speed.x * TICK * params.playerSpeed;
+        } else if (facing == 0) {
+            this.x += this.speed.x * TICK * params.playerSpeed;
         }
     }
 

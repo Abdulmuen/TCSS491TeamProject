@@ -86,13 +86,16 @@ class gangster {
                     }
                 }
 
-                if (entity instanceof gr1 && (entity.BB.right - self.BB.right) <= 5) {
-                    self.speed = 0;
-                    self.state = self.states.idle;
-                }
-                if (entity instanceof gr1 && (self.BB.left - entity.BB.left) <= 5) {
-                    self.speed = 0;
-                    self.state = self.states.idle;
+                if (entity instanceof gr1) {
+                    if (self.BB.collide(entity.BB)) {
+                        if ((entity.BB.right - self.BB.right) <= 5) {
+                            self.speed = 0;
+                            self.state = self.states.idle;
+                        } else if ((self.BB.left - entity.BB.left) <= 5) {
+                            self.speed = 0;
+                            self.state = self.states.idle;
+                        }
+                    }
                 }
             });
 

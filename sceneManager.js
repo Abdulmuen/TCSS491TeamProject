@@ -28,18 +28,20 @@ class SceneManager {
         //floor 1
         gameEngine.addEntity(new gr1(gameEngine, 0, 720, 10));
         gameEngine.addEntity(new gr1(gameEngine, 900, 720, 10));
+        gameEngine.addEntity(new gr1(gameEngine, 1750, 720, 50));
+
+        //midground
+        gameEngine.addEntity(new gr1(gameEngine, 2000, 620, 10));
 
         //floor 2
-        gameEngine.addEntity(new gr1(gameEngine, 625, 550, 3));
-
+        gameEngine.addEntity(new gr1(gameEngine, 625, 570, 3));
+        gameEngine.addEntity(new gr1(gameEngine, 1475, 570, 3));
 
         //floor 3
         gameEngine.addEntity(new gr1(gameEngine, 0, 250, 10));
 
-
-
         //gangsters
-        gameEngine.addEntity(new gangster(gameEngine, 1100, 635));
+        gameEngine.addEntity(new gangster(gameEngine, 1100, 640));
 
 
         //shooters
