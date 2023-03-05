@@ -28,7 +28,6 @@ class SceneManager {
         //floor 1
         gameEngine.addEntity(new gr1(gameEngine, 0, 650, 80));
 
-
         //floor 2
         gameEngine.addEntity(new gr1(gameEngine, 700, 490, 10));
         gameEngine.addEntity(new gr1(gameEngine, 1800, 490, 10));

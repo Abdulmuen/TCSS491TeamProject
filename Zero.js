@@ -31,6 +31,7 @@ class Zero {
         this.isfalling = true;
         this.isAttacking = false;
         this.isDying = false;
+        this.minus = true;
 
         //for sliding attack
         this.isSliding = false;
@@ -120,7 +121,7 @@ class Zero {
         this.q = false;
         this.isDead = false;
 
-        this.counter = { life: 3, slowmo: 3, slide: 5 };
+        this.counter = { life: 3, slowmo: 5, slide: 5 };
 
     }
 
@@ -156,10 +157,11 @@ class Zero {
             const TICK = this.game.clockTick;
 
 
-            if (this.game.keys["o"] && params.canSlow) {//slow motion
+            if (this.game.keys["o"] && params.canSlow && this.counter.slowmo >= 0) {//slow motion
                 params.NPCSpeed = 0.25;
                 params.playerSpeed = 0.75;
                 params.canSlow = false;
+                this.counter.slowmo--;
             }
             if (!params.canSlow) {
                 params.slowMotionCD += TICK;
@@ -204,8 +206,7 @@ class Zero {
                     this.isAttacking = true;
                     this.animator = this.attack1[this.facing]
                     this.attacks();
-                } else if (this.game.keys["i"]) {//slide 
-                    this.counter.slide -= 1;
+                } else if (this.game.keys["i"] && this.counter.slide > 0) {//slide 
                     this.slides(this.facing);
                     if (this.animator == this.skid[this.facing]) {
                         this.k = Math.round(300 * TICK * params.playerSpeed);
@@ -236,20 +237,26 @@ class Zero {
                 this.animator = this.hitFall1[this.facing]
                 this.die(TICK, this.facing);
             } else if (this.isSliding) {
-                this.slides(this.facing);
-                if (this.animator == this.skid[this.facing]) {
-                    this.k = Math.round(300 * TICK * params.playerSpeed);
-                    if (this.facing == 0) {
-                        this.x += 300 * TICK * params.playerSpeed;
-                    } else
-                        this.x -= 300 * TICK * params.playerSpeed;
-                } else if (this.animator == this.slide[this.facing]) {
-                    this.k = Math.round(800 * TICK * params.playerSpeed);
-                    if (this.facing == 0) {
-                        this.x += 800 * TICK * params.playerSpeed;
-                    } else
-                        this.x -= 800 * TICK * params.playerSpeed;
+                if (this.counter.slide > 0) {
+                    this.slides(this.facing);
+                    if (this.animator == this.skid[this.facing]) {
+                        this.k = Math.round(300 * TICK * params.playerSpeed);
+                        if (this.facing == 0) {
+                            this.x += 300 * TICK * params.playerSpeed;
+                        } else
+                            this.x -= 300 * TICK * params.playerSpeed;
+                    } else if (this.animator == this.slide[this.facing]) {
+                        this.k = Math.round(800 * TICK * params.playerSpeed);
+                        if (this.facing == 0) {
+                            this.x += 800 * TICK * params.playerSpeed;
+                        } else
+                            this.x -= 800 * TICK * params.playerSpeed;
+                    }
+                } else {
+                    this.isSliding = false;
+                    this.animator = this.idle[this.facing];
                 }
+
             } else if (this.isAttacking) {
                 this.attacks();
             }
@@ -423,7 +430,7 @@ class Zero {
             this.jumping(TICK, 50, this.facing, this.rolejump);
         }
 
-        if (this.game.keys["i"]) {//slide  
+        if (this.game.keys["i"] && this.counter.slide >= 0) {//slide
             s = 20000;
             max_x = 10000;
             this.slides(facing);
@@ -437,7 +444,11 @@ class Zero {
             s = 100;
             this.animator = this.duckWalk[facing];
         }
+
         if (this.game.keys["j"]) {//attack
+            this.isAttacking = true;
+            this.animator = this.attack1[this.facing]
+            this.attacks();
             // max_x = 100;
             // s = 100;
             // this.animator = this.attack1[facing];
@@ -464,11 +475,14 @@ class Zero {
                 if (t - this.save_t1 > 250 && t - this.save_t1 < 550) {//skid for another 300
                     this.animator = this.skid[facing];
                     this.speed.x = 0;
+                    if (this.minus) this.counter.slide--;
+                    this.minus = false;
                 }
                 if (t - this.save_t1 > 550) {//stop sliding
                     this.save_t2 = t;
                     this.save_t1 = -1;
                     this.isSliding = false;
+                    this.minus = true;
                 }
 
             } else {
@@ -511,16 +525,15 @@ class Zero {
             }
             //this.slowMotion.drawSemiTran(this.game.clockTick, ctx, 0 - this.game.camera.x, 0, 50);
             ctx.globalAlpha = this.aaa;
-            ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/slow2.png"), 0 - this.game.camera.x, 0);
+            ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/slow2.png"), 0, 0);
             ctx.globalAlpha = 1;
         }
 
         ctx.strokeStyle = "Green"
         ctx.font = "15px Arial";
         ctx.textAlign = "left";
-        //this.counter = { life: " 🧡🧡🧡", slowmo: " 🕥🕥🕥", slide: " 🥏🥏🥏🥏🥏" };
-        ctx.fillText(this.writeHUD("🥏",this.counter.slide), 10, 30);
-        ctx.fillText(this.writeHUD("🕥",this.counter.slowmo), 10, 50);
+        ctx.fillText(this.writeHUD("🥏", this.counter.slide), 10, 30);
+        ctx.fillText(this.writeHUD("🕥", this.counter.slowmo), 10, 50);
         this.offset = this.facing == 1 ? this.animator.width - 60 : 0;
         this.animator.drawFrame(this.game.clockTick, ctx, this.x - this.offset - this.game.camera.x, this.y - this.H, 1);
         //ctx.strokeRect(20, 630, 1000, 20);
@@ -549,7 +562,7 @@ class Zero {
         }
     }
 
-    writeHUD(c,n){
+    writeHUD(c, n) {
         let str = "";
         for (let i = 0; i < n; i++) {
             str += c;
