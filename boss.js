@@ -116,6 +116,7 @@ class boss {
                         self.speed = 0;
                         if (self.canAttack && !self.isCasting) {
                             console.log(self.attackCount);
+                            ASSET_MANAGER.playAsset("./sound/slash.wav");
                             self.state = self.states.attack_1;
                             self.attackCount += 1;
                             self.canAttack = false;

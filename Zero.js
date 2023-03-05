@@ -162,6 +162,7 @@ class Zero {
                 params.playerSpeed = 0.75;
                 params.canSlow = false;
                 this.counter.slowmo--;
+                ASSET_MANAGER.playAsset("./sound/slow.mp3");
             }
             if (!params.canSlow) {
                 params.slowMotionCD += TICK;
@@ -208,6 +209,8 @@ class Zero {
                     ASSET_MANAGER.playAsset("./sound/sw.mp3");
                     this.attacks();
                 } else if (this.game.keys["i"] && this.counter.slide > 0) {//slide 
+                    
+                    ASSET_MANAGER.playAsset("./sound/slide.mp3");
                     this.slides(this.facing);
                     if (this.animator == this.skid[this.facing]) {
                         this.k = Math.round(300 * TICK * params.playerSpeed);
@@ -433,6 +436,7 @@ class Zero {
         if (this.game.keys["i"] && this.counter.slide >= 0) {//slide
             s = 20000;
             max_x = 10000;
+            ASSET_MANAGER.playAsset("./sound/slide.mp3");
             this.slides(facing);
         } else {
             this.save_t2 = -1;

@@ -72,6 +72,7 @@ ASSET_MANAGER.queueDownload("./Sprites/slow2.png");
 ASSET_MANAGER.queueDownload("./Sprites/slow.png");
 ASSET_MANAGER.queueDownload("./Sprites/bilb.png");
 
+//music
 ASSET_MANAGER.queueDownload("./sound/lose.wav");
 ASSET_MANAGER.queueDownload("./sound/main-1.wav");
 ASSET_MANAGER.queueDownload("./sound/main-3.wav");
@@ -82,6 +83,9 @@ ASSET_MANAGER.queueDownload("./sound/1.wav");
 ASSET_MANAGER.queueDownload("./sound/2.wav");
 ASSET_MANAGER.queueDownload("./sound/sw.mp3");
 ASSET_MANAGER.queueDownload("./sound/bos1.mp3");
+ASSET_MANAGER.queueDownload("./sound/slash.wav");
+ASSET_MANAGER.queueDownload("./sound/slow.mp3");
+ASSET_MANAGER.queueDownload("./sound/slide.mp3");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
