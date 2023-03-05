@@ -3,7 +3,7 @@ class SceneManager {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
-        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 550);
+        this.Zero1 = new Zero(this.game, 1500, 100);
         this.levelOne = false;
         this.levelTwo = false;
         this.loadLevelOne();
@@ -23,34 +23,64 @@ class SceneManager {
         this.clearEntities();
         this.levelOne = true;
         gameEngine.addEntity(this.Zero1);
-        gameEngine.addEntity(new door(gameEngine, 3550));
+        ASSET_MANAGER.playAsset("./sound/main-3.wav");
 
         //floor 1
         gameEngine.addEntity(new gr1(gameEngine, 0, 720, 10));
         gameEngine.addEntity(new gr1(gameEngine, 900, 720, 10));
-        gameEngine.addEntity(new gr1(gameEngine, 1750, 720, 50));
+        gameEngine.addEntity(new gr1(gameEngine, 1750, 720, 40));
+        gameEngine.addEntity(new gangster(gameEngine, 1100, 638));
+        gameEngine.addEntity(new gangster(gameEngine, 1750, 638));
+        setTimeout(() => {
+            gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3250, 638));
+        }, 700);
 
         //midground
-        gameEngine.addEntity(new gr1(gameEngine, 2000, 620, 10));
+        gameEngine.addEntity(new gr1(gameEngine, 2000, 640, 15));
+        gameEngine.addEntity(new Sniper(gameEngine, 3500, 490, 1));
 
         //floor 2
         gameEngine.addEntity(new gr1(gameEngine, 625, 570, 3));
         gameEngine.addEntity(new gr1(gameEngine, 1475, 570, 3));
+        gameEngine.addEntity(new gr1(gameEngine, 3300, 550, 9));
+        
+
+        //midground 2
+        gameEngine.addEntity(new gr1(gameEngine, 3100, 430, 3));
+
 
         //floor 3
-        gameEngine.addEntity(new gr1(gameEngine, 0, 250, 10));
+        gameEngine.addEntity(new gr1(gameEngine, 0, 250, 14));
+        gameEngine.addEntity(new gr1(gameEngine, 2600, 250, 10));
+        gameEngine.addEntity(new gr1(gameEngine, 1750, 250, 14));
+        gameEngine.addEntity(new gr1(gameEngine, 900, 250, 13));
+        gameEngine.addEntity(new door(gameEngine, 10, 160));
+        gameEngine.addEntity(new gangster(gameEngine, 1750, 178));
+        gameEngine.addEntity(new gangster(gameEngine, 200, 178));
+        setTimeout(() => {
+            gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 2900, 168));
+        }, 700);
+        setTimeout(() => {
+            gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 1300, 168));
+        }, 700);
+        
+
 
         //gangsters
-        gameEngine.addEntity(new gangster(gameEngine, 1100, 640));
+        //gameEngine.addEntity(new gangster(gameEngine, 1100, 635));
 
 
         //shooters
-        setTimeout(() => {
-            gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 407));
-        }, 700);
+        // setTimeout(() => {
+        //     gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 407));
+        // }, 700);
 
         //trap
-        //gameEngine.addEntity(new trap(gameEngine, 600, 350));
+        let xxx = 2030;
+        for (let i = 0; i < 14; i++) {
+            gameEngine.addEntity(new trap(gameEngine, xxx, 340));
+            xxx += 50;
+        }
 
         //sniper
         //gameEngine.addEntity(new Sniper(gameEngine, 0, 425, 0));
@@ -58,6 +88,14 @@ class SceneManager {
         //background
         gameEngine.addEntity(new background_2(gameEngine));
     }
+    updateAudio() {
+        var mute = document.getElementById("mute").checked;
+        var volume = document.getElementById("volume").value;
+
+        ASSET_MANAGER.muteAudio(mute);
+        ASSET_MANAGER.adjustVolume(volume);
+
+    };
 
     bossF() {
         this.clearEntities();
@@ -75,7 +113,8 @@ class SceneManager {
     }
 
     update() {
-
+        
+        this.updateAudio();
         if (this.Zero1.BossFight == true && this.levelOne == true) {
             this.clearEntities();
             this.Zero1.BossFight = false;
@@ -105,6 +144,15 @@ class Ltwo {
         this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 550);
         this.levelTwo = false;
         this.loadLevelTwo();
+    };
+
+    updateAudio() {
+        var mute = document.getElementById("mute").checked;
+        var volume = document.getElementById("volume").value;
+
+        ASSET_MANAGER.muteAudio(mute);
+        ASSET_MANAGER.adjustVolume(volume);
+
     };
 
     clearEntities() {
@@ -169,7 +217,7 @@ class Ltwo {
     }
 
     update() {
-
+        this.updateAudio();
         if (this.Zero1.BossFight == true && this.levelTwo == true) {
             this.bossF();
         }

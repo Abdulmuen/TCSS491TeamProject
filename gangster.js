@@ -87,7 +87,7 @@ class gangster {
                 }
 
                 if (entity instanceof gr1) {
-                    if (self.BB.collide(entity.BB)) {
+                    if (self.BB.collide(entity.BB) && entity.BB.top > self.BB.top) {
                         if ((entity.BB.right - self.BB.right) <= 5 && self.facing == self.facings.right) {
                             self.speed = 0;
                             self.state = self.states.idle;

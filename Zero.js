@@ -16,7 +16,7 @@ class Zero {
 
         this.animator = new Animator(this.spritesheet, 86, 42, 60, 100, 13, 0.1, false);//initial
 
-        this.speed = { x: 0, y: 0 };
+        this.speed = { x: 0, y: 300 };
         this.fallAcc = 500;
         this.max_jump = 350;
         this.k = 0;
@@ -319,11 +319,11 @@ class Zero {
                     //let k = that.facing == 0 ? that.BB.left - that.lastBB.left + 5 : that.lastBB.right - that.BB.right + 5;
                     let k = Math.round(that.speed.x * TICK * params.playerSpeed + 10);
                     // fall from left
-                    if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= that.k + 10) && !that.isJumping && that.facing == 0) {
+                    if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= that.k + 10) && !that.isJumping && that.facing == 0 && entity.BB.top > that.BB.top) {
                         that.isfalling = true;
                     }
                     // fall from right
-                    if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= that.k + 10) && !that.isJumping && that.facing == 1) {
+                    if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= that.k + 10) && !that.isJumping && that.facing == 1 && entity.BB.top > that.BB.top) {
                         that.isfalling = true;
                     }
 
@@ -383,7 +383,6 @@ class Zero {
             this.facing = 1;
             this.x -= 50 * TICK * params.playerSpeed;
         }
-
         if (facing == 1) {
             this.x -= this.speed.x * TICK * params.playerSpeed;
         } else if (facing == 0) {
