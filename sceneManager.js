@@ -14,11 +14,12 @@ class SceneManager {
             entity.removeFromWorld = true;
         });
     }
+
     loadStartScreen() {
         gameEngine.addEntity(new Startscreen(gameEngine));
     }
-    loadLevelOne() {
 
+    loadLevelOne() {
         this.clearEntities();
         this.levelOne = true;
         gameEngine.addEntity(this.Zero1);
@@ -102,11 +103,13 @@ class SceneManager {
         if (this.x > this.Zero1.x - midpoint / 2 && this.Zero1.x - midpoint / 2 > 0) this.x = this.Zero1.x - midpoint / 2;
 
     }
+
     draw(ctx) {
 
     }
 
 }
+
 class Ltwo {
     constructor(game) {
         this.game = game;
@@ -188,8 +191,8 @@ class Ltwo {
         if (this.x > this.Zero1.x - midpoint / 2 && this.Zero1.x - midpoint / 2 > 0) this.x = this.Zero1.x - midpoint / 2;
 
     }
+
     draw(ctx) {
 
     }
-
 }

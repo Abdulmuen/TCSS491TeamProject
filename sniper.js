@@ -14,6 +14,7 @@ class Sniper {
         this.BBW = 25 * this.scale;
         this.BBH = 65 * this.scale;
         this.die = false;
+        this.canShoot = true;
         this.animations = [];
         this.state = 0;
         this.hitCount = 0;
@@ -82,15 +83,20 @@ class Sniper {
         });
 
         if (this.shot) {
-            if (this.elapsedTime >= this.fireRate) {
+            if (this.animations[0][this.direction].currentFrame() == 2 && this.canShoot) {
                 if (this.direction == 0) {
-                    this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x, this.y - 10, this.direction, this.bulletSpeed, 0.4));
+                    this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x + 25, this.y - 10, this.direction, this.bulletSpeed, 0.4));
                     this.elapsedTime = 0;
+                    this.canShoot = false;
                 }
                 else {
-                    this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 110, this.y - 10, this.direction, this.bulletSpeed, 0.4));
+                    this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 85, this.y - 10, this.direction, this.bulletSpeed, 0.4));
                     this.elapsedTime = 0;
+                    this.canShoot = false;
                 }
+            }
+            if (this.animations[0][this.direction].currentFrame() == 1) {
+                this.canShoot = true;
             }
         }
 
