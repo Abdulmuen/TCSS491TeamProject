@@ -511,8 +511,6 @@ class Zero {
         }
     }
 
-
-
     draw(ctx) {
         if (!params.canSlow) {
             if (this.aaaa) {
@@ -538,8 +536,8 @@ class Zero {
         //ctx.strokeRect(20, 630, 1000, 20);
         //ctx.strokeRect(this.x + 10 - this.game.camera.x, this.y, this.animator.width - 20, this.animator.height);
         //ctx.strokeRect(this.x + 10, this.y - this.H, this.animator.width - 20, this.animator.height);
-        this.drawBB(ctx, this.BB, "green");
-        this.drawBB(ctx, this.AB, "red");
+        //this.drawBB(ctx, this.BB, "green");
+        //this.drawBB(ctx, this.AB, "red");
 
         // sence management
         if (this.lose == true) {
@@ -568,4 +566,5 @@ class Zero {
         }
         return str;
     }
+    
 }

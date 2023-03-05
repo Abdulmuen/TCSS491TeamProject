@@ -289,12 +289,14 @@ class boss {
     };
 
     draw(ctx) {
+        /*
         ctx.strokeStyle = 'red';
         ctx.strokeRect(this.AR.x - this.game.camera.x, this.AR.y, this.AR.width, this.AR.height);
         ctx.strokeStyle = 'green';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
         ctx.strokeStyle = 'white';
         ctx.strokeRect(this.DB.x - this.game.camera.x, this.DB.y, this.DB.width, this.DB.height);
+        */
         this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);
     };
 }

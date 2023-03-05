@@ -13,10 +13,13 @@ class gr1 {
     }
 
     draw(ctx) {
+        
         for (let i = 0; i < this.length; i++) {
             ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/gr2.png"), (this.x + (50 * i)) - this.game.camera.x, this.y, 50, 32);
         }
+        /*
         ctx.strokeStyle = "Red";
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
+        */
     }
 }

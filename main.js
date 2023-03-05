@@ -26,6 +26,9 @@ ASSET_MANAGER.queueDownload("./background/back_2.png");
 ASSET_MANAGER.queueDownload("./background/back_3.png");
 ASSET_MANAGER.queueDownload("./background/back_4.png");
 
+//portal
+ASSET_MANAGER.queueDownload("./Sprites/portal.png");
+
 //shooter assset
 ASSET_MANAGER.queueDownload("./shooter/WR.png");
 ASSET_MANAGER.queueDownload("./shooter/dead.png");
@@ -67,12 +70,16 @@ ASSET_MANAGER.queueDownload("./gangster/dead.png");
 //slowmotion
 ASSET_MANAGER.queueDownload("./Sprites/slow2.png");
 ASSET_MANAGER.queueDownload("./Sprites/slow.png");
+ASSET_MANAGER.queueDownload("./Sprites/bilb.png");
 
-ASSET_MANAGER.queueDownload("./sound/lose.wav")
-ASSET_MANAGER.queueDownload("./sound/main-1.wav")
-ASSET_MANAGER.queueDownload("./sound/main-3.wav")
-ASSET_MANAGER.queueDownload("./sound/shoot.wav")
-ASSET_MANAGER.queueDownload("./sound/mainattack.wav")
+ASSET_MANAGER.queueDownload("./sound/lose.wav");
+ASSET_MANAGER.queueDownload("./sound/main-1.wav");
+ASSET_MANAGER.queueDownload("./sound/main-3.wav");
+ASSET_MANAGER.queueDownload("./sound/shoot.wav");
+ASSET_MANAGER.queueDownload("./sound/mainattack.wav");
+ASSET_MANAGER.queueDownload("./sound/boss1.wav");
+ASSET_MANAGER.queueDownload("./sound/1.wav");
+ASSET_MANAGER.queueDownload("./sound/2.wav");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

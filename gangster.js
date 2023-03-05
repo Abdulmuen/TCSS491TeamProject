@@ -155,12 +155,29 @@ class gangster {
     };
 
     draw(ctx) {
+        
+        if(this.game.camera.billboard){
+            ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bilb.png"), 300 - this.game.camera.x, 620);
+            ctx.font = "13px Arial";
+            ctx.textAlign = "left";
+            ctx.fillText("Press 'w' to jump", 320 - this.game.camera.x, 642);
+            ctx.fillText("Press ' J ' to attack", 320 - this.game.camera.x, 662);
+            ctx.fillText("Press ' I ' to slide", 320 - this.game.camera.x, 682);
+            
+            ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bilb.png"), 1770 - this.game.camera.x, 620);
+            ctx.font = "15px Arial";
+            ctx.textAlign = "left";
+            ctx.fillText("Press 's' to duck", 1790 - this.game.camera.x, 660);
+            
+        }
+        /*
         ctx.strokeStyle = 'red';
         ctx.strokeRect(this.AR.x - this.game.camera.x, this.AR.y, this.AR.width, this.AR.height);
         ctx.strokeStyle = 'green';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
         ctx.strokeStyle = 'white';
         ctx.strokeRect(this.DB.x - this.game.camera.x, this.DB.y, this.DB.width, this.DB.height);
+        */
         this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);
     };
 }

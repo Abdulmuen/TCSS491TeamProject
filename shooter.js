@@ -161,12 +161,14 @@ class shooter {
         } else {
             this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - this.offset_1, this.y, 2.2);
         }
+        /*
         ctx.strokeStyle = "Red";
         ctx.strokeRect(this.AR.x - this.game.camera.x, this.AR.y, this.AR.width, this.AR.height);
         ctx.strokeStyle = "White";
         ctx.strokeRect(this.DB.x - this.game.camera.x, this.DB.y, this.DB.width, this.DB.height);
         ctx.strokeStyle = "Grenn";
         ctx.strokeRect(this.HB.x - this.game.camera.x, this.HB.y, this.HB.width, this.HB.height);
+        */
 
     };
 

@@ -114,7 +114,9 @@ class Sniper {
     draw(ctx) {
         const TICK = this.game.clockTick;
         this.animations[this.state][this.direction].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.size);
+        /*
         ctx.strokeStyle = "Green";
         ctx.strokeRect(this.DB.x - this.game.camera.x, this.DB.y, this.DB.width, this.DB.height);
+        */
     }
 }
