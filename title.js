@@ -17,6 +17,7 @@ class Startscreen {
         if (this.game.keys["Enter"]) {
             this.game.starting = false;
             this.game.addEntity(new SceneManager(this.game, 1))
+            ASSET_MANAGER.playAsset("./sound/portal.mp3");
         }
         if (this.Zero.x >= 1200) {
             this.Zero.x = 1200;

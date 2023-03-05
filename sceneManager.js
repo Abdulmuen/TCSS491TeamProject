@@ -129,7 +129,7 @@ class SceneManager {
 
             this.bossF();
         }
-        
+
         let midpoint = PARAMS.CANVAS_WIDTH / 2;
         if (this.x < this.Zero1.x - midpoint) this.x = this.Zero1.x - midpoint;
         if (this.x > this.Zero1.x - midpoint / 2 && this.Zero1.x - midpoint / 2 > 0) this.x = this.Zero1.x - midpoint / 2;
@@ -170,6 +170,7 @@ class Ltwo {
         this.clearEntities();
         this.levelTwo = true;
         gameEngine.addEntity(this.Zero1);
+        ASSET_MANAGER.playAsset("./sound/portal.mp3");
         ASSET_MANAGER.playAsset("./sound/1.wav");
 
         //floor 1
@@ -224,9 +225,9 @@ class Ltwo {
         this.Zero1 = new Zero(this.game, 330, 550);
         this.game.addEntity(this.Zero1);
         ASSET_MANAGER.pauseBackgroundMusic();
+        ASSET_MANAGER.playAsset("./sound/portal.mp3");
         ASSET_MANAGER.playAsset("./sound/boss1.wav");
-        //gameEngine.addEntity(new gr1(gameEngine, -310, 510, 10));
-        //gameEngine.addEntity(new gr1(gameEngine, 810, 510, 10));
+
         gameEngine.addEntity(new gr1(gameEngine, 0, 650, 30));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
         gameEngine.addEntity(new trap(gameEngine, 490, 350));
