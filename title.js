@@ -7,7 +7,7 @@ class Startscreen {
         this.a = true;
         this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 445);
         this.game.addEntity(this.Zero);
-        gameEngine.addEntity(new gr1(gameEngine, (PARAMS.CANVAS_WIDTH / 2) - 250, 545,10));
+        gameEngine.addEntity(new gr1(gameEngine, 0, 545, 100));
         this.title = new Animator(ASSET_MANAGER.getAsset("./Sprites/t.png"), 0, 0, 340, 134, 1, 1, false, true, false);
 
     };
@@ -19,19 +19,22 @@ class Startscreen {
             this.game.starting = false;
             this.game.addEntity(new SceneManager(this.game, 1))
         }
+        if (this.Zero.x >= 1200) {
+            this.Zero.x = 1200;
+        }
     };
 
     draw(ctx) {
-        this.title.drawFrame(this.game.clockTick, ctx, 300, 150,2);
+        this.title.drawFrame(this.game.clockTick, ctx, 300, 150, 2);
         if (this.game.starting == true) {
             ctx.font = "50px Arial";
             ctx.fillStyle = 'White';
             ctx.textAlign = 'center';
             ctx.fillText("Press Enter to Start", PARAMS.CANVAS_WIDTH / 2, 650);
         }
-        if (this.a){
+        if (this.a) {
             gameEngine.addEntity(new bg0(gameEngine, -180, 0));
-            this.a =false;
+            this.a = false;
         }
     };
 }
