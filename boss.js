@@ -84,7 +84,8 @@ class boss {
     };
 
     update() {
-
+        console.log(this.hitCount)
+        console.log(this.canDamage)
         if (this.hitCount >= 10) {
             this.dead = true;
             this.state = 9;
@@ -115,7 +116,6 @@ class boss {
                     if (entity.BB && self.AR.collide(entity.BB)) {
                         self.speed = 0;
                         if (self.canAttack && !self.isCasting) {
-                            console.log(self.attackCount);
                             self.state = self.states.attack_1;
                             self.attackCount += 1;
                             self.canAttack = false;
@@ -125,18 +125,15 @@ class boss {
 
                     // if boss collide with player hitbox
                     if (self.canDamage && entity.AB && self.BB.collide(entity.AB)) {
+                        self.canDamage = false;
+                        self.speed = 0;
+                        self.state = self.states.hurt;
                         if (self.isEating) {
-                            self.speed = 0;
-                            self.state = self.states.hurt;
-                            self.canDamage = false
                             self.hitCount = 5;
+                            self.isEating = false;
                         } else {
-                            self.speed = 0;
-                            self.state = self.states.hurt;
-                            self.canDamage = false;
                             self.hitCount += 1;
                         }
-                        entity.AB = null;
                     }
                 }
             });
@@ -261,7 +258,6 @@ class boss {
         if (!this.canCast) {
             this.castCD += TICK * params.NPCSpeed;
             if (this.castCD >= 3) {
-                console.log(this.animations[this.states.cast][this.facings.left].elapsedTime);
                 this.animations[this.states.cast][this.facings.left].elapsedTime = 0;
                 this.animations[this.states.cast][this.facings.right].elapsedTime = 0;
                 this.castCD = 0;
@@ -272,21 +268,11 @@ class boss {
 
         if (!this.canDamage) {
             this.damagedCD += TICK * params.NPCSpeed;
-            if (this.damagedCD >= 3) {
+            if (this.damagedCD >= 1) {
                 this.animations[this.states.hurt][this.facings.left].elapsedTime = 0;
                 this.animations[this.states.hurt][this.facings.right].elapsedTime = 0;
+                this.damagedCD = 0;
                 this.canDamage = true;
-            }
-        }
-
-        if (!this.canJump) {
-            this.jumpCD += TICK * params.NPCSpeed;
-            if (this.jumpCD >= 30) {
-                this.animations[this.states.jump][this.facings.left].elapsedTime = 0;
-                this.animations[this.states.jump][this.facings.right].elapsedTime = 0;
-                this.animations[this.states.eat][this.facings.left].elapsedTime = 0;
-                this.animations[this.states.eat][this.facings.right].elapsedTime = 0;
-                this.canJump = true;
             }
         }
     };

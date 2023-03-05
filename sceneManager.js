@@ -230,8 +230,8 @@ class Ltwo {
 
         gameEngine.addEntity(new gr1(gameEngine, 0, 650, 30));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
-        gameEngine.addEntity(new trap(gameEngine, 490, 350));
-        gameEngine.addEntity(new trap(gameEngine, 990, 350));
+        //gameEngine.addEntity(new trap(gameEngine, 490, 350));
+        //gameEngine.addEntity(new trap(gameEngine, 990, 350));
         gameEngine.addEntity(new bg3(gameEngine, 0, 0));
     }
 
