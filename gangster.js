@@ -85,6 +85,15 @@ class gangster {
                         self.dead = true;
                     }
                 }
+
+                if (entity instanceof gr1 && (entity.BB.right - self.BB.right) <= 5) {
+                    self.speed = 0;
+                    self.state = self.states.idle;
+                }
+                if (entity instanceof gr1 && (self.BB.left - entity.BB.left) <= 5) {
+                    self.speed = 0;
+                    self.state = self.states.idle;
+                }
             });
 
             if (this.state == this.states.attack) {
