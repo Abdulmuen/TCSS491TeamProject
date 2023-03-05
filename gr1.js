@@ -3,13 +3,14 @@ class gr1 {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.length = length
+        this.length = length;
         this.BB = new BoundingBox(this.x, this.y, this.length * 50, 32);
+        this.start = new BoundingBox(this.x - 90, this.y - 20, 20, 30);
+        this.end = new BoundingBox(this.x + (this.length * 50) + 70, this.y - 20, 20, 30);
         
     }
 
     update() {
-
     }
 
     draw(ctx) {
@@ -19,7 +20,9 @@ class gr1 {
         }
         /*
         ctx.strokeStyle = "Red";
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
+        ctx.strokeRect(this.start.x - this.game.camera.x, this.start.y, this.start.width, this.start.height);
+        ctx.strokeRect(this.end.x - this.game.camera.x, this.end.y, this.end.width, this.end.height);
         */
+        
     }
 }

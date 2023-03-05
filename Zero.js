@@ -318,18 +318,27 @@ class Zero {
                         that.isfalling = false;
 
                     }
-
                     //let k = that.facing == 0 ? that.BB.left - that.lastBB.left + 5 : that.lastBB.right - that.BB.right + 5;
                     let k = Math.round(that.speed.x * TICK * params.playerSpeed + 10);
                     // fall from left
                     if (entity instanceof gr1 && ((entity.BB.right - that.BB.left) <= that.k + 10) && !that.isJumping && that.facing == 0 && entity.BB.top > that.BB.top) {
                         that.isfalling = true;
+                        that.y += 3;
+                        that.x += 2;
                     }
                     // fall from right
                     if (entity instanceof gr1 && ((that.BB.right - entity.BB.left) <= that.k + 10) && !that.isJumping && that.facing == 1 && entity.BB.top > that.BB.top) {
                         that.isfalling = true;
+                        that.y += 3;
+                        that.x -= 2;
                     }
 
+                }
+                if(entity.start && entity.end && that.BB && (that.BB.collide(entity.start) || that.BB.collide(entity.end))){
+                    if(entity instanceof gr1){
+                        that.isfalling = true;
+                        that.y += 3;
+                    }
                 }
             });
 
