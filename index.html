@@ -1,10 +1,32 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>Katana game</title>
-  
+    <title>Cyberpunk: Zero</title>
+    <style>
+        body {
+            background-image: url("./Sprites/web.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+        }
+
+        div {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+    </style>
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./timer.js"></script>
     <script type="text/javascript" src="./gameengine.js"></script>
@@ -26,18 +48,16 @@
     <script type="text/javascript" src="./sniper.js"></script>
     <script type="text/javascript" src="./door.js"></script>
 </head>
+
 <body>
-    <canvas id="gameWorld" width="1250" height="768" style="background: rgb(0, 0, 0); border: 1px solid black" tabindex="0" autofocus></canvas>
-    <h3>A, D for movement, S for ducking and W for jumping</h3>
-    <h3>shift while moving to speed</h3>
-    <h3>J for close attack</h3>
-    <h3>hold I for slide attack and hold I while moving for longger range</h3>
-    <h3>O for slow mation</h3>
-    <h3>Q for roll jumping</h3>
     <div>
-        <br />
-       <input type="checkbox" id="debug" onchange=debugOn()> Debug <input type="checkbox" id="mute" > Mute <input type="range" id="volume" min="0" max="1" value="0.1" step="0.05" > Volume
-       <!-- <input class="form-check-input" type="checkbox" id="show-cursor" checked> Show Cursor -->
+        <canvas id="gameWorld" width="1250" height="768" style="background: rgb(0, 0, 0); border: 1px solid black"
+            tabindex="0" autofocus></canvas>
+
+        <input type="checkbox" id="mute"> <font color="White"> Mute
+        <br>
+        <input type="range" id="volume" min="0" max="1" value="0.1" step="0.05"> <font color="White"> Volume
     </div>
 </body>
+
 </html>
