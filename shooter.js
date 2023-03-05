@@ -129,14 +129,14 @@ class shooter {
 
         if (this.shot && this.direction == 1) {
             if (this.elapsedTime >= this.fireRate) {
-                //ASSET_MANAGER.playAsset("./sound/shoot.wav")
+                ASSET_MANAGER.playAsset("./sound/shoot.mp3");
                 this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x + 5, this.y, 0, this.bulletSpeed, 0.4));
                 this.elapsedTime = 0;
             }
         }
         else if (this.shot && this.direction == 0) {
             if (this.elapsedTime >= this.fireRate) {
-                //ASSET_MANAGER.playAsset("./sound/shoot.wav")
+                ASSET_MANAGER.playAsset("./sound/shoot.mp3");
                 this.game.addEntityToFrontOfList(new bullet(gameEngine, this.x - 200, this.y + 5, 1, this.bulletSpeed, 0.4));
                 this.elapsedTime = 0;
             }

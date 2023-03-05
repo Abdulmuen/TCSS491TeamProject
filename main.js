@@ -75,11 +75,13 @@ ASSET_MANAGER.queueDownload("./Sprites/bilb.png");
 ASSET_MANAGER.queueDownload("./sound/lose.wav");
 ASSET_MANAGER.queueDownload("./sound/main-1.wav");
 ASSET_MANAGER.queueDownload("./sound/main-3.wav");
-ASSET_MANAGER.queueDownload("./sound/shoot.wav");
+ASSET_MANAGER.queueDownload("./sound/shoot.mp3");
 ASSET_MANAGER.queueDownload("./sound/mainattack.wav");
 ASSET_MANAGER.queueDownload("./sound/boss1.wav");
 ASSET_MANAGER.queueDownload("./sound/1.wav");
 ASSET_MANAGER.queueDownload("./sound/2.wav");
+ASSET_MANAGER.queueDownload("./sound/sw.mp3");
+ASSET_MANAGER.queueDownload("./sound/bos1.mp3");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

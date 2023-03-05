@@ -204,7 +204,8 @@ class Zero {
                     this.animator = this.duck[this.facing]
                 } else if (this.game.keys["j"]) {//for attacks
                     this.isAttacking = true;
-                    this.animator = this.attack1[this.facing]
+                    this.animator = this.attack1[this.facing];
+                    ASSET_MANAGER.playAsset("./sound/sw.mp3");
                     this.attacks();
                 } else if (this.game.keys["i"] && this.counter.slide > 0) {//slide 
                     this.slides(this.facing);
@@ -446,7 +447,8 @@ class Zero {
 
         if (this.game.keys["j"]) {//attack
             this.isAttacking = true;
-            this.animator = this.attack1[this.facing]
+            this.animator = this.attack1[this.facing];
+            ASSET_MANAGER.playAsset("./sound/sw.mp3");
             this.attacks();
             // max_x = 100;
             // s = 100;
@@ -541,7 +543,7 @@ class Zero {
 
         // sence management
         if (this.lose == true) {
-            console.log("die");
+            //console.log("die");
             //this.removeFromWorld =true;
             this.game.addEntityToFrontOfList(new Replay(this.game, this.WinorLose.Lose));
         }

@@ -165,9 +165,11 @@ class gangster {
             ctx.fillText("Press ' I ' to slide", 320 - this.game.camera.x, 682);
             
             ctx.drawImage(ASSET_MANAGER.getAsset("./Sprites/bilb.png"), 1770 - this.game.camera.x, 620);
-            ctx.font = "15px Arial";
+            ctx.font = "13px Arial";
             ctx.textAlign = "left";
-            ctx.fillText("Press 's' to duck", 1790 - this.game.camera.x, 660);
+            ctx.fillText("Press 's' to duck", 1790 - this.game.camera.x, 642);
+            ctx.fillText("Press 'o' for", 1790 - this.game.camera.x, 662);
+            ctx.fillText("slow motion", 1790 - this.game.camera.x, 682);
             
         }
         /*
