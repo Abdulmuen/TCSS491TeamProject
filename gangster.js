@@ -12,7 +12,7 @@ class gangster {
         this.states = { idle: 0, run: 1, attack: 2, dead: 3 };
         this.state = this.states.idle;
         this.facings = { right: 0, left: 1 };
-        this.facing = this.facings.left;
+        this.facing = this.facings.right;
 
         this.canAttack = true;
         this.attackCD = 0;
@@ -88,10 +88,10 @@ class gangster {
 
                 if (entity instanceof gr1) {
                     if (self.BB.collide(entity.BB)) {
-                        if ((entity.BB.right - self.BB.right) <= 5) {
+                        if ((entity.BB.right - self.BB.right) <= 5 && self.facing == self.facings.right) {
                             self.speed = 0;
                             self.state = self.states.idle;
-                        } else if ((self.BB.left - entity.BB.left) <= 5) {
+                        } else if ((self.BB.left - entity.BB.left) <= 5 && self.facing == self.facings.left) {
                             self.speed = 0;
                             self.state = self.states.idle;
                         }
@@ -123,18 +123,22 @@ class gangster {
         if (this.facing == 1) {
             this.AB = new BoundingBox(this.BB.left - (18 * this.scale), this.BB.top, this.BB.width, this.BB.height);
         } else {
-            this.AB = new BoundingBox(this.BB.left + this.BB.width + (12 * this.scale), this.BB.top, this.BB.width, this.BB.height);
+            this.AB = new BoundingBox(this.BB.left + (18 * this.scale), this.BB.top, this.BB.width, this.BB.height);
         }
     };
 
     updateBB() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x - (((this.width * this.scale) - 22) / 2), this.y + (6 * this.scale), (this.width * this.scale), (this.height * this.scale));
+        if (this.facing == this.facings.left) {
+            this.BB = new BoundingBox(this.x - (((this.width * this.scale) - 22) / 2), this.y + (6 * this.scale), (this.width * this.scale), (this.height * this.scale));
+        } else {
+            this.BB = new BoundingBox(this.x + (((this.width * this.scale) - 12 ) / 2), this.y + (6 * this.scale), (this.width * this.scale), (this.height * this.scale));
+        }
         this.DB = new BoundingBox(this.BB.left - 400, this.BB.top - (200 - this.BB.height), 800, 200);
-        if (this.facing == 1) {
+        if (this.facing == this.facings.left) {
             this.AR = new BoundingBox(this.BB.left - (18 * this.scale), this.BB.top, this.BB.width, this.BB.height);
         } else {
-            this.AR = new BoundingBox(this.BB.left + this.BB.width + (12 * this.scale), this.BB.top, this.BB.width, this.BB.height);
+            this.AR = new BoundingBox(this.BB.left + (18 * this.scale), this.BB.top, this.BB.width, this.BB.height);
         }
     };
 
