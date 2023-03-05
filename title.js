@@ -9,7 +9,6 @@ class Startscreen {
         this.game.addEntity(this.Zero);
         gameEngine.addEntity(new gr1(gameEngine, 0, 545, 100));
         this.title = new Animator(ASSET_MANAGER.getAsset("./Sprites/t.png"), 0, 0, 340, 134, 1, 1, false, true, false);
-
     };
 
 

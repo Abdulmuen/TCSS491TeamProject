@@ -116,7 +116,6 @@ class boss {
                         self.speed = 0;
                         if (self.canAttack && !self.isCasting) {
                             console.log(self.attackCount);
-                            ASSET_MANAGER.playAsset("./sound/slash.wav");
                             self.state = self.states.attack_1;
                             self.attackCount += 1;
                             self.canAttack = false;
@@ -171,6 +170,9 @@ class boss {
             // update attack box during attack animation
             if (this.state == this.states.attack_1 || this.state == this.states.attack_2) {
                 this.attackFrame = this.animations[this.state][this.facing].currentFrame();
+                if (this.state == this.states.attack_1 && this.attackFrame == 2) {
+                    ASSET_MANAGER.playAsset("./sound/slash.wav");
+                }
                 if (this.attackFrame == 3 || this.attackFrame == 4) {
                     this.updateAB();
                 } else {

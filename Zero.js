@@ -121,13 +121,12 @@ class Zero {
         this.q = false;
         this.isDead = false;
 
-        this.counter = { life: 3, slowmo: 5, slide: 5 };
+        this.counter = { life: 3, slowmo: 5, slide: 3 };
 
     }
 
     //update bounding box
     updateBB() {
-
         this.lastBB = this.BB;
         this.offset = this.facing == 1 ? this.animator.width - 60 : 0;
         if (this.animator == this.attack1[this.facing]) {
@@ -209,7 +208,7 @@ class Zero {
                     ASSET_MANAGER.playAsset("./sound/sw.mp3");
                     this.attacks();
                 } else if (this.game.keys["i"] && this.counter.slide > 0) {//slide 
-                    
+
                     ASSET_MANAGER.playAsset("./sound/slide.mp3");
                     this.slides(this.facing);
                     if (this.animator == this.skid[this.facing]) {
@@ -572,5 +571,5 @@ class Zero {
         }
         return str;
     }
-    
+
 }

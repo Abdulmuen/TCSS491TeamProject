@@ -73,14 +73,13 @@ ASSET_MANAGER.queueDownload("./Sprites/slow.png");
 ASSET_MANAGER.queueDownload("./Sprites/bilb.png");
 
 //music
-ASSET_MANAGER.queueDownload("./sound/lose.wav");
+ASSET_MANAGER.queueDownload("./sound/death.mp3");
 ASSET_MANAGER.queueDownload("./sound/main-1.wav");
-ASSET_MANAGER.queueDownload("./sound/main-3.wav");
 ASSET_MANAGER.queueDownload("./sound/shoot.mp3");
 ASSET_MANAGER.queueDownload("./sound/mainattack.wav");
 ASSET_MANAGER.queueDownload("./sound/boss1.wav");
 ASSET_MANAGER.queueDownload("./sound/1.wav");
-ASSET_MANAGER.queueDownload("./sound/2.wav");
+ASSET_MANAGER.queueDownload("./sound/2.mp3");
 ASSET_MANAGER.queueDownload("./sound/sw.mp3");
 ASSET_MANAGER.queueDownload("./sound/bos1.mp3");
 ASSET_MANAGER.queueDownload("./sound/slash.wav");
@@ -90,8 +89,7 @@ ASSET_MANAGER.queueDownload("./sound/slide.mp3");
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
-		ASSET_MANAGER.autoRepeat("./sound/main-3.wav");
-	ASSET_MANAGER.autoRepeat("./sound/main-1.wav");
+
 	PARAMS.BLOCKWIDTH = 100;
 
 	PARAMS.CANVAS_WIDTH = canvas.width;
@@ -99,7 +97,6 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.init(ctx);
 	gameEngine.addEntity(new Startscreen(gameEngine));
-	//gameEngine.addEntity(new SceneManager(gameEngine));
 
 	gameEngine.start();
 

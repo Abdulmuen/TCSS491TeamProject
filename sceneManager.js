@@ -25,7 +25,7 @@ class SceneManager {
         this.clearEntities();
         this.levelOne = true;
         gameEngine.addEntity(this.Zero1);
-        ASSET_MANAGER.playAsset("./sound/main-3.wav");
+        ASSET_MANAGER.playAsset("./sound/2.mp3");
 
         //floor 1
         gameEngine.addEntity(new gr1(gameEngine, 0, 720, 10));
@@ -90,7 +90,8 @@ class SceneManager {
         //background
         gameEngine.addEntity(new background_2(gameEngine));
         
-    }
+    };
+
     updateAudio() {
         var mute = document.getElementById("mute").checked;
         var volume = document.getElementById("volume").value;
@@ -113,10 +114,9 @@ class SceneManager {
         gameEngine.addEntity(new trap(gameEngine, 490, 350));
         gameEngine.addEntity(new trap(gameEngine, 990, 350));
         gameEngine.addEntity(new bg3(gameEngine, 0, 0));
-    }
+    };
 
     update() {
-        
         this.updateAudio();
         if (this.Zero1.BossFight == true && this.levelOne == true) {
             this.clearEntities();
@@ -129,14 +129,15 @@ class SceneManager {
 
             this.bossF();
         }
+        
         let midpoint = PARAMS.CANVAS_WIDTH / 2;
         if (this.x < this.Zero1.x - midpoint) this.x = this.Zero1.x - midpoint;
         if (this.x > this.Zero1.x - midpoint / 2 && this.Zero1.x - midpoint / 2 > 0) this.x = this.Zero1.x - midpoint / 2;
-
-    }
+    };
 
     draw(ctx) {
-    }
+
+    };
 
 }
 
@@ -156,7 +157,6 @@ class Ltwo {
 
         ASSET_MANAGER.muteAudio(mute);
         ASSET_MANAGER.adjustVolume(volume);
-
     };
 
     clearEntities() {

@@ -72,9 +72,11 @@ class AssetManager {
             }
         }
     };
+
     getAsset(path) {
         return this.cache[path];
     };
+    
     playAsset(path) {
         let audio = this.cache[path];
         audio.currentTime = 0;

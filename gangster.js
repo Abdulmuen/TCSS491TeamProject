@@ -12,7 +12,7 @@ class gangster {
         this.states = { idle: 0, run: 1, attack: 2, dead: 3 };
         this.state = this.states.idle;
         this.facings = { right: 0, left: 1 };
-        this.facing = this.facings.right;
+        this.facing = this.facings.left;
 
         this.canAttack = true;
         this.attackCD = 0;
@@ -101,6 +101,9 @@ class gangster {
 
             if (this.state == this.states.attack) {
                 this.attackFrame = this.animations[this.state][this.facing].currentFrame();
+                if (this.attackFrame == 4) {
+                    ASSET_MANAGER.playAsset("./sound/mainattack.wav");
+                }
                 if (this.attackFrame == 6 || this.attackFrame == 7) {
                     this.updateAB();
                 } else {
