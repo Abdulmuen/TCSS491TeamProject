@@ -334,9 +334,14 @@ class Zero {
                     }
 
                 }
-                if(entity.start && entity.end && that.BB && (that.BB.collide(entity.start) || that.BB.collide(entity.end)) && !that.isJumping){
-                    if(entity instanceof gr1){
+                if(entity.start && entity.end && that.BB && (that.BB.collide(entity.start) || that.BB.collide(entity.end))){
+                    if(entity instanceof gr1 && (that.animator == that.slide[that.facing] || that.animator == that.skid[that.facing])){
                         that.isfalling = true;
+                        if(that.facing == 0){
+                            that.x += 5;
+                        }else{
+                            that.x -= 5;
+                        }
                         that.y += 3;
                     }
                 }
