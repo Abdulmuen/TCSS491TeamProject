@@ -335,7 +335,7 @@ class Zero {
 
                 }
                 if(entity.start && entity.end && that.BB && (that.BB.collide(entity.start) || that.BB.collide(entity.end))){
-                    if(entity instanceof gr1 && (that.animator == that.slide[that.facing] || that.animator == that.skid[that.facing])){
+                    if(entity instanceof gr1 && (that.animator == that.slide[that.facing] || that.animator == that.skid[that.facing]) && entity.BB.top > that.BB.top){
                         that.isfalling = true;
                         if(that.facing == 0){
                             that.x += 5;
