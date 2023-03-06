@@ -84,8 +84,6 @@ class boss {
     };
 
     update() {
-        console.log(this.hitCount)
-        console.log(this.canDamage)
         if (this.hitCount >= 10) {
             this.dead = true;
             this.state = 9;
@@ -286,6 +284,18 @@ class boss {
         ctx.strokeStyle = 'white';
         ctx.strokeRect(this.DB.x - this.game.camera.x, this.DB.y, this.DB.width, this.DB.height);
         */
+        ctx.strokeStyle = "Green"
+        ctx.font = "15px Arial";
+        ctx.textAlign = "left";
+        ctx.fillText(this.writeHUD("🏮", 10 - this.hitCount), 1000, 30);
         this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y, this.scale);
     };
+
+    writeHUD(c, n) {
+        let str = "";
+        for (let i = 0; i < n; i++) {
+            str += c;
+        }
+        return str;
+    }
 }

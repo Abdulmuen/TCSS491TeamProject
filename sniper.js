@@ -73,7 +73,7 @@ class Sniper {
                 // if player in attack range
                 if (entity.AB && self.DB.collide(entity.AB)) {
                     self.hitCount += 1;
-                    console.log(self.hitCount);
+                    //console.log(self.hitCount);
                     if (self.hitCount == 50) {
                         self.die = true;
                     }
@@ -104,7 +104,7 @@ class Sniper {
             this.shot = false;
             this.state = 1;
             if (this.animations[this.state][this.direction].isDone()) {
-                console.log("die")
+                //console.log("die")
                 this.removeFromWorld = true;
             }
         }
