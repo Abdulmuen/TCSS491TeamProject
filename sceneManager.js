@@ -3,7 +3,7 @@ class SceneManager {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
-        this.Zero1 = new Zero(this.game, 100, 500);
+        this.Zero1 = new Zero(this.game, 100, 100);
         this.levelOne = false;
         this.levelTwo = false;
         this.billboard = false;
@@ -146,8 +146,9 @@ class Ltwo {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
-        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH, 550);
+        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH + 3600, 550);
         this.levelTwo = false;
+        this.boss = false;
         this.loadLevelTwo();
     };
 
@@ -176,7 +177,6 @@ class Ltwo {
         //floor 1
         gameEngine.addEntity(new gr1(gameEngine, 0, 650,80));
 
-
         //floor 2
         gameEngine.addEntity(new gr1(gameEngine, 700, 490,10));
         gameEngine.addEntity(new gr1(gameEngine, 1800, 490,10));
@@ -189,7 +189,6 @@ class Ltwo {
         gameEngine.addEntity(new gr1(gameEngine, 1950, 330,10));
         gameEngine.addEntity(new gr1(gameEngine, 2650, 330,10));
 
-
         //gangsters
         gameEngine.addEntity(new gangster(gameEngine, 800, 570));
         gameEngine.addEntity(new gangster(gameEngine, 1300, 570));
@@ -197,6 +196,7 @@ class Ltwo {
         gameEngine.addEntity(new gangster(gameEngine, 2500, 570));
         gameEngine.addEntity(new gangster(gameEngine, 2700, 570));
         gameEngine.addEntity(new gangster(gameEngine, 3700, 570));
+
         //shooters
         setTimeout(() => {
             gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 3000, 407));
@@ -206,16 +206,18 @@ class Ltwo {
             gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 2300, 247));
         }, 1100);
             gameEngine.addEntityToFrontOfList(new shooter(gameEngine, 600, 247));
+
         //trap
         //gameEngine.addEntity(new trap(gameEngine, 600, 350));
         gameEngine.addEntity(new trap(gameEngine, 1500, 350));
         gameEngine.addEntity(new trap(gameEngine, 2300, 350));
         gameEngine.addEntity(new trap(gameEngine, 3300, 350));
 
-
         gameEngine.addEntity(new door(gameEngine, 3900, 540));
+
         //sniper
         gameEngine.addEntity(new Sniper(gameEngine, 0, 425, 0));
+
         //background
         gameEngine.addEntity(new background_1(gameEngine));
     }
@@ -224,14 +226,14 @@ class Ltwo {
         this.clearEntities();
         this.Zero1 = new Zero(this.game, 330, 550);
         this.game.addEntity(this.Zero1);
+        this.Zero1.counter.slide ++;
+        this.Zero1.counter.slowmo ++;
         ASSET_MANAGER.pauseBackgroundMusic();
         ASSET_MANAGER.playAsset("./sound/portal.mp3");
         ASSET_MANAGER.playAsset("./sound/boss1.wav");
 
         gameEngine.addEntity(new gr1(gameEngine, 0, 650, 30));
         gameEngine.addEntity(new boss(gameEngine, 800, 490));
-        //gameEngine.addEntity(new trap(gameEngine, 490, 350));
-        //gameEngine.addEntity(new trap(gameEngine, 990, 350));
         gameEngine.addEntity(new bg3(gameEngine, 0, 0));
     }
 
@@ -243,7 +245,6 @@ class Ltwo {
         let midpoint = PARAMS.CANVAS_WIDTH / 2;
         if (this.x < this.Zero1.x - midpoint) this.x = this.Zero1.x - midpoint;
         if (this.x > this.Zero1.x - midpoint / 2 && this.Zero1.x - midpoint / 2 > 0) this.x = this.Zero1.x - midpoint / 2;
-
     }
 
     draw(ctx) {

@@ -91,10 +91,10 @@ class background_2 {
     }
 
     draw(ctx) {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 13; i++) {
             this.animations[0].drawFrame(this.game.clockTick, ctx, (128 * 3.1 * i) - this.game.camera.x, 0, 3.1);     
         }
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 13; i++) {
             this.animations[1].drawFrame(this.game.clockTick, ctx, (144 * 3 * i) - this.game.camera.x, 400, 3);    
         }
         for (let i = 0; i < 10; i++) {
