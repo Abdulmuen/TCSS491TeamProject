@@ -8,7 +8,7 @@ class Startscreen {
         this.Zero = new Zero(this.game, PARAMS.CANVAS_WIDTH / 2, 445);
         this.game.addEntity(this.Zero);
         gameEngine.addEntity(new gr1(gameEngine, 0, 545, 100));
-        this.title = new Animator(ASSET_MANAGER.getAsset("./Sprites/t.png"), 0, 0, 340, 134, 1, 1, false, true, false);
+        this.title = new Animator(ASSET_MANAGER.getAsset("./Sprites/t.png"), 0, 0, 374, 172, 1, 1, false, true, false);
     };
 
 
@@ -25,7 +25,7 @@ class Startscreen {
     };
 
     draw(ctx) {
-        this.title.drawFrame(this.game.clockTick, ctx, 300, 150, 2);
+        this.title.drawFrame(this.game.clockTick, ctx, 250, 125, 2);
         if (this.game.starting == true) {
             ctx.font = "50px Arial";
             ctx.fillStyle = 'White';

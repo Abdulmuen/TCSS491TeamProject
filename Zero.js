@@ -177,7 +177,7 @@ class Zero {
             this.H = this.animator.height - 100;
 
             if (this.x < this.game.camera.x) this.x = this.game.camera.x;//stay on canvas
-            if (this.x > this.bounds) this.x = this.bounds - this.animator.width;//stay on canvas
+            if (this.x > this.bounds) this.x = this.bounds;//stay on canvas
             if (this.y > 800) this.isDying = true;//if fallen of map die
 
 

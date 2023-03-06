@@ -3,7 +3,7 @@ class SceneManager {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
-        this.Zero1 = new Zero(this.game, 100, 100);
+        this.Zero1 = new Zero(this.game, 100, 500);
         this.levelOne = false;
         this.levelTwo = false;
         this.billboard = false;
@@ -146,7 +146,7 @@ class Ltwo {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
-        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH + 3600, 550);
+        this.Zero1 = new Zero(this.game, 1 * PARAMS.BLOCKWIDTH + 100, 550);
         this.levelTwo = false;
         this.boss = false;
         this.loadLevelTwo();
@@ -228,6 +228,7 @@ class Ltwo {
         this.game.addEntity(this.Zero1);
         this.Zero1.counter.slide ++;
         this.Zero1.counter.slowmo ++;
+        this.Zero1.bounds = 1200;
         ASSET_MANAGER.pauseBackgroundMusic();
         ASSET_MANAGER.playAsset("./sound/portal.mp3");
         ASSET_MANAGER.playAsset("./sound/boss1.wav");
