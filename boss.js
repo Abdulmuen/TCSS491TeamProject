@@ -137,7 +137,7 @@ class boss {
             });
 
             // cast after 2 attack
-            if (this.canCast && this.attackCount >= 2 && !this.isAttacking) {
+            if (this.canCast && this.attackCount >= 2 && !this.isAttacking && !this.isEating) {
                 this.speed = 0;
                 this.state = this.states.cast;
                 this.isCasting = true;
@@ -200,6 +200,7 @@ class boss {
                 this.canEat = false;
                 this.state = this.states.eat;
                 this.isEating = true;
+                this.canAttack = false;
                 this.hitCount = 0;
             }
             if (this.isEating && this.animations[this.states.eat][this.facing].isDone()) {
