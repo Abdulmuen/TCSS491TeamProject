@@ -5,6 +5,11 @@ const params = {
     slowMotionCD: 0,
     canSlow: true
 };
+const PARAMS = {
+    DEBUG: true,
+    SCALE: 3,
+    BITWIDTH: 16
+};
 
 /**
  * @param {Number} n
